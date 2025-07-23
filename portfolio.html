@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio | Your Name</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <img src="assets/logo.svg" alt="Logo" class="logo" />
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="container" style="padding: 3rem 2rem; max-width: 960px; margin: 0 auto;">
+    <h1>Portfolio</h1>
+    
+    <p style="margin-bottom: 2rem;">A selection of my best video editing and influencer collaboration projects.</p>
+    
+    <div class="portfolio-grid" style="
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+      gap: 1.6rem;">
+      
+      <article class="portfolio-item" style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.1); cursor: pointer;">
+        <video src="assets/project1.mp4" muted loop playsinline style="width: 100%; display:block; transition: transform 0.3s ease;" preload="metadata"></video>
+        <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); color: white; padding: 0.7rem 1rem;">
+          <h3 style="margin:0; font-weight:600;">Brand Campaign 1</h3>
+          <p style="font-size: 0.9rem;">A short description of the project highlighting impact.</p>
+        </div>
+      </article>
+      
+      <article class="portfolio-item" style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.1); cursor: pointer;">
+        <video src="assets/project2.mp4" muted loop playsinline style="width: 100%; display:block; transition: transform 0.3s ease;" preload="metadata"></video>
+        <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); color: white; padding: 0.7rem 1rem;">
+          <h3 style="margin:0; font-weight:600;">Influencer Collaboration</h3>
+          <p style="font-size: 0.9rem;">Details of creative video production and engagement.</p>
+        </div>
+      </article>
+      
+      <!-- Add more portfolio items similarly -->
+    </div>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 Your Name</p>
+  </footer>
+
+  <script>
+    // On hover, scale video slightly
+    document.querySelectorAll('.portfolio-item video').forEach(video => {
+      video.parentElement.addEventListener('mouseenter', () => {
+        video.style.transform = 'scale(1.05)';
+        video.play();
+      });
+      video.parentElement.addEventListener('mouseleave', () => {
+        video.style.transform = 'scale(1)';
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+  </script>
+</body>
+</html>
