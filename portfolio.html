@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portfolio | Your Name</title>
+  <title>Portfolio | Priyanshu Handuja</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
@@ -19,54 +19,67 @@
       </ul>
     </nav>
   </header>
-  
+
   <main class="container" style="padding: 3rem 2rem; max-width: 960px; margin: 0 auto;">
     <h1>Portfolio</h1>
-    
-    <p style="margin-bottom: 2rem;">A selection of my best video editing and influencer collaboration projects.</p>
-    
+    <p style="margin-bottom: 2rem;">
+      A selection of my best video editing and social media projects.
+    </p>
+
     <div class="portfolio-grid" style="
       display: grid;
       grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
       gap: 1.6rem;">
       
-      <article class="portfolio-item" style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.1); cursor: pointer;">
-        <video src="assets/project1.mp4" muted loop playsinline style="width: 100%; display:block; transition: transform 0.3s ease;" preload="metadata"></video>
-        <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); color: white; padding: 0.7rem 1rem;">
-          <h3 style="margin:0; font-weight:600;">Brand Campaign 1</h3>
-          <p style="font-size: 0.9rem;">A short description of the project highlighting impact.</p>
+      <!-- Portfolio Item 1 (YouTube Embed) -->
+      <article class="portfolio-item"
+        style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.1); cursor: pointer; background: #000;">
+        <div style="position: relative; width: 100%; padding-top: 56.25%;">
+          <iframe
+            src="https://www.youtube.com/embed/C_j0BKzjyAM?si=kEOZd7Z3EhWPz3-2"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;"></iframe>
+        </div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.5); color: white; padding: 0.7rem 1rem;">
+          <h3 style="margin:0; font-weight:600;">
+            Brand Campaign 1
+          </h3>
+          <p style="font-size: 0.95rem;">
+            A short description of this project and its impact.
+          </p>
         </div>
       </article>
-      
-      <article class="portfolio-item" style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.1); cursor: pointer;">
-        <video src="assets/project2.mp4" muted loop playsinline style="width: 100%; display:block; transition: transform 0.3s ease;" preload="metadata"></video>
-        <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); color: white; padding: 0.7rem 1rem;">
-          <h3 style="margin:0; font-weight:600;">Influencer Collaboration</h3>
-          <p style="font-size: 0.9rem;">Details of creative video production and engagement.</p>
+
+      <!-- Portfolio Item 2 (YouTube Embed) -->
+      <article class="portfolio-item"
+        style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.1); cursor: pointer; background: #000;">
+        <div style="position: relative; width: 100%; padding-top: 56.25%;">
+          <iframe
+            src="YOURVIDEO.COM"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;"></iframe>
+        </div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.5); color: white; padding: 0.7rem 1rem;">
+          <h3 style="margin:0; font-weight:600;">
+            Influencer Collaboration
+          </h3>
+          <p style="font-size: 0.95rem;">
+            Details of creative video production and engagement.
+          </p>
         </div>
       </article>
-      
-      <!-- Add more portfolio items similarly -->
+
+      <!-- Add more portfolio items below -->
+      <!-- Just paste a new <article> block and replace YOURVIDEO.COM with your embedded YouTube link, e.g., https://www.youtube.com/embed/xxxxxxxxxxx -->
     </div>
   </main>
-  
+
   <footer>
     <p>&copy; 2025 Your Name</p>
   </footer>
-
-  <script>
-    // On hover, scale video slightly
-    document.querySelectorAll('.portfolio-item video').forEach(video => {
-      video.parentElement.addEventListener('mouseenter', () => {
-        video.style.transform = 'scale(1.05)';
-        video.play();
-      });
-      video.parentElement.addEventListener('mouseleave', () => {
-        video.style.transform = 'scale(1)';
-        video.pause();
-        video.currentTime = 0;
-      });
-    });
-  </script>
 </body>
 </html>
