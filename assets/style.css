@@ -6,7 +6,11 @@
   --nav: #fff;
   --shadow: 0 2px 24px rgba(0,0,0,0.04);
 }
-* { box-sizing: border-box; margin: 0; padding: 0;}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
   font-family: 'Inter', sans-serif;
   color: var(--text);
@@ -14,50 +18,126 @@ body {
   min-height: 100vh;
 }
 header nav {
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: var(--nav);
   padding: 1.5rem 2rem;
   box-shadow: var(--shadow);
 }
 .logo { height: 28px; }
-nav ul { display: flex; list-style: none;}
-nav a { color: var(--text); text-decoration: none; padding: 0 1rem; font-weight: 500; transition: color 0.3s;}
-nav a.active, nav a:hover { color: var(--accent);}
-.hero { position: relative; min-height: 85vh; display: flex; align-items: center; justify-content: center; overflow: hidden;}
-.hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(2px) brightness(0.8); z-index: 0; }
+nav ul {
+  display: flex;
+  list-style: none;
+}
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+nav a.active,
+nav a:hover {
+  color: var(--accent);
+}
+.hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: blur(2px) brightness(0.8);
+  z-index: 0;
+}
 .hero-text {
-  position: relative; z-index: 2; color: #fff; text-align: center;
-  background: rgba(0,0,0,0.28); padding: 3rem 2rem; border-radius: 1.2rem;
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  background: rgba(0,0,0,0.28);
+  padding: 3rem 2rem;
+  border-radius: 1.2rem;
   box-shadow: var(--shadow);
   animation: fadeIn 1.2s cubic-bezier(.77,0,.18,1) 0.4s both;
 }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; }}
-.hero-text h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 0.7rem;}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: none;}
+}
+.hero-text h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+}
 .hero-text h1 span { color: var(--accent);}
-.hero-text h2 { font-size: 1.5rem; font-weight: 400; color: var(--secondary);}
+.hero-text h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--secondary);
+}
 .cta-btn {
-  display: inline-block; margin-top: 1.7rem; padding: 0.8rem 2.5rem;
-  background: var(--accent); color: #fff; border-radius: 28px; text-decoration: none; font-weight: 700;
+  display: inline-block;
+  margin-top: 1.7rem;
+  padding: 0.8rem 2.5rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 28px;
+  text-decoration: none;
+  font-weight: 700;
   box-shadow: 0 6px 14px rgba(0,180,216,0.13);
   transition: background .22s cubic-bezier(.77,0,.18,1);
   animation: fadeIn 1.2s cubic-bezier(.77,0,.18,1) 1.2s both;
 }
-.cta-btn:hover { background: #009ec7;}
-.stats { display: flex; justify-content: center; gap: 2.3rem; margin-top: 2.5rem;}
-.stats div { color: #fff; font-size: 1.2rem;}
-.stats .counter { font-size: 2.1rem; font-weight: 700; color: var(--accent);}
-footer { margin-top: 3rem; text-align: center; color: #888; padding: 2rem 0;}
-@media(max-width:600px) {
-  .hero-text { padding: 1.2rem; }
-  .hero-text h1 { font-size: 1.5rem;}
-  .stats { gap: 1.1rem;}
-.stats .plus {
-  font-size: 2.5rem;        /* Match .counter font size */
-  font-weight: 750;          /* Match .counter font weight */
-  color: var(--accent);      /* Use your site's accent color */
-  margin-left: 2px;          /* Small gap after number */
-  vertical-align: text-top;  /* Top-align the plus with the number */
-  line-height: 1;            /* Prevent lowering the "+" */
-  display: inline-block;     /* Normal inline level */
+.cta-btn:hover {
+  background: #009ec7;
 }
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 2.3rem;
+  margin-top: 2.5rem;
+}
+.stats div {
+  color: #fff;
+  font-size: 1.2rem;
+}
+.stats .counter {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+/* PLUS SIGN STYLE */
+.stats .plus {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-left: 2px;
+  vertical-align: baseline;
+  line-height: 1;
+  display: inline-block;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: #888;
+  padding: 2rem 0;
+}
+
+@media (max-width:600px) {
+  .hero-text { padding: 1.2rem; }
+  .hero-text h1 { font-size: 1.5rem; }
+  .stats { gap: 1.1rem; }
+  .stats div { font-size: 1rem; }
+  .stats .counter,
+  .stats .plus { font-size: 1.3rem; }
 }
