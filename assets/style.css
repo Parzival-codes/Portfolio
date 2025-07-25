@@ -51,4 +51,12 @@ footer { margin-top: 3rem; text-align: center; color: #888; padding: 2rem 0;}
   .hero-text { padding: 1.2rem; }
   .hero-text h1 { font-size: 1.5rem;}
   .stats { gap: 1.1rem;}
+  
+  .stats .plus {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-left: 2px;
+  vertical-align: middle;
+}
 }
