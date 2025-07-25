@@ -6,6 +6,34 @@
   <title>Portfolio | Priyanshu Handuja</title>
   <link rel="stylesheet" href="assets/style.css" />
   <style>
+     /* Bold "PH" logo text styling */
+    .logo-text {
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      user-select: none;
+      cursor: default;
+    }
+    .portfolio-category {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -1px;
+  margin: 3.5rem 0 1.5rem 0;
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+}
+
+.portfolio-item.portrait .video-container {
+  aspect-ratio: 9/16;
+  max-width: 340px;
+}
+
+.portfolio-item.landscape .video-container {
+  aspect-ratio: 16/9;
+  max-width: 500px;
+}
     /* Add/override the following styles in your assets/style.css or directly here */
     .portfolio-grid {
       display: grid;
@@ -74,7 +102,7 @@
 <body>
   <header>
     <nav>
-      <img src="assets/logo.svg" alt="Logo" class="logo" />
+      <div class="logo-text">PH</div>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="portfolio.html" class="active">Portfolio</a></li>
@@ -85,41 +113,164 @@
     </nav>
   </header>
   <main class="container" style="padding: 3rem 2rem; max-width: 1100px; margin: 0 auto;">
-    <h1>Portfolio</h1>
-    <p style="margin-bottom: 2rem;">A selection of my best video editing and influencer collaboration projects.</p>
-    <div class="portfolio-grid">
-      
-      <!-- Portfolio Item 1 -->
-      <article class="portfolio-item">
-        <div class="video-container">
-          <iframe
-            src="https://www.youtube.com/embed/C_j0BKzjyAM?si=kEOZd7Z3EhWPz3-2"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-        <div class="portfolio-details">
-          <h3>Brand Campaign 1</h3>
-          <p>A short description of this project and its impact.</p>
-        </div>
-      </article>
-      
-      <!-- Portfolio Item 2 -->
-      <article class="portfolio-item">
-        <div class="video-container">
-          <iframe
-            src="YOURVIDEO.COM"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-        <div class="portfolio-details">
-          <h3>Influencer Collaboration</h3>
-          <p>Details of creative video production and engagement.</p>
-        </div>
-      </article>
-      
-      <!-- Add more portfolio items (copy above block, change video and details) -->
-    </div>
-  </main>
+  <h1>Portfolio</h1>
+  <p style="margin-bottom: 2rem;">A selection of my best video editing and influencer collaboration projects, sorted by category.</p>
+
+  <!-- Section 1: Cinematic (4 videos) -->
+  <h2 class="portfolio-category">Cinematic</h2>
+  <div class="portfolio-grid">
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_1" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Short Film – "Night Lights"</h3>
+        <p>Experimental cinematic color grading, portrait format.</p>
+      </div>
+    </article>
+    <article class="portfolio-item landscape">
+      <div class="video-container">
+        <iframe src="YOUR_LANDSCAPE_VIDEO_2" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Brand Visual Promo</h3>
+        <p>Sleek editing and motion graphics for commercial work.</p>
+      </div>
+    </article>
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_3" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Music Video Snippet</h3>
+        <p>Dynamic rhythm sync and slow-mo transitions.</p>
+      </div>
+    </article>
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_4" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Event Teaser</h3>
+        <p>Moody lighting for a night event highlight reel.</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- Section 2: Collaboration (4 videos) -->
+  <h2 class="portfolio-category">Collaboration</h2>
+  <div class="portfolio-grid">
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_5" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Influencer Reel</h3>
+        <p>Quick edits for a joint Instagram campaign.</p>
+      </div>
+    </article>
+    <article class="portfolio-item landscape">
+      <div class="video-container">
+        <iframe src="YOUR_LANDSCAPE_VIDEO_6" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Brand x Artist Collab</h3>
+        <p>Showcase of dual perspectives in campaign footage.</p>
+      </div>
+    </article>
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_7" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Ad Partnership</h3>
+        <p>Short-form product pitch with another creator.</p>
+      </div>
+    </article>
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_8" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Q&A Snack Cuts</h3>
+        <p>Fast-paced interview joint session reel.</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- Section 3: Travel (4 videos) -->
+  <h2 class="portfolio-category">Travel</h2>
+  <div class="portfolio-grid">
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_9" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Mountains POV</h3>
+        <p>Story-driven portrait reel from mountain trek.</p>
+      </div>
+    </article>
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_10" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>City Scapes</h3>
+        <p>Urban adventure in vertical storytelling mode.</p>
+      </div>
+    </article>
+    <article class="portfolio-item landscape">
+      <div class="video-container">
+        <iframe src="YOUR_LANDSCAPE_VIDEO_11" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Road Trip Highlights</h3>
+        <p>Wide shots and drone footage across states.</p>
+      </div>
+    </article>
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_12" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Coastal Vibes</h3>
+        <p>Ocean-side storytelling, filmed in portrait.</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- Section 4: Experiences (3 videos) -->
+  <h2 class="portfolio-category">Experiences</h2>
+  <div class="portfolio-grid">
+    <article class="portfolio-item landscape">
+      <div class="video-container">
+        <iframe src="YOUR_LANDSCAPE_VIDEO_13" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Workshop Recap</h3>
+        <p>Recap of a creative editing workshop.</p>
+      </div>
+    </article>
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_14" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Live Edits Vlog</h3>
+        <p>Hands-on behind-the-scenes process portrait story.</p>
+      </div>
+    </article>
+    <article class="portfolio-item portrait">
+      <div class="video-container">
+        <iframe src="YOUR_PORTRAIT_VIDEO_15" allowfullscreen></iframe>
+      </div>
+      <div class="portfolio-details">
+        <h3>Fan Meet Moment</h3>
+        <p>Personal experience reel, meet-and-greet highlights.</p>
+      </div>
+    </article>
+  </div>
+</main>
   <footer>
     <p>&copy; 2025 Your Name</p>
   </footer>
