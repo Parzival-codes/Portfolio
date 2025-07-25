@@ -52,8 +52,8 @@ footer { margin-top: 3rem; text-align: center; color: #888; padding: 2rem 0;}
   .hero-text h1 { font-size: 1.5rem;}
   .stats { gap: 1.1rem;}
 .stats .plus {
-  font-size: 2.1rem;        /* Match .counter font size */
-  font-weight: 700;          /* Match .counter font weight */
+  font-size: 2.5rem;        /* Match .counter font size */
+  font-weight: 750;          /* Match .counter font weight */
   color: var(--accent);      /* Use your site's accent color */
   margin-left: 2px;          /* Small gap after number */
   vertical-align: text-top;  /* Top-align the plus with the number */
