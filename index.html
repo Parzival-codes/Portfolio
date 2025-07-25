@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Priyanshu Handuja | Video Editor & Content Creator</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* Inline override or add this to your assets/style.css */
+
+    /* Bold "PH" logo text styling */
+    .logo-text {
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      user-select: none;
+      cursor: default;
+    }
+
+    /* Adjust container inside hero-text for mobile */
+    @media (max-width: 600px) {
+      .hero-text {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav>
-      <img src="assets/logo.svg" alt="Logo" class="logo">
+      <div class="logo-text">PH</div>
       <ul>
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
@@ -22,16 +42,25 @@
 
   <section class="hero">
     <video autoplay loop muted playsinline class="hero-bg">
-      <source src="assets/hero-bg.mp4" type="video/mp4">
+      <source src="assets/hero-bg.mp4" type="video/mp4" />
     </video>
     <div class="hero-text">
       <h1>Hi, I’m <span>Priyanshu Handuja</span></h1>
       <h2>Video Editor & Content Creator</h2>
       <a href="portfolio.html" class="cta-btn">View Portfolio</a>
       <div class="stats">
-        <div><span class="counter" data-count="21">0</span><span class="plus">+</span><br>Brands</div>
-        <div><span class="counter" data-count="48">0</span><span class="plus">+</span><br>Projects</div>
-        <div><span class="counter" data-count="100">0</span><span class="plus">+</span><br>Videos</div>
+        <div>
+          <span class="counter" data-count="21">0</span><span class="plus">+</span><br />
+          Brands
+        </div>
+        <div>
+          <span class="counter" data-count="48">0</span><span class="plus">+</span><br />
+          Projects
+        </div>
+        <div>
+          <span class="counter" data-count="100">0</span><span class="plus">+</span><br />
+          Videos
+        </div>
       </div>
     </div>
   </section>
