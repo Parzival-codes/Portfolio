@@ -6,97 +6,74 @@
   <title>Portfolio | Priyanshu Handuja</title>
   <link rel="stylesheet" href="assets/style.css" />
   <style>
-     /* Bold "PH" logo text styling */
-    .logo-text {
-      font-weight: 900;
-      font-size: 1.6rem;
-      color: #000;
-      font-family: 'Inter', sans-serif;
-      user-select: none;
-      cursor: default;
+    .collapsible-section {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+      transition: box-shadow .28s cubic-bezier(.68,.01,.51,.99);
     }
-    .portfolio-category {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--accent);
-  letter-spacing: -1px;
-  margin: 3.5rem 0 1.5rem 0;
-  border-left: 4px solid var(--accent);
-  padding-left: 1rem;
-}
-
-.portfolio-item.portrait .video-container {
-  aspect-ratio: 9/16;
-  max-width: 340px;
-}
-
-.portfolio-item.landscape .video-container {
-  aspect-ratio: 16/9;
-  max-width: 500px;
-}
-    /* Add/override the following styles in your assets/style.css or directly here */
+    .collapsible-header {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 1.5rem 1.2rem;
+      border-left: 6px solid var(--accent);
+      background: #f7f7fa;
+      transition: background 0.3s;
+      will-change: background;
+      gap: 1.5rem;
+    }
+    .collapsible-header:hover {
+      background: #e6f5fa;
+    }
+    .collapsible-thumb {
+      width: 66px;
+      height: 66px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      background: #ececec;
+    }
+    .collapsible-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .collapsible-arrow {
+      margin-left: auto;
+      transition: transform 0.34s cubic-bezier(.5,.5,0,1.5);
+      font-size: 2rem;
+      color: var(--accent);
+      will-change: transform;
+    }
+    .collapsible-section.expanded .collapsible-arrow {
+      transform: rotate(90deg);
+    }
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      padding: 0 1.5rem;
+      background: #fff;
+      transition: max-height 0.65s cubic-bezier(.37,.92,.53,1.18), opacity 0.6s;
+      will-change: max-height, opacity;
+    }
+    .collapsible-section.expanded .collapsible-content {
+      max-height: 2000px;  /* big enough for content to fit */
+      opacity: 1;
+      padding-bottom: 2rem;
+      margin-top: 0.4rem;
+    }
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2.5rem;
-      margin-top: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
     }
-    .portfolio-item {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: box-shadow 0.3s;
-    }
-    .portfolio-item:hover {
-      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
-    }
-    .video-container {
-      position: relative;
-      width: 100%;
-      max-width: 500px;
-      /* 16:9 aspect ratio, but taller than before */
-      aspect-ratio: 16/9;
-      background: #000;
-      border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 1.2rem;
-    }
-    .video-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 14px;
-      display: block;
-    }
-    .portfolio-details {
-      text-align: center;
-    }
-    .portfolio-details h3 {
-      margin: 0 0 0.3rem 0;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #18181a;
-    }
-    .portfolio-details p {
-      margin: 0;
-      color: #686868;
-      font-size: 1rem;
-    }
-    @media (max-width: 600px) {
-      .portfolio-grid {
-        gap: 1.3rem;
-      }
-      .portfolio-item {
-        padding: 0.5rem;
-      }
-      .video-container {
-        max-width: 100%;
-      }
-    }
+    /* The rest of your CSS for portfolio-item, video-container, .portfolio-details, etc. should remain the same */
   </style>
 </head>
 <body>
@@ -113,166 +90,102 @@
     </nav>
   </header>
   <main class="container" style="padding: 3rem 2rem; max-width: 1100px; margin: 0 auto;">
-  <h1>Portfolio</h1>
-  <p style="margin-bottom: 2rem;">A selection of my best video editing and influencer collaboration projects, sorted by category.</p>
+    <h1>Portfolio</h1>
+    <p style="margin-bottom: 2rem;">Browse by category below. Click a section to expand and view my best works.</p>
 
-  <!-- Section 1: Cinematic (4 videos) -->
-  <h2 class="portfolio-category">Cinematic</h2>
-  <div class="portfolio-grid">
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_1" allowfullscreen></iframe>
+    <!-- Cinematic Section (example with Insta embed) -->
+    <section class="collapsible-section">
+      <div class="collapsible-header">
+        <img src="assets/thumb-cinematic.jpg" alt="Cinematic Thumbnail" class="collapsible-thumb" />
+        <span class="collapsible-title">Cinematic</span>
+        <span class="collapsible-arrow">&#9654;</span>
       </div>
-      <div class="portfolio-details">
-        <h3>Short Film – "Night Lights"</h3>
-        <p>Experimental cinematic color grading, portrait format.</p>
+      <div class="collapsible-content">
+        <div class="portfolio-grid">
+          <article class="portfolio-item portrait">
+            <div class="video-container">
+              <blockquote class="instagram-media"
+                data-instgrm-permalink="https://www.instagram.com/reel/DDCSH1ppEez/?utm_source=ig_embed&amp;utm_campaign=loading"
+                data-instgrm-version="14"
+                style="background:#FFF; border:0; border-radius:12px; width:100%;">
+              </blockquote>
+            </div>
+            <div class="portfolio-details">
+              <h3>Short Film – "Night Lights"</h3>
+              <p>Experimental cinematic color grading, portrait format.</p>
+            </div>
+          </article>
+          <!-- Add more items in this grid as desired -->
+        </div>
       </div>
-    </article>
-    <article class="portfolio-item landscape">
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/XAYkh0ZdYHM?si=qkljeMA3JoGkMuT0" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>Ethnic Day</h3>
-        <p>Vivid cinematic music video</p>
-      </div>
-    </article>
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_3" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>Music Video Snippet</h3>
-        <p>Dynamic rhythm sync and slow-mo transitions.</p>
-      </div>
-    </article>
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_4" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>Event Teaser</h3>
-        <p>Moody lighting for a night event highlight reel.</p>
-      </div>
-    </article>
-  </div>
+    </section>
 
-  <!-- Section 2: Collaboration (4 videos) -->
-  <h2 class="portfolio-category">Collaboration</h2>
-  <div class="portfolio-grid">
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_5" allowfullscreen></iframe>
+    <!-- Collaboration Section -->
+    <section class="collapsible-section">
+      <div class="collapsible-header">
+        <img src="assets/thumb-collab.jpg" alt="Collaboration Thumbnail" class="collapsible-thumb" />
+        <span class="collapsible-title">Collaboration</span>
+        <span class="collapsible-arrow">&#9654;</span>
       </div>
-      <div class="portfolio-details">
-        <h3>Influencer Reel</h3>
-        <p>Quick edits for a joint Instagram campaign.</p>
+      <div class="collapsible-content">
+        <div class="portfolio-grid">
+          <!-- Portfolio items for Collaboration section -->
+        </div>
       </div>
-    </article>
-    <article class="portfolio-item landscape">
-      <div class="video-container">
-        <iframe src="YOUR_LANDSCAPE_VIDEO_6" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>Brand x Artist Collab</h3>
-        <p>Showcase of dual perspectives in campaign footage.</p>
-      </div>
-    </article>
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_7" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>Ad Partnership</h3>
-        <p>Short-form product pitch with another creator.</p>
-      </div>
-    </article>
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_8" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>Q&A Snack Cuts</h3>
-        <p>Fast-paced interview joint session reel.</p>
-      </div>
-    </article>
-  </div>
+    </section>
 
-  <!-- Section 3: Travel (4 videos) -->
-  <h2 class="portfolio-category">Travel</h2>
-  <div class="portfolio-grid">
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_9" allowfullscreen></iframe>
+    <!-- Travel Section -->
+    <section class="collapsible-section">
+      <div class="collapsible-header">
+        <img src="assets/thumb-travel.jpg" alt="Travel Thumbnail" class="collapsible-thumb" />
+        <span class="collapsible-title">Travel</span>
+        <span class="collapsible-arrow">&#9654;</span>
       </div>
-      <div class="portfolio-details">
-        <h3>Mountains POV</h3>
-        <p>Story-driven portrait reel from mountain trek.</p>
+      <div class="collapsible-content">
+        <div class="portfolio-grid">
+          <!-- Portfolio items for Travel section -->
+        </div>
       </div>
-    </article>
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_10" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>City Scapes</h3>
-        <p>Urban adventure in vertical storytelling mode.</p>
-      </div>
-    </article>
-    <article class="portfolio-item landscape">
-      <div class="video-container">
-        <iframe src="YOUR_LANDSCAPE_VIDEO_11" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>Road Trip Highlights</h3>
-        <p>Wide shots and drone footage across states.</p>
-      </div>
-    </article>
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_12" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>Coastal Vibes</h3>
-        <p>Ocean-side storytelling, filmed in portrait.</p>
-      </div>
-    </article>
-  </div>
+    </section>
 
-  <!-- Section 4: Experiences (3 videos) -->
-  <h2 class="portfolio-category">Experiences</h2>
-  <div class="portfolio-grid">
-    <article class="portfolio-item landscape">
-      <div class="video-container">
-        <iframe src="YOUR_LANDSCAPE_VIDEO_13" allowfullscreen></iframe>
+    <!-- Experiences Section -->
+    <section class="collapsible-section">
+      <div class="collapsible-header">
+        <img src="assets/thumb-experiences.jpg" alt="Experiences Thumbnail" class="collapsible-thumb" />
+        <span class="collapsible-title">Experiences</span>
+        <span class="collapsible-arrow">&#9654;</span>
       </div>
-      <div class="portfolio-details">
-        <h3>Workshop Recap</h3>
-        <p>Recap of a creative editing workshop.</p>
+      <div class="collapsible-content">
+        <div class="portfolio-grid">
+          <!-- Portfolio items for Experiences section -->
+        </div>
       </div>
-    </article>
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_14" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>Live Edits Vlog</h3>
-        <p>Hands-on behind-the-scenes process portrait story.</p>
-      </div>
-    </article>
-    <article class="portfolio-item portrait">
-      <div class="video-container">
-        <iframe src="YOUR_PORTRAIT_VIDEO_15" allowfullscreen></iframe>
-      </div>
-      <div class="portfolio-details">
-        <h3>Fan Meet Moment</h3>
-        <p>Personal experience reel, meet-and-greet highlights.</p>
-      </div>
-    </article>
-  </div>
-</main>
+    </section>
+  </main>
   <footer>
-    <p>&copy; 2025 Your Name</p>
+    <p>&copy; 2025 Priyanshu Handuja</p>
   </footer>
+  <script async src="//www.instagram.com/embed.js"></script>
+  <script>
+    // Collapsible expand/collapse with smooth animation
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+      header.addEventListener('click', function() {
+        const section = this.parentElement;
+        const wasExpanded = section.classList.contains('expanded');
+        // Collapse all sections except clicked one if wanted (or allow multi-expand)
+        document.querySelectorAll('.collapsible-section').forEach(sec => {
+          if (sec !== section) sec.classList.remove('expanded');
+        });
+        // Toggle current
+        section.classList.toggle('expanded', !wasExpanded);
+        // Refresh IG if opened
+        if (section.classList.contains('expanded') && window.instgrm) {
+          window.instgrm.Embeds.process();
+        }
+      });
+    });
+    // Optionally if you want all sections to be able to expand at once, 
+    // remove the .forEach that collapses other sections.
+  </script>
 </body>
 </html>
