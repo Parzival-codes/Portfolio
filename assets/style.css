@@ -1,10 +1,10 @@
 :root {
-  --bg: #101014;               /* Ultra dark background */
-  --text: #fff;                /* All text white */
-  --accent: #00b4d8;           /* Cyan accent retained */
-  --secondary: #232436;        /* Slightly lighter dark for contrast */
-  --nav: #18181a;              /* Dark nav bar */
-  --shadow: 0 2px 24px rgba(0,0,0,0.8);
+  --bg: #fff;
+  --text: #18181a;
+  --accent: #00b4d8;
+  --secondary: #f7f7fa;
+  --nav: #fff;
+  --shadow: 0 2px 24px rgba(0,0,0,0.04);
 }
 * {
   box-sizing: border-box;
@@ -222,10 +222,11 @@ footer {
 /* Portfolio grid and items: 3 per row, tighter, dark card style */
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.2rem 1.8rem;
+  grid-template-columns: repeat(3, 1fr); /* Always 3 columns on desktop */
+  gap: 1.2rem 1.8rem;  /* Vertical gap, Horizontal gap */
   margin-top: 1rem;
 }
+
 .portfolio-item {
   background: #232436;
   border-radius: 12px;
@@ -284,9 +285,10 @@ footer {
 /* Responsive Breakpoints */
 @media (max-width: 900px) {
   .portfolio-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem 1.5rem;
   }
+}
   .portfolio-item.portrait .video-container,
   .portfolio-details {
     max-width: 220px;
@@ -313,8 +315,8 @@ footer {
     font-size: 1.3rem;
   }
   .portfolio-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 0rem;
   }
   .portfolio-item.portrait .video-container,
   .portfolio-item.landscape .video-container,
