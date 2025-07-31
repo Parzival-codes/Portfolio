@@ -49,6 +49,19 @@ nav ul {
   display: flex;
   list-style: none;
 }
+.logo-text {
+  font-family: 'Inter', 'Montserrat', Arial, sans-serif;
+  font-size: 2rem;        /* Same or bigger than any other heading */
+  font-weight: 900;       /* As bold as possible */
+  letter-spacing: -2px;   /* Optional: tighten letters for very bold look */
+  color: #000;            /* True black */
+  user-select: none;
+  cursor: default;
+  line-height: 1;
+  margin-right: 18px;     /* Matches spacing on homepage logo */
+  display: flex;
+  align-items: center;
+}
 nav a {
   color: var(--text);
   text-decoration: none;
