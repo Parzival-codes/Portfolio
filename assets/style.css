@@ -23,6 +23,13 @@ body {
   padding-bottom: 2rem;
   margin-top: 0.4rem;
 }
+.video-container {
+  margin-bottom: 0.6rem;
+}
+.portfolio-details {
+  margin-top: 0.3rem;
+}
+
 header nav {
   display: flex;
   justify-content: space-between;
