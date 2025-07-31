@@ -6,24 +6,30 @@
   <title>Portfolio | Priyanshu Handuja</title>
   <link rel="stylesheet" href="assets/style.css" />
   <style>
+    /* Collapsible Section Styles */
     .collapsible-section {
       background: #fff;
       border-radius: 18px;
       box-shadow: 0 4px 18px rgba(0,0,0,0.06);
       margin-bottom: 2.5rem;
       overflow: hidden;
-      transition: box-shadow .28s cubic-bezier(.68,.01,.51,.99);
+      transition: box-shadow 0.28s cubic-bezier(.68,.01,.51,.99);
+      width: 100%;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
     }
     .collapsible-header {
       display: flex;
       align-items: center;
       cursor: pointer;
-      padding: 1.5rem 1.2rem;
+      padding: 1.5rem 2rem;
       border-left: 6px solid var(--accent);
       background: #f7f7fa;
       transition: background 0.3s;
-      will-change: background;
       gap: 1.5rem;
+      box-sizing: border-box;
     }
     .collapsible-header:hover {
       background: #e6f5fa;
@@ -41,6 +47,7 @@
       font-size: 1.6rem;
       font-weight: 800;
       color: var(--accent);
+      user-select: none;
     }
     .collapsible-arrow {
       margin-left: auto;
@@ -48,6 +55,7 @@
       font-size: 2rem;
       color: var(--accent);
       will-change: transform;
+      user-select: none;
     }
     .collapsible-section.expanded .collapsible-arrow {
       transform: rotate(90deg);
@@ -56,24 +64,114 @@
       max-height: 0;
       overflow: hidden;
       opacity: 0;
-      padding: 0 1.5rem;
+      padding: 0 2rem;
       background: #fff;
       transition: max-height 0.65s cubic-bezier(.37,.92,.53,1.18), opacity 0.6s;
       will-change: max-height, opacity;
     }
     .collapsible-section.expanded .collapsible-content {
-      max-height: 2000px;  /* big enough for content to fit */
+      max-height: 2500px;  /* Enough for content */
       opacity: 1;
       padding-bottom: 2rem;
       margin-top: 0.4rem;
     }
+
+    /* Portfolio Grid: 3 Columns on desktop */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem 2rem; /* Vertical gap and horizontal gap */
       margin-top: 1rem;
     }
-    /* The rest of your CSS for portfolio-item, video-container, .portfolio-details, etc. should remain the same */
+
+    /* Portfolio Item Styles */
+    .portfolio-item {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.3s;
+      box-sizing: border-box;
+    }
+    .portfolio-item:hover {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Video Container */
+    .portfolio-item.portrait .video-container {
+      aspect-ratio: 9 / 16;
+      width: 100%;
+      max-width: 320px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 0.5rem;
+    }
+    .portfolio-item.landscape .video-container {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      max-width: 460px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 0.5rem;
+    }
+    .video-container iframe, .video-container blockquote {
+      width: 100% !important;
+      height: 100% !important;
+      border: none !important;
+      border-radius: 14px !important;
+      display: block;
+    }
+
+    /* Portfolio Description */
+    .portfolio-details {
+      text-align: center;
+      margin-top: 0.25rem;
+      font-size: 0.9rem;
+      color: #555;
+      font-weight: 500;
+      line-height: 1.3;
+      max-width: 320px;
+    }
+    .portfolio-details h3 {
+      margin-bottom: 0.15rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #18181a;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 1024px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem 1.8rem;
+      }
+      .portfolio-item.portrait .video-container,
+      .portfolio-details {
+        max-width: 100%;
+        max-width: 280px;
+      }
+      .portfolio-item.landscape .video-container {
+        max-width: 100%;
+        max-width: 400px;
+      }
+    }
+    @media (max-width: 640px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .portfolio-item.portrait .video-container,
+      .portfolio-item.landscape .video-container,
+      .portfolio-details {
+        max-width: 100%;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -89,114 +187,96 @@
       </ul>
     </nav>
   </header>
+
   <main class="container" style="padding: 3rem 2rem; max-width: 1100px; margin: 0 auto;">
     <h1>Portfolio</h1>
     <p style="margin-bottom: 2rem;">Browse by category below. Click a section to expand and view my best works.</p>
 
-    
-  <!-- Himachal Section  -->
-  <section class="collapsible-section">
-  <div class="collapsible-header">
-    <img src="assets/thumb-himachal.jpg" alt="Himachal Thumbnail" class="collapsible-thumb" />
-    <span class="collapsible-title">Himachal</span>
-    <span class="collapsible-arrow">&#9654;</span>
-  </div>
-  <div class="collapsible-content">
-    <div class="portfolio-grid">
-      <!-- Portfolio item 1 -->
-      <article class="portfolio-item portrait">
-        <div class="video-container">
-          <iframe
-            src="https://drive.google.com/file/d/1RqsInSAHq33-gskzrq4r8GmQ3N7AvW3w/preview"
-            width="100%" height="480"
-            allow="autoplay"
-            style="border-radius:12px; border:none; background:#000;"></iframe>
+    <!-- Himachal Section -->
+    <section class="collapsible-section">
+      <div class="collapsible-header">
+        <img src="assets/thumb-himachal.jpg" alt="Himachal Thumbnail" class="collapsible-thumb" />
+        <span class="collapsible-title">Himachal</span>
+        <span class="collapsible-arrow">&#9654;</span>
+      </div>
+      <div class="collapsible-content">
+        <div class="portfolio-grid">
+          <article class="portfolio-item portrait">
+            <div class="video-container">
+              <iframe
+                src="https://drive.google.com/file/d/1RqsInSAHq33-gskzrq4r8GmQ3N7AvW3w/preview"
+                allow="autoplay"
+                style="border-radius:12px; background:#000;"></iframe>
+            </div>
+            <div class="portfolio-details">
+              <h3>Chokling ArtHouse - The Treasure of Himalayas</h3>
+              <p>Hostel with a restaurant, indoor games & terrace sit-outs</p>
+            </div>
+          </article>
+          <article class="portfolio-item portrait">
+            <div class="video-container">
+              <iframe
+                src="https://drive.google.com/file/d/1uZepWky2sQRWngmoY5ebOKxffz0Qq-wq/preview"
+                allow="autoplay"
+                style="border-radius:12px; background:#000;"></iframe>
+            </div>
+            <div class="portfolio-details">
+              <h3>Garden Cafe, Bir – Visual Story</h3>
+              <p>Bir’s café culture inviting you to unwind, connect, and savor the moment.</p>
+            </div>
+          </article>
+          <article class="portfolio-item portrait">
+            <div class="video-container">
+              <iframe
+                src="https://drive.google.com/file/d/1LHPbOsj-D6zNHWCkIIdFAGxJRKPqrHd8/preview"
+                allow="autoplay"
+                style="border-radius:12px; background:#000;"></iframe>
+            </div>
+            <div class="portfolio-details">
+              <h3>Paragliding Over Bir – Freedom in the Skies</h3>
+              <p>Thrilling flight over Bir’s majestic valleys.</p>
+            </div>
+          </article>
+          <article class="portfolio-item portrait">
+            <div class="video-container">
+              <iframe
+                src="https://drive.google.com/file/d/1esNPh0N9T11YZfdfmuV6HffYYLdUHJXb/preview"
+                allow="autoplay"
+                style="border-radius:12px; background:#000;"></iframe>
+            </div>
+            <div class="portfolio-details">
+              <h3>Mafia Cafe, Bir – Creative Space in the Hills</h3>
+              <p>Eclectic decor and creative community hangout.</p>
+            </div>
+          </article>
+          <article class="portfolio-item portrait">
+            <div class="video-container">
+              <iframe
+                src="https://drive.google.com/file/d/13YkskXOD5s5JUZMAlCqDhIzDC-lRQ118/preview"
+                allow="autoplay"
+                style="border-radius:12px; background:#000;"></iframe>
+            </div>
+            <div class="portfolio-details">
+              <h3>Breakfast at AVVA</h3>
+              <p>Authentic South Indian breakfast perfection.</p>
+            </div>
+          </article>
+          <article class="portfolio-item portrait">
+            <div class="video-container">
+              <iframe
+                src="https://drive.google.com/file/d/1Zp2eEqa9MSHvFDXdV-g-SyzfUliwhJEC/preview"
+                allow="autoplay"
+                style="border-radius:12px; background:#000;"></iframe>
+            </div>
+            <div class="portfolio-details">
+              <h3>Bir Billing Transition Reel – From Peaks to Cafés</h3>
+              <p>Seamless journey showcasing Bir’s highlights.</p>
+            </div>
+          </article>
         </div>
-        <div class="portfolio-details">
-          <h3>Chokling ArtHouse - The Treasure of Himalayas</h3>
-          <p>Hostel with a restaurant, indoor games & terrace sit-outs</p>
-        </div>
-      </article>
-      <!-- Portfolio item 2 -->
-      <article class="portfolio-item portrait">
-        <div class="video-container">
-          <iframe
-            src="https://drive.google.com/file/d/1uZepWky2sQRWngmoY5ebOKxffz0Qq-wq/preview"
-            width="100%" height="480"
-            allow="autoplay"
-            style="border-radius:12px; border:none; background:#000;"></iframe>
-        </div>
-        <div class="portfolio-details">
-          <h3>Garden Cafe, Bir – Visual Story</h3>
-          <p>A true slice of Bir’s cafe culture—inviting you to unwind, connect, and savor the moment.</p>
-        </div>
-      </article>
-      <!-- Portfolio item 3 -->
-      <article class="portfolio-item portrait">
-        <div class="video-container">
-          <iframe
-            src="https://drive.google.com/file/d/1LHPbOsj-D6zNHWCkIIdFAGxJRKPqrHd8/preview"
-            width="100%" height="480"
-            allow="autoplay"
-            style="border-radius:12px; border:none; background:#000;"></iframe>
-        </div>
-        <div class="portfolio-details">
-          <h3>Paragliding Over Bir – Freedom in the Skies</h3>
-          <p>Experience the thrill of soaring above Bir’s breathtaking valleys, capturing the pure joy and freedom of paragliding in Himachal’s adventure capital.</p>
-        </div>
-      </article>
-      <!-- Portfolio item 4 -->
-      <article class="portfolio-item portrait">
-        <div class="video-container">
-          <iframe
-            src="https://drive.google.com/file/d/1esNPh0N9T11YZfdfmuV6HffYYLdUHJXb/preview"
-            width="100%" height="480"
-            allow="autoplay"
-            style="border-radius:12px; border:none; background:#000;"></iframe>
-        </div>
-        <div class="portfolio-details">
-          <h3>Mafia Cafe, Bir – Creative Space in the Hills</h3>
-          <p>Showcasing food, ambiance, and community—this feature invites you to experience Bir’s lively café culture, where stories and friendships begin.</p>
-        </div>
-      </article>
+      </div>
+    </section>
 
-       <!-- Portfolio item 5 -->
-      <article class="portfolio-item portrait">
-        <div class="video-container">
-          <iframe
-            src="https://drive.google.com/file/d/13YkskXOD5s5JUZMAlCqDhIzDC-lRQ118/preview"
-            width="100%" height="480"
-            allow="autoplay"
-            style="border-radius:12px; border:none; background:#000;"></iframe>
-        </div>
-        <div class="portfolio-details">
-          <h3>Avva South Indian Restaurant – Breakfast Perfection in Bir</h3>
-          <p>Start your day right with authentic South Indian flavors—crispy dosas, fluffy idlis, and aromatic filter coffee—in a cozy Bir setting that’s perfect for a memorable breakfast.
-      </article>
-       <!-- Portfolio item 6 -->
-      <article class="portfolio-item portrait">
-        <div class="video-container">
-          <iframe
-            src="https://drive.google.com/file/d/1Zp2eEqa9MSHvFDXdV-g-SyzfUliwhJEC/preview"
-            width="100%" height="480"
-            allow="autoplay"
-            style="border-radius:12px; border:none; background:#000;"></iframe>
-        </div>
-        <div class="portfolio-details">
-          <h3>Bir Billing Transition Reel – From Peaks to Cafés</h3>
-          <p>A seamless journey through Bir’s stunning terrains—gliding cliffs, winding mountain roads, paragliding skies, tranquil monasteries, and its iconic cafes—capturing the essence and diversity of the region in one cinematic reel.</p>
-        </div>
-      </article>
-
-      
- 
-      <!-- Add more as needed -->
-    </div>
-  </div>
-</section>
-
-
-    
     <!-- Collaboration Section -->
     <section class="collapsible-section">
       <div class="collapsible-header">
@@ -206,12 +286,24 @@
       </div>
       <div class="collapsible-content">
         <div class="portfolio-grid">
-          <!-- Portfolio items for Collaboration section -->
+          <!-- Collaboration videos here -->
+          <!-- Example portfolio item -->
+          <!--
+          <article class="portfolio-item portrait">
+            <div class="video-container">
+              <iframe src="LINK" allowfullscreen></iframe>
+            </div>
+            <div class="portfolio-details">
+              <h3>Title</h3>
+              <p>Description</p>
+            </div>
+          </article>
+          -->
         </div>
       </div>
     </section>
 
-     <!-- Cinematic Section (example with Insta embed) -->
+    <!-- Cinematic Section -->
     <section class="collapsible-section">
       <div class="collapsible-header">
         <img src="assets/thumb-cinematic.jpg" alt="Cinematic Thumbnail" class="collapsible-thumb" />
@@ -233,7 +325,7 @@
               <p>Experimental cinematic color grading, portrait format.</p>
             </div>
           </article>
-          <!-- Add more items in this grid as desired -->
+          <!-- Add more cinematic items here -->
         </div>
       </div>
     </section>
@@ -247,7 +339,7 @@
       </div>
       <div class="collapsible-content">
         <div class="portfolio-grid">
-          <!-- Portfolio items for Travel section -->
+          <!-- Travel videos here -->
         </div>
       </div>
     </section>
@@ -261,14 +353,16 @@
       </div>
       <div class="collapsible-content">
         <div class="portfolio-grid">
-          <!-- Portfolio items for Experiences section -->
+          <!-- Experiences videos here -->
         </div>
       </div>
     </section>
   </main>
+
   <footer>
     <p>&copy; 2025 Priyanshu Handuja</p>
   </footer>
+
   <script async src="//www.instagram.com/embed.js"></script>
   <script>
     // Collapsible expand/collapse with smooth animation
@@ -276,20 +370,20 @@
       header.addEventListener('click', function() {
         const section = this.parentElement;
         const wasExpanded = section.classList.contains('expanded');
-        // Collapse all sections except clicked one if wanted (or allow multi-expand)
+
+        // If you want only one open at a time, uncomment below:
         document.querySelectorAll('.collapsible-section').forEach(sec => {
           if (sec !== section) sec.classList.remove('expanded');
         });
-        // Toggle current
+
         section.classList.toggle('expanded', !wasExpanded);
-        // Refresh IG if opened
+
+        // Refresh Instagram embeds if expanded
         if (section.classList.contains('expanded') && window.instgrm) {
           window.instgrm.Embeds.process();
         }
       });
     });
-    // Optionally if you want all sections to be able to expand at once, 
-    // remove the .forEach that collapses other sections.
   </script>
 </body>
 </html>
