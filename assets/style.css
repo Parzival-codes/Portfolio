@@ -54,6 +54,13 @@ header nav {
   border-left: 4px solid var(--accent);
   padding-left: 1rem;
 }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem 2rem; /* Vertical gap, Horizontal gap */
+  margin-top: 1rem;
+}
+
 
 .portfolio-item.portrait .video-container {
   aspect-ratio: 9/16;
