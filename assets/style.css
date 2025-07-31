@@ -17,6 +17,12 @@ body {
   background: var(--bg);
   min-height: 100vh;
 }
+.collapsible-section.expanded .collapsible-content {
+  max-height: 2500px;
+  opacity: 1;
+  padding-bottom: 2rem;
+  margin-top: 0.4rem;
+}
 header nav {
   display: flex;
   justify-content: space-between;
