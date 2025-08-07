@@ -1,11 +1,12 @@
 :root {
-  --bg: #fff;
-  --text: #18181a;
-  --accent: #00b4d8;
-  --secondary: #f7f7fa;
-  --nav: #fff;
-  --shadow: 0 2px 24px rgba(0,0,0,0.04);
+  --bg: #fafbfc;        /* Main background: almost white, soft and clean */
+  --text: #17191c;      /* Strong neutral for readable text */
+  --accent: #0884c7;    /* Deep, modern blue for calls-to-action and highlights */
+  --secondary: #f1f3f6; /* For section backgrounds, cards, subtle contrast */
+  --nav: #ffffff;       /* Navigation remains crisp and light */
+  --shadow: 0 2px 24px rgba(14,30,37,0.05); /* Softer, subtle shadow */
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -335,5 +336,6 @@ footer {
     max-width: 100%;
   }
 }
+
 
 
