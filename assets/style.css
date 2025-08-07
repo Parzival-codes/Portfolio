@@ -378,4 +378,50 @@ footer {
   .portfolio-details {
     max-width: 100%;
   }
+  footer {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 0;
 }
+
+.footer-button {
+  display: inline-block;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(8,132,199,0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  max-width: 180px; /* Wider for landscape button */
+}
+
+.footer-button img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.footer-button:hover {
+  box-shadow: 0 6px 18px rgba(8,132,199,0.6);
+}
+
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .footer-button {
+    max-width: 280px;
+    width: 90%;
+  }
+}
+
+}
+
