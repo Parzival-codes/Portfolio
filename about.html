@@ -1,183 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>About | Priyanshu Handuja</title>
-<style>
-  :root {
-    --bg: #fafbfc;
-    --text: #17191c;
-    --accent: #0884c7;
-    --secondary: #f1f3f6;
-    --nav: #ffffff;
-    --shadow: 0 2px 24px rgba(14,30,37,0.05);
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | Priyanshu Handuja</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* Header logo text */
+    .logo-text {
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      user-select: none;
+      cursor: default;
+    }
 
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    flex-direction: column;
-  }
+    /* Container for about content */
+    main.about-container {
+      max-width: 1100px;
+      margin: 3rem auto 6rem;
+      padding: 0 2rem;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+    }
 
-  .about-container {
-    max-width: 1000px;
-    background: var(--secondary);
-    border-radius: 14px;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2rem;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .text-section, .insta-section {
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    padding: 1.5rem 2rem;
-    box-sizing: border-box;
-  }
-
-  .text-section {
-    flex: 1 1 300px;
-    min-width: 300px;
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .text-section h1 {
-    font-size: 2.4rem;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-  }
-
-  .text-section p {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    margin-bottom: 1.3rem;
-  }
-
-  .insta-section {
-    flex: 3 1 600px;
-    min-width: 300px;
-    max-width: 650px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .insta-image {
-    width: 75%;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-
-  .insta-image:hover {
-    transform: scale(1.05);
-  }
-
-  /* Footer style */
-  footer {
-    margin-top: 2rem;
-    width: 100%;
-    max-width: 1000px;
-    text-align: center;
-    font-style: italic;
-    color: #666;
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    padding: 1rem 0;
-  }
-
-  .footer-button {
-    background: var(--accent);
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 0.6rem 1.4rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    box-shadow: 0 4px 10px rgba(8,132,199,0.4);
-    transition: background 0.3s ease;
-    text-decoration: none;
-  }
-
-  .footer-button:hover {
-    background: #055a8c;
-  }
-
-  .footer-button img {
-    height: 24px;
-    width: auto;
-    border-radius: 4px;
-    display: block;
-  }
-
-  @media (max-width: 768px) {
-    .about-container {
-      flex-direction: column;
+    /* Content wrapper to balance text and Instagram embed */
+    .content-wrapper {
+      display: flex;
+      gap: 2rem;
+      background: #f1f3f6; /* matches --secondary */
+      border-radius: 14px;
+      box-shadow: 0 2px 24px rgba(14,30,37,0.05);
+      padding: 2rem;
+      width: 100%;
+      max-width: 1000px;
+      box-sizing: border-box;
       align-items: center;
+      flex-wrap: wrap;
     }
-    .text-section, .insta-section {
-      max-width: 100%;
-      flex: none;
+
+    /* Text section */
+    .text-section {
+      flex: 1 1 350px;
+      min-width: 300px;
+      color: #17191c;
+      font-size: 1.1rem;
+      line-height: 1.5;
     }
-    .insta-image {
-      width: 90%;
+
+    .text-section h1 {
+      font-size: 2.4rem;
+      color: #0884c7;
+      margin-bottom: 1rem;
     }
+
+    .text-section p {
+      margin-top: 1rem;
+    }
+
+    /* Instagram embed container */
+    .insta-embed {
+      flex: 1 1 450px;
+      max-width: 45%;
+      min-width: 280px;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .insta-embed iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      display: block;
+    }
+
+    /* Footer */
     footer {
-      flex-direction: column;
-      gap: 0.8rem;
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 1100px;
+      text-align: center;
+      color: #666;
+      font-style: italic;
+      padding: 1rem 2rem;
+      box-sizing: border-box;
     }
-  }
-</style>
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .content-wrapper {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+      }
+      .insta-embed {
+        max-width: 90%;
+        height: 350px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .text-section {
+        font-size: 1rem;
+      }
+      .insta-embed iframe {
+        height: 300px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <nav>
+      <div class="logo-text">PH</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <main class="about-container">
-    <section class="text-section">
-      <h1>About Me</h1>
-      <p>Hello! I'm Priyanshu, a 23-year-old creative soul behind the lens and timeline.</p>
-      <p>As a freelance video editor, I've had the pleasure to collaborate with some great brands and fellow creators, shaping stories that resonate.</p>
-      <p>Also, as a content creator myself, I've reached close to a million viewers — proving good content really does travel fast!</p>
-      <p>They say editing is like brewing the perfect cup of coffee — it's all about the right cut, the perfect blend, and a little extra kick of creativity.  
-         My motto? <em>"Cut, trim, and spice it up just right!"</em></p>
-      <p>Take a peek at my Instagram below — think of it as my visual diary, only with better filters.</p>
-      <p><strong>Contact:</strong> priyanshuhanduja@gmail.com</p>
-    </section>
-    <section class="insta-section">
-      <!-- Image loaded automatically from your GitHub assets folder -->
-      <img class="insta-image" 
-           src="https://raw.githubusercontent.com/parzival-codes/Portfolio/main/assets/about-insta.jpg" 
-           alt="Priyanshu's Instagram Profile" 
-           title="Check out my Insta!" />
-    </section>
+    <div class="content-wrapper">
+      <section class="text-section">
+        <h1>About Me</h1>
+        <p>Hello! I'm Priyanshu, a 23-year-old creative soul behind the lens and timeline.</p>
+        <p>As a freelance video editor, I've had the pleasure to collaborate with some great brands and fellow creators, shaping stories that resonate.</p>
+        <p>Also, as a content creator myself, I've reached close to a million viewers — proving good content really does travel fast!</p>
+        <p>They say editing is like brewing the perfect cup of coffee — it's all about the right cut, the perfect blend, and a little extra kick of creativity.  
+           My motto? <em>"Cut, trim, and spice it up just right!"</em></p>
+        <p>Take a peek at my Instagram right here — think of it as my visual diary, only with better filters.</p>
+        <p><strong>Contact:</strong> priyanshuhanduja@gmail.com</p>
+      </section>
+
+     <section class="insta-embed">
+  <a href="https://www.instagram.com/priyanshu_handuja/" target="_blank" style="text-decoration: none;">
+    <div style="
+      display: inline-block;
+      background-color: #f09433;
+      background-image: linear-gradient(315deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: sans-serif;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    ">
+      Visit My Instagram
+    </div>
+  </a>
+</section>
+    </div>
   </main>
 
   <footer>
-  <a href="https://instagram.com/priyanshuhanduja" target="_blank" rel="noopener" class="footer-button" aria-label="Instagram Profile">
-    <img src="https://raw.githubusercontent.com/parzival-codes/Portfolio/main/assets/insta-button.jpg" alt="Instagram" />
-  </a>
-  <a href="https://parzival-codes.github.io/Portfolio/contact.html" class="footer-button" aria-label="Contact Us Page">
-    <img src="https://raw.githubusercontent.com/parzival-codes/Portfolio/main/assets/contact-us.jpg" alt="Contact Us" />
-  </a>
-</footer>
+    <a href="https://instagram.com/priyanshuhanduja" target="_blank" rel="noopener" style="margin-right: 1rem; color:#0884c7; font-weight:600; text-decoration:none;">
+      Instagram Profile
+    </a> &bull; &nbsp;
+    <a href="https://parzival-codes.github.io/Portfolio/contact.html" style="color:#0884c7; font-weight:600; text-decoration:none;">
+      Contact Me
+    </a>
+  </footer>
 </body>
 </html>
