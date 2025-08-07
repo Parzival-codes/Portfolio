@@ -3,55 +3,201 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact | Your Name</title>
+  <title>Contact | Priyanshu Handuja</title>
   <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* Basic reset and body */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg, #fafbfc);
+      color: var(--text, #17191c);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Header & Nav */
+    header nav {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--nav, #ffffff);
+      box-shadow: var(--shadow, 0 2px 24px rgba(14,30,37,0.05));
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    .logo-text {
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: var(--accent, #0884c7);
+      cursor: default;
+      letter-spacing: -1.5px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text, #17191c);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.25rem 0.5rem;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+    nav a:hover,
+    nav a.active {
+      color: var(--accent, #0884c7);
+      border-bottom: 3px solid var(--accent, #0884c7);
+    }
+
+    /* Main container */
+    main.container {
+      width: 100%;
+      max-width: 600px;
+      margin: 3rem auto 6rem;
+      padding: 0 2rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    main.container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+      color: var(--accent, #0884c7);
+    }
+
+    main.container p.lead {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Google Form embed */
+    iframe.google-form {
+      width: 100%;
+      height: 650px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: white;
+    }
+
+    /* Social links */
+    section.social-links {
+      margin-top: 3rem;
+    }
+
+    section.social-links p {
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #444;
+    }
+
+    section.social-links div {
+      display: flex;
+      gap: 1.3rem;
+    }
+
+    section.social-links a {
+      color: var(--accent, #0884c7);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+    section.social-links a:hover {
+      color: #005f8a;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      padding: 1rem 2rem;
+      box-sizing: border-box;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid #ddd;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      main.container {
+        padding: 0 1rem;
+        margin: 2rem auto 4rem;
+      }
+      header nav {
+        padding: 1rem;
+      }
+      nav ul {
+        gap: 1rem;
+      }
+      main.container h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav>
-      <img src="assets/logo.svg" alt="Logo" class="logo" />
+      <div class="logo-text">PH</div>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
     </nav>
   </header>
-  
-  <main class="container" style="max-width: 600px; margin: 0 auto; padding: 3rem 2rem;">
+
+  <main class="container">
     <h1>Contact Me</h1>
-    <p style="margin-bottom: 2rem;">Feel free to reach out for collaborations, inquiries, or just to say hello.</p>
+    <p class="lead">Feel free to reach out for collaborations, inquiries, or just to say hello.</p>
 
-    <form action="https://formspree.io/f/yourformid" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
-      <label for="name">Name</label>
-      <input id="name" name="name" type="text" required placeholder="Your full name" style="padding: 0.6rem 1rem; font-size: 1rem; border-radius: 8px; border: 1px solid #ddd;" />
-      
-      <label for="email">Email</label>
-      <input id="email" name="email" type="email" required placeholder="you@example.com" style="padding: 0.6rem 1rem; font-size: 1rem; border-radius: 8px; border: 1px solid #ddd;" />
-      
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="4" required placeholder="Write your message here" style="padding: 0.6rem 1rem; font-size: 1rem; border-radius: 8px; border: 1px solid #ddd;"></textarea>
-      
-      <button type="submit" style="
-        background: #00b4d8; color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 28px; font-weight: 600; font-size: 1.1rem; cursor: pointer;
-        transition: background 0.3s ease;
-      ">Send</button>
-    </form>
+    <!-- Embed your Google Form here by replacing the src URL -->
+    <iframe 
+      class="google-form"
+      src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true" 
+      allowfullscreen
+      loading="lazy"
+      title="Contact Form"
+    >
+      Loading…
+    </iframe>
 
-    <section style="margin-top: 3rem; font-size: 0.9rem; color: #555;">
+    <section class="social-links">
       <p>Or connect with me on social media:</p>
-      <div style="display: flex; gap: 1rem;">
-        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener" style="color: #00b4d8;">Instagram</a>
-        <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" style="color: #00b4d8;">Twitter</a>
-        <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener" style="color: #00b4d8;">LinkedIn</a>
+      <div>
+        <a href="https://instagram.com/priyanshuhanduja" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://twitter.com/priyanshuhanduja" target="_blank" rel="noopener">Twitter</a>
+        <a href="https://linkedin.com/in/priyanshuhanduja" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </section>
   </main>
-  
+
   <footer>
-    <p>&copy; 2025 Your Name</p>
+    &copy; 2025 Priyanshu Handuja
   </footer>
 </body>
 </html>
