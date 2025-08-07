@@ -2,71 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact | Priyanshu Handuja</title>
   <link rel="stylesheet" href="assets/style.css" />
   <style>
-    /* Basic reset and body */
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg, #fafbfc);
-      color: var(--text, #17191c);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* Header & Nav */
-    header nav {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--nav, #ffffff);
-      box-shadow: var(--shadow, 0 2px 24px rgba(14,30,37,0.05));
-      box-sizing: border-box;
-      user-select: none;
-    }
-
+    /* Logo text */
     .logo-text {
       font-weight: 900;
-      font-size: 1.8rem;
-      color: var(--accent, #0884c7);
+      font-size: 1.6rem;
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      user-select: none;
       cursor: default;
-      letter-spacing: -1.5px;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--text, #17191c);
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 0.25rem 0.5rem;
-      transition: color 0.3s ease, border-bottom 0.3s ease;
-      border-bottom: 3px solid transparent;
-    }
-    nav a:hover,
-    nav a.active {
-      color: var(--accent, #0884c7);
-      border-bottom: 3px solid var(--accent, #0884c7);
-    }
-
-    /* Main container */
     main.container {
-      width: 100%;
       max-width: 600px;
       margin: 3rem auto 6rem;
       padding: 0 2rem;
@@ -79,7 +29,7 @@
     main.container h1 {
       font-size: 2.5rem;
       margin-bottom: 0.8rem;
-      color: var(--accent, #0884c7);
+      color: #0884c7;
     }
 
     main.container p.lead {
@@ -88,72 +38,73 @@
       color: #555;
     }
 
-    /* Google Form embed */
-    iframe.google-form {
-      width: 100%;
-      height: 650px;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #17191c;
+    }
+
+    input, textarea {
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-family: inherit;
+      resize: vertical;
+    }
+
+    button[type="submit"] {
+      background: #0884c7;
+      color: white;
       border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      background: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 28px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      align-self: flex-start;
+    }
+
+    button[type="submit"]:hover {
+      background: #055a8c;
     }
 
     /* Social links */
-    section.social-links {
-      margin-top: 3rem;
-    }
-
     section.social-links p {
       margin-bottom: 0.6rem;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #444;
+      color: #555;
+      font-size: 0.9rem;
     }
 
     section.social-links div {
       display: flex;
-      gap: 1.3rem;
+      gap: 1.2rem;
     }
 
     section.social-links a {
-      color: var(--accent, #0884c7);
+      color: #0884c7;
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.3s;
       font-size: 1rem;
-      transition: color 0.3s ease;
     }
     section.social-links a:hover {
-      color: #005f8a;
+      color: #055a8c;
       text-decoration: underline;
     }
 
-    /* Footer */
-    footer {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto 2rem;
-      padding: 1rem 2rem;
-      box-sizing: border-box;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #888;
-      border-top: 1px solid #ddd;
-    }
-
-    /* Responsive */
+    /* Responsive tweaks */
     @media (max-width: 640px) {
       main.container {
         padding: 0 1rem;
         margin: 2rem auto 4rem;
-      }
-      header nav {
-        padding: 1rem;
-      }
-      nav ul {
-        gap: 1rem;
-      }
-      main.container h1 {
-        font-size: 2rem;
       }
     }
   </style>
@@ -175,16 +126,19 @@
     <h1>Contact Me</h1>
     <p class="lead">Feel free to reach out for collaborations, inquiries, or just to say hello.</p>
 
-    <!-- Embed your Google Form here by replacing the src URL -->
-    <iframe 
-      class="google-form"
-      src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true" 
-      allowfullscreen
-      loading="lazy"
-      title="Contact Form"
-    >
-      Loading…
-    </iframe>
+    <!-- Replace with your preferred method: Formspree, Google Form iframe, or backend -->
+    <form action="https://formspree.io/f/yourformid" method="POST">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required placeholder="Your full name" />
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required placeholder="you@example.com" />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" required placeholder="Write your message here"></textarea>
+
+      <button type="submit">Send</button>
+    </form>
 
     <section class="social-links">
       <p>Or connect with me on social media:</p>
@@ -197,7 +151,7 @@
   </main>
 
   <footer>
-    &copy; 2025 Priyanshu Handuja
+    <p style="color: #666; text-align: center; padding: 1rem 2rem;">&copy; 2025 Priyanshu Handuja</p>
   </footer>
 </body>
 </html>
