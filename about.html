@@ -1,51 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About | Your Name</title>
-  <link rel="stylesheet" href="assets/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About | Priyanshu Handuja</title>
+<style>
+  :root {
+    --bg: #fafbfc;
+    --text: #17191c;
+    --accent: #0884c7;
+    --secondary: #f1f3f6;
+    --nav: #ffffff;
+    --shadow: 0 2px 24px rgba(14,30,37,0.05);
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    flex-direction: column;
+  }
+
+  .about-container {
+    max-width: 1000px;
+    background: var(--secondary);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .text-section, .insta-section {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    padding: 1.5rem 2rem;
+    box-sizing: border-box;
+  }
+
+  .text-section {
+    flex: 1 1 300px;
+    min-width: 300px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .text-section h1 {
+    font-size: 2.4rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .text-section p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 1.3rem;
+  }
+
+  .insta-section {
+    flex: 3 1 600px;
+    min-width: 300px;
+    max-width: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .insta-image {
+    width: 75%;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .insta-image:hover {
+    transform: scale(1.05);
+  }
+
+  /* Footer style */
+  footer {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .footer-button {
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.6rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 4px 10px rgba(8,132,199,0.4);
+    transition: background 0.3s ease;
+    text-decoration: none;
+  }
+
+  .footer-button:hover {
+    background: #055a8c;
+  }
+
+  .footer-button img {
+    height: 24px;
+    width: auto;
+    border-radius: 4px;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .text-section, .insta-section {
+      max-width: 100%;
+      flex: none;
+    }
+    .insta-image {
+      width: 90%;
+    }
+    footer {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <nav>
-      <img src="assets/logo.svg" alt="Logo" class="logo" />
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  
-  <main class="container" style="padding: 3rem 2rem; max-width: 800px; margin: 0 auto;">
-    <h1>About Me</h1>
-    <img src="assets/your-photo.jpg" alt="Your Name" style="width: 150px; border-radius: 50%; display: block; margin: 1.5rem auto;" />
-    
-    <p>Hello! I’m <strong>Your Name</strong>, a dedicated video editor and microinfluencer with a passion for storytelling and brand collaborations. With several years of experience, I specialize in creating visually captivating content that resonates with audiences.</p>
-    
-    <h2>My Journey</h2>
-    <ul style="list-style:none; padding-left:0; line-height: 1.6;">
-      <li><time>2018</time> – Started as a freelance video editor.</li>
-      <li><time>2019</time> – Collaborated with local brands and influencers.</li>
-      <li><time>2020</time> – Expanded reach on social media with 10k+ followers.</li>
-      <li><time>2023</time> – Worked with national brands and sponsored content campaigns.</li>
-      <li><time>2025</time> – Continuing growth in video editing and influencer marketing.</li>
-    </ul>
-    
-    <h2>Brands I’ve Worked With</h2>
-    <div class="brands" style="display:flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1rem;">
-      <img src="assets/brand1.svg" alt="Brand 1" style="height: 48px; filter: grayscale(100%); transition: filter 0.3s ease;" />
-      <img src="assets/brand2.svg" alt="Brand 2" style="height: 48px; filter: grayscale(100%);" />
-      <img src="assets/brand3.svg" alt="Brand 3" style="height: 48px; filter: grayscale(100%);" />
-      <!-- Add more brand logos -->
-    </div>
+  <main class="about-container">
+    <section class="text-section">
+      <h1>About Me</h1>
+      <p>Hello! I'm Priyanshu, a 23-year-old creative soul behind the lens and timeline.</p>
+      <p>As a freelance video editor, I've had the pleasure to collaborate with some great brands and fellow creators, shaping stories that resonate.</p>
+      <p>Also, as a content creator myself, I've reached close to a million viewers — proving good content really does travel fast!</p>
+      <p>They say editing is like brewing the perfect cup of coffee — it's all about the right cut, the perfect blend, and a little extra kick of creativity.  
+         My motto? <em>"Cut, trim, and spice it up just right!"</em></p>
+      <p>Take a peek at my Instagram below — think of it as my visual diary, only with better filters.</p>
+      <p><strong>Contact:</strong> priyanshuhanduja@gmail.com</p>
+    </section>
+    <section class="insta-section">
+      <!-- Image loaded automatically from your GitHub assets folder -->
+      <img class="insta-image" 
+           src="https://raw.githubusercontent.com/parzival-codes/Portfolio/main/assets/about-insta.jpg" 
+           alt="Priyanshu's Instagram Profile" 
+           title="Check out my Insta!" />
+    </section>
   </main>
-  
+
   <footer>
-    <p>&copy; 2025 Your Name</p>
-  </footer>
+  <a href="https://instagram.com/priyanshuhanduja" target="_blank" rel="noopener" class="footer-button" aria-label="Instagram Profile">
+    <img src="https://raw.githubusercontent.com/parzival-codes/Portfolio/main/assets/insta-button.jpg" alt="Instagram" />
+  </a>
+  <a href="https://parzival-codes.github.io/Portfolio/contact.html" class="footer-button" aria-label="Contact Us Page">
+    <img src="https://raw.githubusercontent.com/parzival-codes/Portfolio/main/assets/contact-us.jpg" alt="Contact Us" />
+  </a>
+</footer>
 </body>
 </html>
