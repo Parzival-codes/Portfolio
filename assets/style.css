@@ -5,6 +5,7 @@
   --secondary: #f1f3f6; /* For section backgrounds, cards, subtle contrast */
   --nav: #ffffff;       /* Navigation remains crisp and light */
   --shadow: 0 2px 24px rgba(14,30,37,0.05); /* Softer, subtle shadow */
+
 }
 
 * {
@@ -336,6 +337,7 @@ footer {
     max-width: 100%;
   }
 }
+
 
 
 
