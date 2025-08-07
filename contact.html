@@ -6,7 +6,7 @@
   <title>Contact | Priyanshu Handuja</title>
   <link rel="stylesheet" href="assets/style.css" />
   <style>
-    /* Logo text */
+    /* Logo text style for header */
     .logo-text {
       font-weight: 900;
       font-size: 1.6rem;
@@ -14,97 +14,152 @@
       font-family: 'Inter', sans-serif;
       user-select: none;
       cursor: default;
+      letter-spacing: -1.5px;
     }
 
+    /* Header & Navigation */
+    header nav {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      box-shadow: 0 2px 24px rgba(14, 30, 37, 0.05);
+      box-sizing: border-box;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #17191c;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.25rem 0.5rem;
+      border-bottom: 3px solid transparent;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #0884c7;
+      border-bottom: 3px solid #0884c7;
+    }
+
+    /* Main container */
     main.container {
-      max-width: 600px;
+      max-width: 640px;
       margin: 3rem auto 6rem;
       padding: 0 2rem;
       box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      color: #17191c;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      align-items: center;
+      gap: 1.2rem;
     }
 
     main.container h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
       color: #0884c7;
+      font-weight: 800;
+      text-align: center;
+      width: 100%;
     }
 
     main.container p.lead {
-      margin-bottom: 2rem;
       font-size: 1.1rem;
       color: #555;
+      font-weight: 400;
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto 2rem auto;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    label {
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-      color: #17191c;
-    }
-
-    input, textarea {
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-family: inherit;
-      resize: vertical;
-    }
-
-    button[type="submit"] {
-      background: #0884c7;
-      color: white;
+    /* Google Form iframe embed */
+    iframe.google-form {
+      width: 100%;
+      height: 700px;
       border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 28px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      align-self: flex-start;
-    }
-
-    button[type="submit"]:hover {
-      background: #055a8c;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: #fff;
+      max-width: 640px;
     }
 
     /* Social links */
+    section.social-links {
+      margin-top: 3rem;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      width: 100%;
+      max-width: 640px;
+    }
+
     section.social-links p {
       margin-bottom: 0.6rem;
+      font-size: 1rem;
+      font-weight: 600;
       color: #555;
-      font-size: 0.9rem;
     }
 
     section.social-links div {
       display: flex;
-      gap: 1.2rem;
+      justify-content: center;
+      gap: 1.4rem;
     }
 
     section.social-links a {
       color: #0884c7;
-      text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s;
       font-size: 1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
+
     section.social-links a:hover {
       color: #055a8c;
       text-decoration: underline;
     }
 
-    /* Responsive tweaks */
+    /* Footer */
+    footer {
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid #ddd;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Responsive */
     @media (max-width: 640px) {
       main.container {
         padding: 0 1rem;
         margin: 2rem auto 4rem;
+      }
+      nav ul {
+        gap: 1rem;
+      }
+      nav a {
+        font-size: 0.9rem;
+      }
+      iframe.google-form {
+        height: 600px;
       }
     }
   </style>
@@ -122,36 +177,33 @@
     </nav>
   </header>
 
-  <main class="container">
+  <main class="container" role="main">
     <h1>Contact Me</h1>
     <p class="lead">Feel free to reach out for collaborations, inquiries, or just to say hello.</p>
 
-    <!-- Replace with your preferred method: Formspree, Google Form iframe, or backend -->
-    <form action="https://formspree.io/f/yourformid" method="POST">
-      <label for="name">Name</label>
-      <input id="name" name="name" type="text" required placeholder="Your full name" />
+    <!-- Embed your Google Form below -->
+    <iframe
+      class="google-form"
+      src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true"
+      title="Contact Form"
+      loading="lazy"
+      allowfullscreen
+    >
+      Loading…
+    </iframe>
 
-      <label for="email">Email</label>
-      <input id="email" name="email" type="email" required placeholder="you@example.com" />
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="4" required placeholder="Write your message here"></textarea>
-
-      <button type="submit">Send</button>
-    </form>
-
-    <section class="social-links">
+    <section class="social-links" aria-label="Social Media Links">
       <p>Or connect with me on social media:</p>
       <div>
-        <a href="https://instagram.com/priyanshuhanduja" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://twitter.com/priyanshuhanduja" target="_blank" rel="noopener">Twitter</a>
-        <a href="https://linkedin.com/in/priyanshuhanduja" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://instagram.com/priyanshuhanduja" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+        <a href="https://twitter.com/priyanshuhanduja" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
+        <a href="https://linkedin.com/in/priyanshuhanduja" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <p style="color: #666; text-align: center; padding: 1rem 2rem;">&copy; 2025 Priyanshu Handuja</p>
+    &copy; 2025 Priyanshu Handuja
   </footer>
 </body>
 </html>
