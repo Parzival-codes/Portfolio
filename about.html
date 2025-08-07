@@ -6,7 +6,6 @@
   <title>About | Priyanshu Handuja</title>
   <link rel="stylesheet" href="assets/style.css" />
   <style>
-    /* Header logo text */
     .logo-text {
       font-weight: 900;
       font-size: 1.6rem;
@@ -16,7 +15,6 @@
       cursor: default;
     }
 
-    /* Container for about content */
     main.about-container {
       max-width: 1100px;
       margin: 3rem auto 6rem;
@@ -26,11 +24,10 @@
       justify-content: center;
     }
 
-    /* Content wrapper to balance text and Instagram embed */
     .content-wrapper {
       display: flex;
       gap: 2rem;
-      background: #f1f3f6; /* matches --secondary */
+      background: #f1f3f6;
       border-radius: 14px;
       box-shadow: 0 2px 24px rgba(14,30,37,0.05);
       padding: 2rem;
@@ -41,7 +38,6 @@
       flex-wrap: wrap;
     }
 
-    /* Text section */
     .text-section {
       flex: 1 1 350px;
       min-width: 300px;
@@ -60,7 +56,6 @@
       margin-top: 1rem;
     }
 
-    /* Instagram embed container */
     .insta-embed {
       flex: 1 1 450px;
       max-width: 45%;
@@ -69,6 +64,12 @@
       box-shadow: 0 3px 12px rgba(0,0,0,0.08);
       overflow: hidden;
       background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
     }
 
     .insta-embed iframe {
@@ -78,19 +79,49 @@
       display: block;
     }
 
-    /* Footer */
+    .insta-button {
+      display: inline-block;
+      background-color: #f09433;
+      background-image: linear-gradient(315deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: sans-serif;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-decoration: none;
+    }
+
+    .insta-photo {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
     footer {
       margin-top: 2rem;
       width: 100%;
       max-width: 1100px;
       text-align: center;
       color: #666;
-      font-style: italic;
       padding: 1rem 2rem;
       box-sizing: border-box;
     }
 
-    /* Responsive */
+    .footer-button {
+      display: inline-block;
+      margin: 0 0.5rem;
+      background-color: #f09433;
+      background-image: linear-gradient(315deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: sans-serif;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
     @media (max-width: 900px) {
       .content-wrapper {
         flex-direction: column;
@@ -99,7 +130,7 @@
       }
       .insta-embed {
         max-width: 90%;
-        height: 350px;
+        height: auto;
       }
     }
 
@@ -139,31 +170,20 @@
         <p><strong>Contact:</strong> priyanshuhanduja@gmail.com</p>
       </section>
 
-     <section class="insta-embed">
-  <a href="https://www.instagram.com/priyanshu_handuja/" target="_blank" style="text-decoration: none;">
-    <div style="
-      display: inline-block;
-      background-color: #f09433;
-      background-image: linear-gradient(315deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-family: sans-serif;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    ">
-      Visit My Instagram
-    </div>
-  </a>
-</section>
+      <section class="insta-embed">
+        <a href="https://www.instagram.com/priyanshu_handuja/" target="_blank" class="insta-button">
+          Visit My Instagram
+        </a>
+        <img src="assets/insta-pic.jpg" alt="Instagram Preview" class="insta-photo" />
+      </section>
     </div>
   </main>
 
   <footer>
-    <a href="https://instagram.com/priyanshuhanduja" target="_blank" rel="noopener" style="margin-right: 1rem; color:#0884c7; font-weight:600; text-decoration:none;">
+    <a href="https://instagram.com/priyanshu_handuja" target="_blank" rel="noopener" class="footer-button">
       Instagram Profile
-    </a> &bull; &nbsp;
-    <a href="https://parzival-codes.github.io/Portfolio/contact.html" style="color:#0884c7; font-weight:600; text-decoration:none;">
+    </a>
+    <a href="https://parzival-codes.github.io/Portfolio/contact.html" class="footer-button">
       Contact Me
     </a>
   </footer>
