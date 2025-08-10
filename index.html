@@ -2,75 +2,120 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Priyanshu Handuja | Video Editor & Content Creator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Priyanshu Handuja | Portfolio</title>
   <link rel="stylesheet" href="assets/style.css" />
   <style>
-    /* Inline override or add this to your assets/style.css */
-
-    /* Bold "PH" logo text styling */
-    .logo-text {
-      font-weight: 900;
-      font-size: 1.6rem;
-      color: #000;
-      font-family: 'Inter', sans-serif;
-      user-select: none;
-      cursor: default;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
     }
 
-    /* Adjust container inside hero-text for mobile */
-    @media (max-width: 600px) {
-      .hero-text {
-        padding: 1.5rem 1rem;
+    header {
+      background-color: #222;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 0.8rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    section {
+      background: white;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    section h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    img.responsive {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.6rem;
+      }
+      nav a {
+        display: inline-block;
+        margin: 0.4rem 0.6rem;
+      }
+      main {
+        padding: 0.5rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
+    <h1>Priyanshu Handuja</h1>
     <nav>
-      <div class="logo-text">PH</div>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="about.html">About</a></li>
-      
-      </ul>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <video autoplay loop muted playsinline class="hero-bg">
-      <source src="assets/hero-bg.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-text">
-      <h1>Hi, I’m <span>Priyanshu Handuja</span></h1>
-      <h2>Video Editor & Content Creator</h2>
-      <a href="portfolio.html" class="cta-btn">View Portfolio</a>
-      <div class="stats">
-        <div>
-          <span class="counter" data-count="21">0</span><span class="plus">+</span><br />
-          Brands
-        </div>
-        <div>
-          <span class="counter" data-count="50">0</span><span class="plus">+</span><br />
-          Projects
-        </div>
-        <div>
-          <span class="counter" data-count="100">0</span><span class="plus">+</span><br />
-          Videos
-        </div>
-      </div>
-    </div>
-  </section>
+  <main>
+    <section>
+      <h2>Welcome</h2>
+      <p>Hi! I'm Priyanshu, a passionate developer and creator. This is my personal portfolio where I showcase my work, projects, and journey.</p>
+      <img src="assets/profile.jpg" alt="Profile Photo" class="responsive">
+    </section>
+
+    <section>
+      <h2>Latest Projects</h2>
+      <p>Here are some of my recent works and creative experiments. Click below to explore more.</p>
+      <a href="projects.html">View Projects →</a>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Priyanshu Handuja</p>
+    <p>© 2025 Priyanshu Handuja. All rights reserved.</p>
   </footer>
-
-  <script src="assets/script.js"></script>
 </body>
 </html>
-
-
-
