@@ -1,73 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Priyanshu Handuja | Video Editor & Content Creator</title>
-  <link rel="stylesheet" href="assets/style.css" />
-  <style>
-    /* Inline override or add this to your assets/style.css */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priyanshu Handuja | Video Editor & Content Creator</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for a clean, professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the new dark theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark Gray/Navy background */
+            color: #f3f4f6; /* Light gray text for readability */
+        }
 
-    /* Bold "PH" logo text styling */
-    .logo-text {
-      font-weight: 900;
-      font-size: 1.6rem;
-      color: #000;
-      font-family: 'Inter', sans-serif;
-      user-select: none;
-      cursor: default;
-    }
+        /* Style for the sticky header with a dark, blurred background */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(17, 24, 39, 0.85); /* Semi-transparent dark bg */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
-    /* Adjust container inside hero-text for mobile */
-    @media (max-width: 600px) {
-      .hero-text {
-        padding: 1.5rem 1rem;
-      }
-    }
-  </style>
+        /* Hero section styling for the background video and overlay */
+        .hero-section {
+            position: relative;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* This class now applies to the iframe for perfect background fit */
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 177.77vh; /* 16:9 aspect ratio */
+            min-width: 100%;
+            min-height: 100%;
+            height: 56.25vw; /* 16:9 aspect ratio */
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+            filter: brightness(0.6); /* Darken the video slightly for text contrast */
+        }
+
+        /* A subtle gradient overlay to make text more readable */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+            z-index: -1;
+        }
+        
+        /* Animation for text fade-in */
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <div class="logo-text">PH</div>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="about.html">About</a></li>
-      
-      </ul>
-    </nav>
-  </header>
+<body class="antialiased">
 
-  <section class="hero">
-    <video autoplay loop muted playsinline class="hero-bg">
-      <source src="assets/hero-bg.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-text">
-      <h1>Hi, I’m <span>Priyanshu Handuja</span></h1>
-      <h2>Video Editor & Content Creator</h2>
-      <a href="portfolio.html" class="cta-btn">View Portfolio</a>
-      <div class="stats">
-        <div>
-          <span class="counter" data-count="21">0</span><span class="plus">+</span><br />
-          Brands
-        </div>
-        <div>
-          <span class="counter" data-count="50">0</span><span class="plus">+</span><br />
-          Projects
-        </div>
-        <div>
-          <span class="counter" data-count="100">0</span><span class="plus">+</span><br />
-          Videos
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- Header -->
+    <header class="sticky-header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo - Clickable, directs to home -->
+            <a href="index.html" class="text-3xl font-black tracking-tighter text-white">PH</a>
+            
+            <!-- Desktop Navigation Links -->
+            <ul class="hidden md:flex items-center space-x-8">
+                <li><a href="portfolio.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Portfolio</a></li>
+                <li><a href="about.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">About</a></li>
+                <li><a href="#services" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Services</a></li>
+                <li><a href="contact.html" class="bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600 transition-colors duration-300">Contact Us</a></li>
+            </ul>
 
-  <footer>
-    <p>&copy; 2025 Priyanshu Handuja</p>
-  </footer>
+            <!-- Mobile Menu Button (Hamburger Icon) -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="portfolio.html" class="block py-2 text-gray-300 hover:text-cyan-400">Portfolio</a>
+            <a href="about.html" class="block py-2 text-gray-300 hover:text-cyan-400">About</a>
+            <a href="#services" class="block py-2 text-gray-300 hover:text-cyan-400">Services</a>
+            <a href="contact.html" class="block mt-2 text-center bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600">Contact Us</a>
+        </div>
+    </header>
 
-  <script src="assets/script.js"></script>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <!-- YouTube Background Video -->
+            <iframe 
+                class="hero-video"
+                src="https://www.youtube.com/embed/mvW3AAyfgEQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&playlist=mvW3AAyfgEQ" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+            <div class="hero-overlay"></div>
+
+            <div class="text-center z-10 px-4">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white fade-in-up" style="animation-delay: 0.2s;">
+                    Hi, I’m <span class="text-cyan-400">Priyanshu Handuja</span>
+                </h1>
+                <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-gray-200 fade-in-up" style="animation-delay: 0.4s;">
+                    A passionate video editor and content creator dedicated to crafting compelling visual stories.
+                </p>
+                <a href="portfolio.html" class="inline-block mt-8 bg-cyan-500 text-white font-bold text-lg px-8 py-3 rounded-full hover:bg-cyan-600 transition-transform duration-300 hover:scale-105 fade-in-up" style="animation-delay: 0.6s;">
+                    View My Work
+                </a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What I Do</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-12">From cinematic shorts to engaging social media content, I offer a range of video editing services.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Service 1: Social Media -->
+                    <div class="p-8 bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:shadow-lg hover:border-cyan-500 transition-all duration-300">
+                        <div class="mb-4 text-cyan-400">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Social Media Videos</h3>
+                        <p class="text-gray-400">Engaging, fast-paced edits for platforms like Instagram Reels, TikTok, and YouTube Shorts.</p>
+                    </div>
+
+                    <!-- Service 2: Corporate & Brand -->
+                    <div class="p-8 bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:shadow-lg hover:border-cyan-500 transition-all duration-300">
+                        <div class="mb-4 text-cyan-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Corporate & Brand</h3>
+                        <p class="text-gray-400">Professional videos for product launches, brand stories, testimonials, and internal communications.</p>
+                    </div>
+
+                    <!-- Service 3: Cinematic & Creative -->
+                    <div class="p-8 bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:shadow-lg hover:border-cyan-500 transition-all duration-300">
+                        <div class="mb-4 text-cyan-400">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Cinematic & Creative</h3>
+                        <p class="text-gray-400">Artistic editing for short films, travel videos, music videos, and personal projects.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-500 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Priyanshu Handuja. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
 </body>
 </html>
