@@ -1,200 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact | Priyanshu Handuja</title>
-  <link rel="stylesheet" href="assets/style.css" />
-  <style>
-    .logo-text {
-      font-weight: 900;
-      font-size: 1.6rem;
-      color: #000;
-      font-family: 'Inter', sans-serif;
-      user-select: none;
-      cursor: default;
-      letter-spacing: -1.5px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Priyanshu Handuja</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for a clean, professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the dark theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark Gray/Navy background */
+            color: #f3f4f6; /* Light gray text */
+        }
 
-    header nav {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #fff;
-      box-shadow: 0 2px 24px rgba(14, 30, 37, 0.05);
-      box-sizing: border-box;
-    }
+        /* Style for the sticky header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
-    }
+        /* Custom styles for form inputs */
+        .form-input {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            color: #f3f4f6;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.4);
+        }
 
-    nav a {
-      text-decoration: none;
-      color: #17191c;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 0.25rem 0.5rem;
-      border-bottom: 3px solid transparent;
-      transition: color 0.3s ease, border-bottom 0.3s ease;
-    }
-
-    nav a:hover,
-    nav a.active {
-      color: #0884c7;
-      border-bottom: 3px solid #0884c7;
-    }
-
-    main.container {
-      max-width: 640px;
-      margin: 3rem auto 6rem;
-      padding: 0 2rem;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-      color: #17191c;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    main.container h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #0884c7;
-      font-weight: 800;
-      text-align: center;
-      width: 100%;
-    }
-
-    main.container p.lead {
-      font-size: 1.1rem;
-      color: #555;
-      font-weight: 400;
-      text-align: center;
-      max-width: 480px;
-      margin: 0 auto 2rem auto;
-    }
-
-    iframe.google-form {
-      width: 100%;
-      height: 700px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      background: #fff;
-      max-width: 640px;
-    }
-
-    section.social-links {
-      margin-top: 3rem;
-      font-family: 'Inter', sans-serif;
-      text-align: center;
-      width: 100%;
-      max-width: 640px;
-    }
-
-    section.social-links p {
-      margin-bottom: 0.6rem;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #555;
-    }
-
-    section.social-links div {
-      display: flex;
-      justify-content: center;
-      gap: 1.4rem;
-    }
-
-    section.social-links a {
-      color: #0884c7;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    section.social-links a:hover {
-      color: #055a8c;
-      text-decoration: underline;
-    }
-
-    footer {
-      max-width: 1100px;
-      margin: 0 auto 2rem;
-      padding: 1rem 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #888;
-      border-top: 1px solid #ddd;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
-    @media (max-width: 640px) {
-      main.container {
-        padding: 0 1rem;
-        margin: 2rem auto 4rem;
-      }
-      nav ul {
-        gap: 1rem;
-      }
-      nav a {
-        font-size: 0.9rem;
-      }
-      iframe.google-form {
-        height: 600px;
-      }
-    }
-  </style>
+        /* Animation for content fade-in */
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <div class="logo-text">PH</div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<body class="antialiased">
 
-  <main class="container" role="main">
-    <h1>Contact Me</h1>
-    <p class="lead">Feel free to reach out for collaborations, inquiries, or just to say hello.</p>
+    <!-- Header -->
+    <header class="sticky-header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-black tracking-tighter text-white">PH</a>
+            <ul class="hidden md:flex items-center space-x-8">
+                <li><a href="portfolio.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Portfolio</a></li>
+                <li><a href="about.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">About</a></li>
+                <li><a href="contact.html" class="bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full">Contact Us</a></li>
+            </ul>
+            <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="portfolio.html" class="block py-2 text-gray-300 hover:text-cyan-400">Portfolio</a>
+            <a href="about.html" class="block py-2 text-gray-300 hover:text-cyan-400">About</a>
+            <a href="contact.html" class="block mt-2 text-center bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full">Contact Us</a>
+        </div>
+    </header>
 
-    <!-- New Google Form embed from shared link -->
-    <iframe
-      class="google-form"
-      src="https://docs.google.com/forms/d/e/1FAIpQLSdFONeJ6Huj3_3zU1Fi_nKDvHdJWxKlYo1uORjEMu9DWlWYMg/viewform?embedded=true"
-      title="Contact Form"
-      loading="lazy"
-      allowfullscreen
-    >Loading…</iframe>
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16">
+        
+        <div class="fade-in">
+            <!-- Page Header -->
+            <header class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-bold text-white">Get In Touch</h1>
+                <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">Have a project in mind or just want to say hello? I'd love to hear from you.</p>
+            </header>
 
-    <section class="social-links" aria-label="Social Media Links">
-      <p>Or connect with me on social media:</p>
-      <div>
-        <a href="https://instagram.com/priyanshuhanduja" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
-        <a href="https://twitter.com/priyanshuhanduja" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
-        <a href="https://www.linkedin.com/in/priyanshu-handuja-231629190/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
-      </div>
-    </section>
-  </main>
+            <!-- Contact Section -->
+            <section class="max-w-4xl mx-auto bg-gray-900 p-8 md:p-12 rounded-lg shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    
+                    <!-- Left Side: Info & Socials -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-4">Contact Information</h2>
+                        <p class="text-gray-400 mb-6">Feel free to reach out via email or connect with me on social media.</p>
+                        
+                        <div class="space-y-4">
+                            <!-- Email -->
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                <a href="mailto:priyanshuhanduja@gmail.com" class="text-gray-300 hover:text-cyan-400">priyanshuhanduja@gmail.com</a>
+                            </div>
+                            <!-- Social Links -->
+                            <div class="flex items-center space-x-4 pt-4">
+                                <a href="https://www.instagram.com/priyanshu_handuja/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"></path></svg>
+                                </a>
+                                <!-- Add other social links like LinkedIn here -->
+                            </div>
+                        </div>
+                    </div>
 
-  <footer>
-    &copy; 2025 Priyanshu Handuja
-  </footer>
+                    <!-- Right Side: Contact Form -->
+                    <div>
+                        <form action="https://forms.gle/4vcHbrhdLmzRYvW17" method="POST" target="_blank">
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                                    <input type="text" name="entry.YOUR_NAME_FIELD_ID" id="name" required class="form-input w-full px-4 py-2 rounded-md">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Your Email</label>
+                                    <input type="email" name="entry.YOUR_EMAIL_FIELD_ID" id="email" required class="form-input w-full px-4 py-2 rounded-md">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                                    <textarea name="entry.YOUR_MESSAGE_FIELD_ID" id="message" rows="5" required class="form-input w-full px-4 py-2 rounded-md"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full mt-6 bg-cyan-500 text-white font-bold py-3 px-6 rounded-full hover:bg-cyan-600 transition-colors duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-500 py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Priyanshu Handuja. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
 </body>
 </html>
