@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter for a clean, professional look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         /* Custom styles for the dark theme */
@@ -79,7 +79,7 @@
             <ul class="hidden md:flex items-center space-x-8">
                 <li><a href="portfolio.html" class="text-cyan-400 font-semibold">Portfolio</a></li>
                 <li><a href="about.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">About</a></li>
-                <li><a href="index.html#services" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Services</a></li>
+                <li><a href="services.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Services</a></li>
                 <li><a href="contact.html" class="bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600 transition-colors duration-300">Contact Us</a></li>
             </ul>
             <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none">
@@ -89,7 +89,7 @@
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
             <a href="portfolio.html" class="block py-2 text-cyan-400 font-semibold">Portfolio</a>
             <a href="about.html" class="block py-2 text-gray-300 hover:text-cyan-400">About</a>
-            <a href="index.html#services" class="block py-2 text-gray-300 hover:text-cyan-400">Services</a>
+            <a href="services.html" class="block py-2 text-gray-300 hover:text-cyan-400">Services</a>
             <a href="contact.html" class="block mt-2 text-center bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600">Contact Us</a>
         </div>
     </header>
@@ -109,7 +109,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                 
                 <!-- Featured Project 1: Rapido (Vertical) -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1LUdzte21WyFjuWOyoFK-Hqx9jrkw-hPp">
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="45VDr09jaAs">
                     <img src="https://placehold.co/400x500/1f2937/9ca3af?text=Rapido" alt="Rapido Project Thumbnail" class="w-full h-96 object-cover">
                     <div class="p-5">
                         <h3 class="text-lg font-bold text-white">Rapido</h3>
@@ -141,13 +141,13 @@
         <!-- Collapsible Sections -->
         <div class="space-y-6">
             <!-- Section 1: Graphical Edits -->
-            <div class="collapsible-section bg-gray-900 rounded-lg">
+            <div class="collapsible-section bg-gray-900 rounded-lg" id="graphical-edits">
                 <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800 rounded-lg">
                     <h3 class="text-2xl font-bold text-white">Graphical Edits</h3>
                     <span class="collapsible-arrow text-cyan-400 text-2xl">&#9654;</span>
                 </div>
                 <div class="collapsible-content">
-                    <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
                         <!-- Add graphical edit projects here -->
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1CS9XQeT3ygaiqZXeyiCQ3ppr7DYNmrNT">
                             <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Eleesao" alt="Eleesao Project Thumbnail" class="w-full h-48 object-cover">
@@ -158,13 +158,13 @@
             </div>
             
             <!-- Section 2: Collaborations -->
-            <div class="collapsible-section bg-gray-900 rounded-lg">
+            <div class="collapsible-section bg-gray-900 rounded-lg" id="collaborations">
                 <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800 rounded-lg">
                     <h3 class="text-2xl font-bold text-white">Collaborations</h3>
                     <span class="collapsible-arrow text-cyan-400 text-2xl">&#9654;</span>
                 </div>
                 <div class="collapsible-content">
-                    <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
                         <!-- Add collaboration projects here -->
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nie5J_WIy9F4KD16eofrPCVI6fxqP7OA">
                             <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Gym+Moments" alt="Gym Moments Project Thumbnail" class="w-full h-48 object-cover">
@@ -179,13 +179,13 @@
             </div>
 
             <!-- Section 3: Cinematic -->
-            <div class="collapsible-section bg-gray-900 rounded-lg">
+            <div class="collapsible-section bg-gray-900 rounded-lg" id="cinematic">
                 <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800 rounded-lg">
                     <h3 class="text-2xl font-bold text-white">Cinematic</h3>
                     <span class="collapsible-arrow text-cyan-400 text-2xl">&#9654;</span>
                 </div>
                 <div class="collapsible-content">
-                    <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
                         <!-- Add cinematic projects here -->
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1KpkJTYQ7fYDQ7WmtBR63nMvxzSOttYiw">
                             <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Ethnic+Elegance" alt="Ethnic Elegance Project Thumbnail" class="w-full h-48 object-cover">
