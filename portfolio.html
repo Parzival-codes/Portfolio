@@ -45,6 +45,29 @@
         .modal-content {
             transition: transform 0.3s ease;
         }
+
+        /* Collapsible Section Styles */
+        .collapsible-header {
+            transition: background-color 0.3s;
+        }
+        .collapsible-arrow {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .collapsible-section.expanded .collapsible-arrow {
+            transform: rotate(90deg);
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+            padding: 0 1.5rem;
+        }
+        .collapsible-section.expanded .collapsible-content {
+            max-height: 2000px; /* Adjust if content is taller */
+            opacity: 1;
+            padding: 1.5rem;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -56,6 +79,7 @@
             <ul class="hidden md:flex items-center space-x-8">
                 <li><a href="portfolio.html" class="text-cyan-400 font-semibold">Portfolio</a></li>
                 <li><a href="about.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">About</a></li>
+                <li><a href="index.html#services" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Services</a></li>
                 <li><a href="contact.html" class="bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600 transition-colors duration-300">Contact Us</a></li>
             </ul>
             <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none">
@@ -65,6 +89,7 @@
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
             <a href="portfolio.html" class="block py-2 text-cyan-400 font-semibold">Portfolio</a>
             <a href="about.html" class="block py-2 text-gray-300 hover:text-cyan-400">About</a>
+            <a href="index.html#services" class="block py-2 text-gray-300 hover:text-cyan-400">Services</a>
             <a href="contact.html" class="block mt-2 text-center bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600">Contact Us</a>
         </div>
     </header>
@@ -81,99 +106,95 @@
         <!-- Featured Projects Section -->
         <section id="featured">
             <h2 class="text-3xl font-bold text-white mb-8 border-l-4 border-cyan-400 pl-4">Featured Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                 
-                <!-- Featured Project 1 (Landscape) -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="OUXTawJDa36kfkkjrOXJVNUdpwavtANf">
-                    <div class="relative">
-                        <img src="https://placehold.co/600x338/1f2937/9ca3af?text=Nainital+Cinematic" alt="Thumbnail for Nainital Cinematic" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-white opacity-70 group-hover:opacity-100 transform group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white">Nainital Cinematic</h3>
-                        <p class="text-gray-400 mt-2">A recreation of Seedhe Maut's style in the beautiful landscapes of Nainital.</p>
-                    </div>
-                </div>
-
-                <!-- Featured Project 2 (Landscape) -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="10mqlv1bZC39U0u8BpyatN_tCMkGeZo1q">
-                    <div class="relative">
-                        <img src="https://placehold.co/600x338/1f2937/9ca3af?text=Dalai+Hills" alt="Thumbnail for Dalai Hills" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
-                             <svg class="w-16 h-16 text-white opacity-70 group-hover:opacity-100 transform group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white">Dalai Hills</h3>
-                        <p class="text-gray-400 mt-2">A personal journey of escape and self-discovery in the serene mountains.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- All Projects Section -->
-        <section id="all-projects">
-            <h2 class="text-3xl font-bold text-white mb-8 border-l-4 border-cyan-400 pl-4">All Projects</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project Card: Rapido -->
+                <!-- Featured Project 1: Rapido (Vertical) -->
                 <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1LUdzte21WyFjuWOyoFK-Hqx9jrkw-hPp">
-                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Rapido" alt="Rapido Project Thumbnail" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/400x500/1f2937/9ca3af?text=Rapido" alt="Rapido Project Thumbnail" class="w-full h-96 object-cover">
                     <div class="p-5">
                         <h3 class="text-lg font-bold text-white">Rapido</h3>
                         <p class="text-gray-400 text-sm mt-1">Story behind the Startup</p>
                     </div>
                 </div>
 
-                <!-- Project Card: Eleesao -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1CS9XQeT3ygaiqZXeyiCQ3ppr7DYNmrNT">
-                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Eleesao" alt="Eleesao Project Thumbnail" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white">Eleesao</h3>
-                        <p class="text-gray-400 text-sm mt-1">Glycerin: The ultimate skin care product</p>
-                    </div>
-                </div>
-
-                <!-- Project Card: Rancho Labs -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nVKu7_7sH9AIHfgIgeKPWacwxuwbfPMf">
-                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Rancho+Labs" alt="Rancho Labs Project Thumbnail" class="w-full h-48 object-cover">
+                <!-- Featured Project 2: Rancho Labs (Vertical) -->
+                 <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nVKu7_7sH9AIHfgIgeKPWacwxuwbfPMf">
+                    <img src="https://placehold.co/400x500/1f2937/9ca3af?text=Rancho+Labs" alt="Rancho Labs Project Thumbnail" class="w-full h-96 object-cover">
                     <div class="p-5">
                         <h3 class="text-lg font-bold text-white">Rancho Labs</h3>
                         <p class="text-gray-400 text-sm mt-1">Ed-Tech Startup Collaboration</p>
                     </div>
                 </div>
 
-                <!-- Add more project cards here following the same structure -->
-                <!-- Example: -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nie5J_WIy9F4KD16eofrPCVI6fxqP7OA">
-                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Gym+Moments" alt="Gym Moments Project Thumbnail" class="w-full h-48 object-cover">
+                <!-- Featured Project 3: Nainital (Landscape) -->
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="OUXTawJDa36kfkkjrOXJVNUdpwavtANf">
+                     <img src="https://placehold.co/600x338/1f2937/9ca3af?text=Nainital+Cinematic" alt="Thumbnail for Nainital Cinematic" class="w-full h-96 object-cover">
                     <div class="p-5">
-                        <h3 class="text-lg font-bold text-white">Strength & Grace – Gym Moments</h3>
-                        <p class="text-gray-400 text-sm mt-1">Showcasing dedication and energy.</p>
-                    </div>
-                </div>
-
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1zEBkde3ds3VTk_BB-euwX1x9IUZ0JCAe">
-                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Ctrl-8" alt="Ctrl-8 Project Thumbnail" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white">Ctrl-8 Gaming Parlour</h3>
-                        <p class="text-gray-400 text-sm mt-1">Vibrant lights and thrilling games.</p>
-                    </div>
-                </div>
-
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1KpkJTYQ7fYDQ7WmtBR63nMvxzSOttYiw">
-                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Ethnic+Elegance" alt="Ethnic Elegance Project Thumbnail" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white">Ethnic Elegance</h3>
-                        <p class="text-gray-400 text-sm mt-1">Radiating grace and tradition.</p>
+                        <h3 class="text-lg font-bold text-white">Nainital Cinematic</h3>
+                        <p class="text-gray-400 text-sm mt-1">A recreation of Seedhe Maut's style.</p>
                     </div>
                 </div>
 
             </div>
         </section>
 
+        <!-- Collapsible Sections -->
+        <div class="space-y-6">
+            <!-- Section 1: Graphical Edits -->
+            <div class="collapsible-section bg-gray-900 rounded-lg">
+                <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800 rounded-lg">
+                    <h3 class="text-2xl font-bold text-white">Graphical Edits</h3>
+                    <span class="collapsible-arrow text-cyan-400 text-2xl">&#9654;</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Add graphical edit projects here -->
+                        <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1CS9XQeT3ygaiqZXeyiCQ3ppr7DYNmrNT">
+                            <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Eleesao" alt="Eleesao Project Thumbnail" class="w-full h-48 object-cover">
+                            <div class="p-5"><h3 class="text-lg font-bold text-white">Eleesao</h3><p class="text-gray-400 text-sm mt-1">Glycerin: The ultimate skin care product</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2: Collaborations -->
+            <div class="collapsible-section bg-gray-900 rounded-lg">
+                <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800 rounded-lg">
+                    <h3 class="text-2xl font-bold text-white">Collaborations</h3>
+                    <span class="collapsible-arrow text-cyan-400 text-2xl">&#9654;</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Add collaboration projects here -->
+                        <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nie5J_WIy9F4KD16eofrPCVI6fxqP7OA">
+                            <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Gym+Moments" alt="Gym Moments Project Thumbnail" class="w-full h-48 object-cover">
+                            <div class="p-5"><h3 class="text-lg font-bold text-white">Strength & Grace – Gym Moments</h3><p class="text-gray-400 text-sm mt-1">Showcasing dedication and energy.</p></div>
+                        </div>
+                        <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1zEBkde3ds3VTk_BB-euwX1x9IUZ0JCAe">
+                            <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Ctrl-8" alt="Ctrl-8 Project Thumbnail" class="w-full h-48 object-cover">
+                            <div class="p-5"><h3 class="text-lg font-bold text-white">Ctrl-8 Gaming Parlour</h3><p class="text-gray-400 text-sm mt-1">Vibrant lights and thrilling games.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Cinematic -->
+            <div class="collapsible-section bg-gray-900 rounded-lg">
+                <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800 rounded-lg">
+                    <h3 class="text-2xl font-bold text-white">Cinematic</h3>
+                    <span class="collapsible-arrow text-cyan-400 text-2xl">&#9654;</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Add cinematic projects here -->
+                        <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1KpkJTYQ7fYDQ7WmtBR63nMvxzSOttYiw">
+                            <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Ethnic+Elegance" alt="Ethnic Elegance Project Thumbnail" class="w-full h-48 object-cover">
+                            <div class="p-5"><h3 class="text-lg font-bold text-white">Ethnic Elegance</h3><p class="text-gray-400 text-sm mt-1">Radiating grace and tradition.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -191,7 +212,7 @@
         </div>
     </div>
 
-    <!-- JavaScript for Menu and Modal -->
+    <!-- JavaScript for Menu, Modal, and Collapsibles -->
     <script>
         // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -211,9 +232,6 @@
             card.addEventListener('click', () => {
                 const youtubeId = card.getAttribute('data-youtube-id');
                 if (youtubeId) {
-                    // NOTE: YouTube links are used here. For your actual site, you would replace the Google Drive IDs with YouTube IDs.
-                    // The 'preview' part of a Google Drive link is not a valid video ID for embedding.
-                    // I have used placeholders. You should replace them with actual YouTube video IDs.
                     const embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
                     videoContainer.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
                     modal.classList.remove('opacity-0', 'pointer-events-none');
@@ -233,6 +251,15 @@
             if (e.target === modal) {
                 hideModal();
             }
+        });
+
+        // Collapsible Section Logic
+        const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+        collapsibleHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const section = header.closest('.collapsible-section');
+                section.classList.toggle('expanded');
+            });
         });
     </script>
 
