@@ -1,616 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portfolio | Priyanshu Handuja</title>
-  <link rel="stylesheet" href="assets/style.css" />
-  <style>
-    /* Collapsible Section Styles */
-    .collapsible-section {
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-      margin-bottom: 2.5rem;
-      overflow: hidden;
-      transition: box-shadow 0.28s cubic-bezier(.68,.01,.51,.99);
-      width: 100%;
-      max-width: 1100px;
-      margin-left: auto;
-      margin-right: auto;
-      box-sizing: border-box;
-    }
-    .collapsible-header {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      padding: 1.5rem 2rem;
-      border-left: 6px solid var(--accent);
-      background: #f7f7fa;
-      transition: background 0.3s;
-      gap: 1.5rem;
-      box-sizing: border-box;
-    }
-    .collapsible-header:hover {
-      background: #e6f5fa;
-    }
-    .collapsible-thumb {
-      width: 66px;
-      height: 66px;
-      border-radius: 14px;
-      object-fit: cover;
-      flex-shrink: 0;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-      background: #ececec;
-    }
-    .collapsible-title {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--accent);
-      user-select: none;
-    }
-    .collapsible-arrow {
-      margin-left: auto;
-      transition: transform 0.34s cubic-bezier(.5,.5,0,1.5);
-      font-size: 2rem;
-      color: var(--accent);
-      will-change: transform;
-      user-select: none;
-    }
-    .collapsible-section.expanded .collapsible-arrow {
-      transform: rotate(90deg);
-    }
-    .collapsible-content {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      padding: 0 2rem;
-      background: #fff;
-      transition: max-height 0.65s cubic-bezier(.37,.92,.53,1.18), opacity 0.6s;
-      will-change: max-height, opacity;
-    }
-    .collapsible-section.expanded .collapsible-content {
-      max-height: 2500px;  /* Enough for content */
-      opacity: 1;
-      padding-bottom: 2rem;
-      margin-top: 0.4rem;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Priyanshu Handuja</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for a clean, professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the dark theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark Gray/Navy background */
+            color: #f3f4f6; /* Light gray text */
+        }
 
-    /* Portfolio Grid: 3 Columns on desktop */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem 2rem; /* Vertical gap and horizontal gap */
-      margin-top: 1rem;
-    }
+        /* Style for the sticky header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
-    /* Portfolio Item Styles */
-    .portfolio-item {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: box-shadow 0.3s;
-      box-sizing: border-box;
-    }
-    .portfolio-item:hover {
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    }
-
-    /* Video Container */
-    .portfolio-item.portrait .video-container {
-      aspect-ratio: 9 / 16;
-      width: 100%;
-      max-width: 320px;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #000;
-      margin-bottom: 0.5rem;
-    }
-    .portfolio-item.landscape .video-container {
-      aspect-ratio: 16 / 9;
-      width: 100%;
-      max-width: 920px;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #000;
-      margin-bottom: 0.5rem;
-    }
-    .video-container iframe, .video-container blockquote {
-      width: 100% !important;
-      height: 100% !important;
-      border: none !important;
-      border-radius: 14px !important;
-      display: block;
-    }
-
-    /* Portfolio Description */
-    .portfolio-details {
-      text-align: center;
-      margin-top: 0.25rem;
-      font-size: 0.9rem;
-      color: #555;
-      font-weight: 500;
-      line-height: 1.3;
-      max-width: 320px;
-    }
-    .portfolio-details h3 {
-      margin-bottom: 0.15rem;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #18181a;
-    }
-
-    /* Responsive tweaks */
-    @media (max-width: 1024px) {
-      .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.2rem 1.8rem;
-      }
-      .portfolio-item.portrait .video-container,
-      .portfolio-details {
-        max-width: 100%;
-        max-width: 280px;
-      }
-      .portfolio-item.landscape .video-container {
-        max-width: 100%;
-        max-width: 400px;
-      }
-    }
-    @media (max-width: 640px) {
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      .portfolio-item.portrait .video-container,
-      .portfolio-item.landscape .video-container,
-      .portfolio-details {
-        max-width: 100%;
-      }
-    }
-
-  </style>
+        /* Style for the project cards */
+        .project-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Modal styles for video pop-up */
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <div class="logo-text">PH</div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="portfolio.html" class="active">Portfolio</a></li>
-        <li><a href="about.html">About</a></li>
-     
-      </ul>
-    </nav>
-  </header>
+<body class="antialiased">
 
-  <main class="container" style="padding: 3rem 2rem; max-width: 1100px; margin: 0 auto;">
-    <h1>Portfolio</h1>
-    <p style="margin-bottom: 2rem;">Browse by category below. Click a section to expand and view my best works.</p>
-
-
-  <!-- Graphical Section -->
-    <section class="collapsible-section">
-      <div class="collapsible-header">
-        <img src="assets/thumb-graphic.png" alt="Graphical Thumbnail" class="collapsible-thumb" />
-        <span class="collapsible-title">Graphical Edits</span>
-        <span class="collapsible-arrow">&#9654;</span>
-      </div>
-   <div class="collapsible-content">
-        <div class="portfolio-grid">
-          <article class="portfolio-item portrait">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1LUdzte21WyFjuWOyoFK-Hqx9jrkw-hPp/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Rapido</h3>
-              <p>Story behind the Startup</p>
-            </div>
-          </article>
-
-           <article class="portfolio-item portrait">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1CS9XQeT3ygaiqZXeyiCQ3ppr7DYNmrNT/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Eleesao</h3>
-              <p>Glycerin: The ultimate skin care product</p>
-            </div>
-          </article>
-
-                <article class="portfolio-item portrait">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1uhyoFDmeSEd8D-xAOFzlWxmCvQFAXe16/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Podcast</h3>
-              <p>Inroduction of Luke Belmer</p>
-            </div>
-          </article>
-   
-
-              </div>
-      </div>
-    </section>
-
-   
-
-    <!-- Collaboration Section -->
-    <section class="collapsible-section">
-      <div class="collapsible-header">
-        <img src="assets/thumb-collab.jpg" alt="Collaboration Thumbnail" class="collapsible-thumb" />
-        <span class="collapsible-title">Collaboration</span>
-        <span class="collapsible-arrow">&#9654;</span>
-      </div>
-       <div class="collapsible-content">
-        <div class="portfolio-grid">
-           <article class="portfolio-item portrait">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1nVKu7_7sH9AIHfgIgeKPWacwxuwbfPMf/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Rancho Labs</h3>
-              <p>Ed-Tech Startup</p>
-            </div>
-          </article>
-          
-       <article class="portfolio-item portrait">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/154EdhbvlqjKvhXFcPB7ONQgW5NK1Dm92/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Headphone Ad</h3>
-              <p>Dubstep Product Vidoe in College Campus</p>
-            </div>
-          </article>
-          
-          <article class="portfolio-item portrait">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1CnyQ8P_QWOBffPqstScUcf3qKj9j4Omd/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Flipkart</h3>
-              <p>Clothing Brand Shoot🔥</p>
-            </div>
-          </article>
-          
-          <article class="portfolio-item portrait">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1XXg3Si7LZYMlbG2BZOpXiT1Jq6xLzTKL/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Gym Session</h3>
-              <p>No pain, no gain — just pure hustle. 💪🔥</p>
-            </div>
-          </article>
-       <article class="portfolio-item portrait">
-            <div class="video-container">
-              <iframe
-                src="https://drive.google.com/file/d/1nie5J_WIy9F4KD16eofrPCVI6fxqP7OA/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Strength & Grace – Gym Moments</h3>
-              <p>Showcasing dedication and energy as she trains in the gym</p>
-            </div>
-          </article>
-        <article class="portfolio-item portrait">
-            <div class="video-container">
-              <iframe
-                src="https://drive.google.com/file/d/1zEBkde3ds3VTk_BB-euwX1x9IUZ0JCAe/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Ctrl-8 Gaming Parlour</h3>
-              <p>Vibrant lights and thrilling games, all in one place</p>
-            </div>
-          </article> 
-
-       <article class="portfolio-item portrait">
-            <div class="video-container">
-              <iframe
-                src="https://drive.google.com/file/d/1DbUnWWK8pxN_L9eBzfOxHmQAdP_xCCLi/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Paranga – Flavors United in Karol Bagh</h3>
-              <p>A vibrant three-cuisine restaurant offering the best of global tastes, set in the heart of Karol Bagh.</p>
-            </div>
-          </article> 
-     
+    <!-- Header -->
+    <header class="sticky-header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-black tracking-tighter text-white">PH</a>
+            <ul class="hidden md:flex items-center space-x-8">
+                <li><a href="portfolio.html" class="text-cyan-400 font-semibold">Portfolio</a></li>
+                <li><a href="about.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">About</a></li>
+                <li><a href="contact.html" class="bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600 transition-colors duration-300">Contact Us</a></li>
+            </ul>
+            <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="portfolio.html" class="block py-2 text-cyan-400 font-semibold">Portfolio</a>
+            <a href="about.html" class="block py-2 text-gray-300 hover:text-cyan-400">About</a>
+            <a href="contact.html" class="block mt-2 text-center bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600">Contact Us</a>
         </div>
-      </div>
-    </section>
+    </header>
 
-    <!-- Cinematic Section -->
-    <section class="collapsible-section">
-      <div class="collapsible-header">
-        <img src="assets/thumb-cinematic.jpg" alt="Cinematic Thumbnail" class="collapsible-thumb" />
-        <span class="collapsible-title">Cinematic</span>
-        <span class="collapsible-arrow">&#9654;</span>
-      </div>
-   <div class="collapsible-content">
-       <div class="portfolio-grid landscape-grid">
-          <article class="portfolio-item landscape">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1OUXTawJDa36kfkkjrOXJVNUdpwavtANf/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Nainital</h3>
-              <p>Seedhe Maut recreation in Nainital</p>
-            </div>
-          </article>
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16">
+        
+        <!-- Page Header -->
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-white">My Work</h1>
+            <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">A curated selection of my projects. Click on any project to watch the video.</p>
+        </header>
 
-         <article class="portfolio-item landscape">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1my3iIJxxlA4M7IeLs0mjm2sF3UShiEq9/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
+        <!-- Featured Projects Section -->
+        <section id="featured">
+            <h2 class="text-3xl font-bold text-white mb-8 border-l-4 border-cyan-400 pl-4">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                
+                <!-- Featured Project 1 (Landscape) -->
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="OUXTawJDa36kfkkjrOXJVNUdpwavtANf">
+                    <div class="relative">
+                        <img src="https://placehold.co/600x338/1f2937/9ca3af?text=Nainital+Cinematic" alt="Thumbnail for Nainital Cinematic" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white opacity-70 group-hover:opacity-100 transform group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white">Nainital Cinematic</h3>
+                        <p class="text-gray-400 mt-2">A recreation of Seedhe Maut's style in the beautiful landscapes of Nainital.</p>
+                    </div>
+                </div>
+
+                <!-- Featured Project 2 (Landscape) -->
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="10mqlv1bZC39U0u8BpyatN_tCMkGeZo1q">
+                    <div class="relative">
+                        <img src="https://placehold.co/600x338/1f2937/9ca3af?text=Dalai+Hills" alt="Thumbnail for Dalai Hills" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                             <svg class="w-16 h-16 text-white opacity-70 group-hover:opacity-100 transform group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white">Dalai Hills</h3>
+                        <p class="text-gray-400 mt-2">A personal journey of escape and self-discovery in the serene mountains.</p>
+                    </div>
+                </div>
             </div>
-            <div class="portfolio-details">
-              <h3>Nainital</h3>
-              <p>Seedhe Maut recreation in Nainital</p>
+        </section>
+
+        <!-- All Projects Section -->
+        <section id="all-projects">
+            <h2 class="text-3xl font-bold text-white mb-8 border-l-4 border-cyan-400 pl-4">All Projects</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project Card: Rapido -->
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1LUdzte21WyFjuWOyoFK-Hqx9jrkw-hPp">
+                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Rapido" alt="Rapido Project Thumbnail" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white">Rapido</h3>
+                        <p class="text-gray-400 text-sm mt-1">Story behind the Startup</p>
+                    </div>
+                </div>
+
+                <!-- Project Card: Eleesao -->
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1CS9XQeT3ygaiqZXeyiCQ3ppr7DYNmrNT">
+                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Eleesao" alt="Eleesao Project Thumbnail" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white">Eleesao</h3>
+                        <p class="text-gray-400 text-sm mt-1">Glycerin: The ultimate skin care product</p>
+                    </div>
+                </div>
+
+                <!-- Project Card: Rancho Labs -->
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nVKu7_7sH9AIHfgIgeKPWacwxuwbfPMf">
+                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Rancho+Labs" alt="Rancho Labs Project Thumbnail" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white">Rancho Labs</h3>
+                        <p class="text-gray-400 text-sm mt-1">Ed-Tech Startup Collaboration</p>
+                    </div>
+                </div>
+
+                <!-- Add more project cards here following the same structure -->
+                <!-- Example: -->
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nie5J_WIy9F4KD16eofrPCVI6fxqP7OA">
+                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Gym+Moments" alt="Gym Moments Project Thumbnail" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white">Strength & Grace – Gym Moments</h3>
+                        <p class="text-gray-400 text-sm mt-1">Showcasing dedication and energy.</p>
+                    </div>
+                </div>
+
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1zEBkde3ds3VTk_BB-euwX1x9IUZ0JCAe">
+                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Ctrl-8" alt="Ctrl-8 Project Thumbnail" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white">Ctrl-8 Gaming Parlour</h3>
+                        <p class="text-gray-400 text-sm mt-1">Vibrant lights and thrilling games.</p>
+                    </div>
+                </div>
+
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1KpkJTYQ7fYDQ7WmtBR63nMvxzSOttYiw">
+                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Ethnic+Elegance" alt="Ethnic Elegance Project Thumbnail" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white">Ethnic Elegance</h3>
+                        <p class="text-gray-400 text-sm mt-1">Radiating grace and tradition.</p>
+                    </div>
+                </div>
+
             </div>
-          </article>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-500 py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Priyanshu Handuja. All Rights Reserved.</p>
         </div>
-     
-     <div class="portfolio-grid">
-          <article class="portfolio-item portrait">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1Z7QEid89KH6U6Miy_leV9kmDJDNDtCeP/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Peaceful Library Study – Quiet Focusl</h3>
-              <p>Calm focus in a quiet library setting</p>
-            </div>
-          </article>
-
-      <article class="portfolio-item portrait">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1KpkJTYQ7fYDQ7WmtBR63nMvxzSOttYiw/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Ethnic Elegance – Timeless Beauty</h3>
-              <p>Radiating grace and tradition in vibrant ethnic attire.</p>
-            </div>
-          </article>
-          
-       <article class="portfolio-item portrait">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/127C0EIzguNVqMy_cKuAHWrwfnVp17bQH/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Humayun's Tomb</h3>
-              <p>A walk through beautiful Mughal Architecture.</p>
-            </div>
-          </article> 
-        </div>
-      <div class="portfolio-grid landscape-grid">
-          <article class="portfolio-item landscape">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/10mqlv1bZC39U0u8BpyatN_tCMkGeZo1q/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Dalai Hills</h3>
-              <p>Escaping to find myself</p>
-            </div>
-          </article>
-
-         <article class="portfolio-item landscape">
-            <div class="video-container">
-        <iframe
-                src="https://drive.google.com/file/d/1wrcjFy_dv3n7c-D3oLOJJOvfrWitHqvO/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Chakrata</h3>
-              <p>Finding Peace in Mountains</p>
-            </div>
-          </article>
-      </div>
-
-      </div>
-    </section>
-   
-
+    </footer>
     
-
-     <!-- Himachal Section -->
-    <section class="collapsible-section">
-      <div class="collapsible-header">
-        <img src="assets/thumb-himachal.jpg" alt="Himachal Thumbnail" class="collapsible-thumb" />
-        <span class="collapsible-title">Himachal</span>
-        <span class="collapsible-arrow">&#9654;</span>
-      </div>
-      <div class="collapsible-content">
-        <div class="portfolio-grid">
-          <article class="portfolio-item portrait">
-            <div class="video-container">
-              <iframe
-                src="https://drive.google.com/file/d/1RqsInSAHq33-gskzrq4r8GmQ3N7AvW3w/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Chokling ArtHouse - The Treasure of Himalayas</h3>
-              <p>Hostel with a restaurant, indoor games & terrace sit-outs</p>
-            </div>
-          </article>
-          <article class="portfolio-item portrait">
-            <div class="video-container">
-              <iframe
-                src="https://drive.google.com/file/d/1uZepWky2sQRWngmoY5ebOKxffz0Qq-wq/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Garden Cafe, Bir – Visual Story</h3>
-              <p>Bir’s café culture inviting you to unwind, connect, and savor the moment.</p>
-            </div>
-          </article>
-          <article class="portfolio-item portrait">
-            <div class="video-container">
-              <iframe
-                src="https://drive.google.com/file/d/1LHPbOsj-D6zNHWCkIIdFAGxJRKPqrHd8/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Paragliding Over Bir – Freedom in the Skies</h3>
-              <p>Thrilling flight over Bir’s majestic valleys.</p>
-            </div>
-          </article>
-          <article class="portfolio-item portrait">
-            <div class="video-container">
-              <iframe
-                src="https://drive.google.com/file/d/1esNPh0N9T11YZfdfmuV6HffYYLdUHJXb/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Mafia Cafe, Bir – Creative Space in the Hills</h3>
-              <p>Eclectic decor and creative community hangout.</p>
-            </div>
-          </article>
-          <article class="portfolio-item portrait">
-            <div class="video-container">
-              <iframe
-                src="https://drive.google.com/file/d/13YkskXOD5s5JUZMAlCqDhIzDC-lRQ118/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Breakfast at AVVA</h3>
-              <p>Authentic South Indian breakfast perfection.</p>
-            </div>
-          </article>
-          <article class="portfolio-item portrait">
-            <div class="video-container">
-              <iframe
-                src="https://drive.google.com/file/d/1Zp2eEqa9MSHvFDXdV-g-SyzfUliwhJEC/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"></iframe>
-            </div>
-            <div class="portfolio-details">
-              <h3>Bir Billing Transition Reel – From Peaks to Cafés</h3>
-              <p>Seamless journey showcasing Bir’s highlights.</p>
-            </div>
-          </article>
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
+        <div id="modal-content" class="modal-content bg-black w-full max-w-4xl h-auto aspect-video relative transform scale-95">
+            <button id="close-modal" class="absolute -top-10 right-0 text-white text-3xl">&times;</button>
+            <div id="video-container" class="w-full h-full"></div>
         </div>
-      </div>
-    </section>
+    </div>
 
-    <!-- Experiences Section -->
-    <section class="collapsible-section">
-      <div class="collapsible-header">
-        <img src="assets/thumb-experiences.jpg" alt="Experiences Thumbnail" class="collapsible-thumb" />
-        <span class="collapsible-title">Other</span>
-        <span class="collapsible-arrow">&#9654;</span>
-      </div>
-      <div class="collapsible-content">
-        <div class="portfolio-grid">
-       <article class="portfolio-item portrait">
-            <div class="video-container">
-             <div class="video-wrapper"> 
-        <iframe
-                src="https://drive.google.com/file/d/1OUXTawJDa36kfkkjrOXJVNUdpwavtANf/preview"
-                allow="autoplay"
-                style="border-radius:12px; background:#000;"> allowfullscreen loading="lazy"></iframe>
-</div>
-              
-            </div>
-            <div class="portfolio-details">
-              <h3>Nainital</h3>
-              <p>Seedhe Maut recreation in Nainital</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Priyanshu Handuja</p>
-  </footer>
-
-  <script async src="//www.instagram.com/embed.js"></script>
-  <script>
-    // Collapsible expand/collapse with smooth animation
-    document.querySelectorAll('.collapsible-header').forEach(header => {
-      header.addEventListener('click', function() {
-        const section = this.parentElement;
-        const wasExpanded = section.classList.contains('expanded');
-
-        // If you want only one open at a time, uncomment below:
-        document.querySelectorAll('.collapsible-section').forEach(sec => {
-          if (sec !== section) sec.classList.remove('expanded');
+    <!-- JavaScript for Menu and Modal -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        section.classList.toggle('expanded', !wasExpanded);
+        // Video Modal Logic
+        const projectCards = document.querySelectorAll('.project-card');
+        const modal = document.getElementById('video-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModal = document.getElementById('close-modal');
+        const videoContainer = document.getElementById('video-container');
 
-        // Refresh Instagram embeds if expanded
-        if (section.classList.contains('expanded') && window.instgrm) {
-          window.instgrm.Embeds.process();
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const youtubeId = card.getAttribute('data-youtube-id');
+                if (youtubeId) {
+                    // NOTE: YouTube links are used here. For your actual site, you would replace the Google Drive IDs with YouTube IDs.
+                    // The 'preview' part of a Google Drive link is not a valid video ID for embedding.
+                    // I have used placeholders. You should replace them with actual YouTube video IDs.
+                    const embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+                    videoContainer.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modalContent.classList.remove('scale-95');
+                }
+            });
+        });
+
+        function hideModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.add('scale-95');
+            videoContainer.innerHTML = ''; // Stop the video
         }
-      });
-    });
-  </script>
+
+        closeModal.addEventListener('click', hideModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+    </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
