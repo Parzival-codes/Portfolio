@@ -1,194 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About | Priyanshu Handuja</title>
-  <link rel="stylesheet" href="assets/style.css" />
-  <style>
-    .logo-text {
-      font-weight: 900;
-      font-size: 1.6rem;
-      color: #000;
-      font-family: 'Inter', sans-serif;
-      user-select: none;
-      cursor: default;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Priyanshu Handuja</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for a clean, professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the dark theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark Gray/Navy background */
+            color: #f3f4f6; /* Light gray text */
+        }
 
-    main.about-container {
-      max-width: 1100px;
-      margin: 3rem auto 6rem;
-      padding: 0 2rem;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-    }
+        /* Style for the sticky header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
-    .content-wrapper {
-      display: flex;
-      gap: 2rem;
-      background: #f1f3f6;
-      border-radius: 14px;
-      box-shadow: 0 2px 24px rgba(14,30,37,0.05);
-      padding: 2rem;
-      width: 100%;
-      max-width: 1000px;
-      box-sizing: border-box;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .text-section {
-      flex: 1 1 350px;
-      min-width: 300px;
-      color: #17191c;
-      font-size: 1.1rem;
-      line-height: 1.5;
-    }
-
-    .text-section h1 {
-      font-size: 2.4rem;
-      color: #0884c7;
-      margin-bottom: 1rem;
-    }
-
-    .text-section p {
-      margin-top: 1rem;
-    }
-
-    .insta-embed {
-      flex: 1 1 450px;
-      max-width: 45%;
-      min-width: 280px;
-      border-radius: 14px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-      overflow: hidden;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-    }
-
-    .insta-embed iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
-      display: block;
-    }
-
-    .insta-button {
-      display: inline-block;
-      background-color: #f09433;
-      background-image: linear-gradient(315deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-family: sans-serif;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      text-decoration: none;
-    }
-
-    .insta-photo {
-      max-width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    footer {
-      margin-top: 2rem;
-      width: 100%;
-      max-width: 1100px;
-      text-align: center;
-      color: #666;
-      padding: 1rem 2rem;
-      box-sizing: border-box;
-    }
-
-    .footer-button {
-      display: inline-block;
-      margin: 0 0.5rem;
-      background-color: #f09433;
-      background-image: linear-gradient(315deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-family: sans-serif;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    @media (max-width: 900px) {
-      .content-wrapper {
-        flex-direction: column;
-        gap: 1.5rem;
-        align-items: center;
-      }
-      .insta-embed {
-        max-width: 90%;
-        height: auto;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .text-section {
-        font-size: 1rem;
-      }
-      .insta-embed iframe {
-        height: 300px;
-      }
-    }
-  </style>
+        /* Animation for content fade-in */
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <div class="logo-text">PH</div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-    
-      </ul>
-    </nav>
-  </header>
+<body class="antialiased">
 
-  <main class="about-container">
-    <div class="content-wrapper">
-      <section class="text-section">
-        <h1>About Me</h1>
-        <p>Hello! I'm Priyanshu, a 23-year-old creative soul behind the lens and timeline.</p>
-        <p>As a freelance video editor, I've had the pleasure to collaborate with some great brands and fellow creators, shaping stories that resonate.</p>
-        <p>Also, as a content creator myself, I've reached close to a million viewers proving good content really does travel fast!</p>
-        <p>They say editing is like brewing the perfect cup of coffee it's all about the right cut, the perfect blend, and a little extra kick of creativity.  
-           My motto? <em>"Cut, trim, and spice it up just right!"</em></p>
-        <p>Take a peek at my Instagram right here think of it as my visual diary, only with better filters.</p>
-        <p><strong>Contact:</strong> priyanshuhanduja@gmail.com</p>
-      </section>
+    <!-- Header -->
+    <header class="sticky-header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-black tracking-tighter text-white">PH</a>
+            <ul class="hidden md:flex items-center space-x-8">
+                <li><a href="portfolio.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Portfolio</a></li>
+                <li><a href="about.html" class="text-cyan-400 font-semibold">About</a></li>
+                <li><a href="contact.html" class="bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600 transition-colors duration-300">Contact Us</a></li>
+            </ul>
+            <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="portfolio.html" class="block py-2 text-gray-300 hover:text-cyan-400">Portfolio</a>
+            <a href="about.html" class="block py-2 text-cyan-400 font-semibold">About</a>
+            <a href="contact.html" class="block mt-2 text-center bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600">Contact Us</a>
+        </div>
+    </header>
 
-      <section class="insta-embed">
-        <img src="assets/insta-pic.PNG" alt="Instagram Preview" class="insta-photo" />
-         <a href="https://www.instagram.com/priyanshu_handuja/" target="_blank" class="insta-button">
-          Visit My Instagram
-        </a>
-      </section>
-    </div>
-  </main>
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16">
+        
+        <div class="fade-in">
+            <!-- Main About Section -->
+            <section class="flex flex-col md:flex-row items-center gap-12">
+                <!-- Profile Image -->
+                <div class="w-full md:w-1/3">
+                    <!-- IMPORTANT: Replace this placeholder with an actual high-quality photo of yourself -->
+                    <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Your+Photo" alt="Priyanshu Handuja" class="rounded-lg shadow-2xl w-full max-w-sm mx-auto">
+                </div>
+                
+                <!-- Text Content -->
+                <div class="w-full md:w-2/3 text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white">About Me</h1>
+                    <p class="mt-6 text-lg text-gray-300 leading-relaxed">
+                        Hello! I'm Priyanshu, a passionate video editor and content creator with a knack for transforming raw footage into compelling stories. My journey is driven by a simple motto: "Cut, trim, and spice it up just right!"
+                    </p>
+                    <p class="mt-4 text-lg text-gray-300 leading-relaxed">
+                        With experience collaborating with diverse brands and creators, I specialize in crafting videos that not only look great but also resonate with audiences. As a content creator myself, I understand what it takes to capture attention and have reached nearly a million viewers with my own work.
+                    </p>
+                    <a href="contact.html" class="inline-block mt-8 bg-cyan-500 text-white font-bold text-lg px-8 py-3 rounded-full hover:bg-cyan-600 transition-transform duration-300 hover:scale-105">
+                        Let's Work Together
+                    </a>
+                </div>
+            </section>
 
-  <footer>
-    <a href="https://instagram.com/priyanshu_handuja" target="_blank" rel="noopener" class="footer-button">
-      Instagram Profile
-    </a>
-    <a href="https://parzival-codes.github.io/Portfolio/contact.html" class="footer-button">
-      Contact Me
-    </a>
-  </footer>
+            <!-- My Toolkit Section -->
+            <section class="mt-24 text-center">
+                <h2 class="text-3xl font-bold text-white mb-4">My Toolkit</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-12">I use industry-standard software to bring creative visions to life.</p>
+                
+                <div class="flex flex-wrap justify-center gap-8">
+                    <!-- Tool 1: Premiere Pro -->
+                    <div class="flex items-center space-x-3 bg-gray-800 px-6 py-3 rounded-lg">
+                        <img src="https://placehold.co/32x32/313b4d/9ca3af?text=Pr" alt="Premiere Pro Logo" class="w-8 h-8">
+                        <span class="text-lg font-semibold text-white">Adobe Premiere Pro</span>
+                    </div>
+                    <!-- Tool 2: After Effects -->
+                    <div class="flex items-center space-x-3 bg-gray-800 px-6 py-3 rounded-lg">
+                         <img src="https://placehold.co/32x32/313b4d/9ca3af?text=Ae" alt="After Effects Logo" class="w-8 h-8">
+                        <span class="text-lg font-semibold text-white">Adobe After Effects</span>
+                    </div>
+                    <!-- Tool 3: DaVinci Resolve -->
+                    <div class="flex items-center space-x-3 bg-gray-800 px-6 py-3 rounded-lg">
+                         <img src="https://placehold.co/32x32/313b4d/9ca3af?text=Dr" alt="DaVinci Resolve Logo" class="w-8 h-8">
+                        <span class="text-lg font-semibold text-white">DaVinci Resolve</span>
+                    </div>
+                    <!-- Add more tools as needed -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-500 py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Priyanshu Handuja. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
 </body>
 </html>
-
-
-
