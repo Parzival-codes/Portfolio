@@ -66,7 +66,12 @@
         .collapsible-section.expanded .collapsible-content {
             max-height: 2000px; /* Adjust if content is taller */
             opacity: 1;
-            padding: 1.5rem;
+            padding: 1rem; /* Reduced padding for mobile */
+        }
+        @media (min-width: 640px) {
+            .collapsible-section.expanded .collapsible-content {
+                padding: 1.5rem; /* Restore padding for larger screens */
+            }
         }
     </style>
 </head>
@@ -95,7 +100,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-16">
+    <main class="container mx-auto px-4 sm:px-6 py-16">
         
         <!-- Page Header -->
         <header class="text-center mb-16">
@@ -110,7 +115,7 @@
                 
                 <!-- Featured Project 1: Rapido (Vertical) -->
                 <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="45VDr09jaAs">
-                    <img src="https://placehold.co/400x500/1f2937/9ca3af?text=Rapido" alt="Rapido Project Thumbnail" class="w-full h-96 object-cover">
+                    <img src="https://img.youtube.com/vi/45VDr09jaAs/hqdefault.jpg" alt="Rapido Project Thumbnail" class="w-full h-96 object-cover">
                     <div class="p-5">
                         <h3 class="text-lg font-bold text-white">Rapido</h3>
                         <p class="text-gray-400 text-sm mt-1">Story behind the Startup</p>
@@ -118,17 +123,17 @@
                 </div>
 
                 <!-- Featured Project 2: Rancho Labs (Vertical) -->
-                 <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nVKu7_7sH9AIHfgIgeKPWacwxuwbfPMf">
-                    <img src="https://placehold.co/400x500/1f2937/9ca3af?text=Rancho+Labs" alt="Rancho Labs Project Thumbnail" class="w-full h-96 object-cover">
+                 <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="pXT7sSI68MA">
+                    <img src="https://img.youtube.com/vi/pXT7sSI68MA/hqdefault.jpg" alt="Glyserin School" class="w-full h-96 object-cover">
                     <div class="p-5">
-                        <h3 class="text-lg font-bold text-white">Rancho Labs</h3>
-                        <p class="text-gray-400 text-sm mt-1">Ed-Tech Startup Collaboration</p>
+                        <h3 class="text-lg font-bold text-white">Glyserin School</h3>
+                        <p class="text-gray-400 text-sm mt-1">Different types of Moisturizers</p>
                     </div>
                 </div>
 
-                <!-- Featured Project 3: Nainital (Landscape) -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="OUXTawJDa36kfkkjrOXJVNUdpwavtANf">
-                     <img src="https://placehold.co/600x338/1f2937/9ca3af?text=Nainital+Cinematic" alt="Thumbnail for Nainital Cinematic" class="w-full h-96 object-cover">
+                <!-- Featured Project 3: Nainital (Landscape) -->https://youtu.be/yMqAGWhytWY?si=y1IR-uoUmeKhWtUO
+                <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="yMqAGWhytWY">
+                     <img src="https://img.youtube.com/vi/yMqAGWhytWY/hqdefault.jpg" alt="Thumbnail for Nainital Cinematic" class="w-full h-96 object-cover">
                     <div class="p-5">
                         <h3 class="text-lg font-bold text-white">Nainital Cinematic</h3>
                         <p class="text-gray-400 text-sm mt-1">A recreation of Seedhe Maut's style.</p>
@@ -143,15 +148,14 @@
             <!-- Section 1: Graphical Edits -->
             <div class="collapsible-section bg-gray-900 rounded-lg" id="graphical-edits">
                 <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800 rounded-lg">
-                    <h3 class="text-2xl font-bold text-white">Graphical Edits</h3>
+                    <h3 class="text-xl sm:text-2xl font-bold text-white">Graphical Edits</h3>
                     <span class="collapsible-arrow text-cyan-400 text-2xl">&#9654;</span>
                 </div>
                 <div class="collapsible-content">
-                    <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-                        <!-- Add graphical edit projects here -->
+                    <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1CS9XQeT3ygaiqZXeyiCQ3ppr7DYNmrNT">
-                            <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Eleesao" alt="Eleesao Project Thumbnail" class="w-full h-48 object-cover">
-                            <div class="p-5"><h3 class="text-lg font-bold text-white">Eleesao</h3><p class="text-gray-400 text-sm mt-1">Glycerin: The ultimate skin care product</p></div>
+                            <img src="https://img.youtube.com/vi/1CS9XQeT3ygaiqZXeyiCQ3ppr7DYNmrNT/hqdefault.jpg" alt="Eleesao Project Thumbnail" class="w-full h-36 sm:h-48 object-cover">
+                            <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Eleesao</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Glycerin: The ultimate skin care product</p></div>
                         </div>
                     </div>
                 </div>
@@ -160,19 +164,18 @@
             <!-- Section 2: Collaborations -->
             <div class="collapsible-section bg-gray-900 rounded-lg" id="collaborations">
                 <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800 rounded-lg">
-                    <h3 class="text-2xl font-bold text-white">Collaborations</h3>
+                    <h3 class="text-xl sm:text-2xl font-bold text-white">Collaborations</h3>
                     <span class="collapsible-arrow text-cyan-400 text-2xl">&#9654;</span>
                 </div>
                 <div class="collapsible-content">
-                    <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-                        <!-- Add collaboration projects here -->
+                    <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nie5J_WIy9F4KD16eofrPCVI6fxqP7OA">
-                            <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Gym+Moments" alt="Gym Moments Project Thumbnail" class="w-full h-48 object-cover">
-                            <div class="p-5"><h3 class="text-lg font-bold text-white">Strength & Grace – Gym Moments</h3><p class="text-gray-400 text-sm mt-1">Showcasing dedication and energy.</p></div>
+                            <img src="https://img.youtube.com/vi/1nie5J_WIy9F4KD16eofrPCVI6fxqP7OA/hqdefault.jpg" alt="Gym Moments Project Thumbnail" class="w-full h-36 sm:h-48 object-cover">
+                            <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Strength & Grace</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Showcasing dedication and energy.</p></div>
                         </div>
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1zEBkde3ds3VTk_BB-euwX1x9IUZ0JCAe">
-                            <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Ctrl-8" alt="Ctrl-8 Project Thumbnail" class="w-full h-48 object-cover">
-                            <div class="p-5"><h3 class="text-lg font-bold text-white">Ctrl-8 Gaming Parlour</h3><p class="text-gray-400 text-sm mt-1">Vibrant lights and thrilling games.</p></div>
+                            <img src="https://img.youtube.com/vi/1zEBkde3ds3VTk_BB-euwX1x9IUZ0JCAe/hqdefault.jpg" alt="Ctrl-8 Project Thumbnail" class="w-full h-36 sm:h-48 object-cover">
+                            <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Ctrl-8 Gaming</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Vibrant lights and thrilling games.</p></div>
                         </div>
                     </div>
                 </div>
@@ -181,15 +184,14 @@
             <!-- Section 3: Cinematic -->
             <div class="collapsible-section bg-gray-900 rounded-lg" id="cinematic">
                 <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800 rounded-lg">
-                    <h3 class="text-2xl font-bold text-white">Cinematic</h3>
+                    <h3 class="text-xl sm:text-2xl font-bold text-white">Cinematic</h3>
                     <span class="collapsible-arrow text-cyan-400 text-2xl">&#9654;</span>
                 </div>
                 <div class="collapsible-content">
-                    <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-                        <!-- Add cinematic projects here -->
+                    <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1KpkJTYQ7fYDQ7WmtBR63nMvxzSOttYiw">
-                            <img src="https://placehold.co/400x400/1f2937/9ca3af?text=Ethnic+Elegance" alt="Ethnic Elegance Project Thumbnail" class="w-full h-48 object-cover">
-                            <div class="p-5"><h3 class="text-lg font-bold text-white">Ethnic Elegance</h3><p class="text-gray-400 text-sm mt-1">Radiating grace and tradition.</p></div>
+                            <img src="https://img.youtube.com/vi/1KpkJTYQ7fYDQ7WmtBR63nMvxzSOttYiw/hqdefault.jpg" alt="Ethnic Elegance Project Thumbnail" class="w-full h-36 sm:h-48 object-cover">
+                            <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Ethnic Elegance</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Radiating grace and tradition.</p></div>
                         </div>
                     </div>
                 </div>
