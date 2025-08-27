@@ -10,8 +10,72 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <!-- Link to your consolidated style.css file -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- ALL STYLES ARE NOW INCLUDED HERE --- */
+        
+        /* Custom styles for the dark theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark Gray/Navy background */
+            color: #f3f4f6; /* Light gray text */
+        }
+
+        /* Style for the sticky header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style for the project cards */
+        .project-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Modal styles for video pop-up */
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+
+        /* Collapsible Section Styles */
+        .collapsible-header {
+            transition: background-color 0.3s;
+        }
+        .collapsible-arrow {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .collapsible-section.expanded .collapsible-arrow {
+            transform: rotate(90deg);
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+            padding: 0 1.5rem;
+        }
+        .collapsible-section.expanded .collapsible-content {
+            max-height: 2000px; /* Adjust if content is taller */
+            opacity: 1;
+            padding: 1rem; /* Reduced padding for mobile */
+        }
+        @media (min-width: 640px) {
+            .collapsible-section.expanded .collapsible-content {
+                padding: 1.5rem; /* Restore padding for larger screens */
+            }
+        }
+    </style>
 </head>
 <body class="antialiased">
 
@@ -52,7 +116,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                 
                 <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="45VDr09jaAs">
-                    <img src="https://img.youtube.com/vi/45VDr09jaAs/hqdefault.jpg" alt="Rapido Project Thumbnail" class="w-full aspect-[9/16] object-cover">
+                    <img src="https://img.youtube.com/vi/45VDr09jaAs/hqdefault.jpg" alt="Rapido Project Thumbnail" class="w-full h-96 object-cover">
                     <div class="p-5">
                         <h3 class="text-lg font-bold text-white">Rapido</h3>
                         <p class="text-gray-400 text-sm mt-1">Story behind the Startup</p>
@@ -60,7 +124,7 @@
                 </div>
 
                  <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="pXT7sSI68MA">
-                    <img src="https://img.youtube.com/vi/pXT7sSI68MA/hqdefault.jpg" alt="Glyserin School" class="w-full aspect-[9/16] object-cover">
+                    <img src="https://img.youtube.com/vi/pXT7sSI68MA/hqdefault.jpg" alt="Glyserin School" class="w-full h-96 object-cover">
                     <div class="p-5">
                         <h3 class="text-lg font-bold text-white">Glyserin School</h3>
                         <p class="text-gray-400 text-sm mt-1">Different types of Moisturizers</p>
@@ -68,7 +132,7 @@
                 </div>
 
                 <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="yMqAGWhytWY">
-                     <img src="https://img.youtube.com/vi/yMqAGWhytWY/hqdefault.jpg" alt="Thumbnail for Nainital Cinematic" class="w-full aspect-[9/16] object-cover">
+                     <img src="https://img.youtube.com/vi/yMqAGWhytWY/hqdefault.jpg" alt="Thumbnail for Nainital Cinematic" class="w-full h-96 object-cover">
                     <div class="p-5">
                         <h3 class="text-lg font-bold text-white">Nainital Cinematic</h3>
                         <p class="text-gray-400 text-sm mt-1">A recreation of Seedhe Maut's style.</p>
@@ -89,27 +153,27 @@
                 <div class="collapsible-content">
                     <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="9q3JnCx65eU">
-                            <img src="https://img.youtube.com/vi/9q3JnCx65eU/hqdefault.jpg" alt="Chokling Art House" class="w-full aspect-[9/16] object-cover">
+                            <img src="https://img.youtube.com/vi/9q3JnCx65eU/hqdefault.jpg" alt="Chokling Art House" class="w-full h-64 sm:h-72 object-cover">
                             <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Chokling Art House</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Peacful Stay in Bir Bling</p></div>
                         </div>
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="zuXK9jOxOlg">
-                            <img src="https://img.youtube.com/vi/zuXK9jOxOlg/hqdefault.jpg" alt="Garden Cafe" class="w-full aspect-[9/16] object-cover">
+                            <img src="https://img.youtube.com/vi/zuXK9jOxOlg/hqdefault.jpg" alt="Garden Cafe" class="w-full h-64 sm:h-72 object-cover">
                             <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Garden Cafe</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Authentic Pancakes meets Strong Coffee</p></div>
                         </div>
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="sE6byRYoSx4">
-                            <img src="https://img.youtube.com/vi/sE6byRYoSx4/hqdefault.jpg" alt="Adeventure Time" class="w-full aspect-[9/16] object-cover">
+                            <img src="https://img.youtube.com/vi/sE6byRYoSx4/hqdefault.jpg" alt="Adeventure Time" class="w-full h-64 sm:h-72 object-cover">
                             <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Adventure Time</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Paragliding Experiemce</p></div>
                         </div>
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="l2wDETAYiik">
-                            <img src="https://img.youtube.com/vi/l2wDETAYiik/hqdefault.jpg" alt="Himalyan Cafe" class="w-full aspect-[9/16] object-cover">
+                            <img src="https://img.youtube.com/vi/l2wDETAYiik/hqdefault.jpg" alt="Himalyan Cafe" class="w-full h-64 sm:h-72 object-cover">
                             <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Himalayan Cafe</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Perfect spot to get authentic wood-fire pizzas</p></div>
                         </div>
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="xRlcu7a_Qdw">
-                            <img src="https://img.youtube.com/vi/xRlcu7a_Qdw/hqdefault.jpg" alt="Mafia Cafe" class="w-full aspect-[9/16] object-cover">
+                            <img src="https://img.youtube.com/vi/xRlcu7a_Qdw/hqdefault.jpg" alt="Mafia Cafe" class="w-full h-64 sm:h-72 object-cover">
                             <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Mafia Cafe</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Cafe with a twist of crazy collectibles</p></div>
                         </div>
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="nvAy5QpEgbI">
-                            <img src="https://img.youtube.com/vi/nvAy5QpEgbI/hqdefault.jpg" alt="Transition" class="w-full aspect-[9/16] object-cover">
+                            <img src="https://img.youtube.com/vi/nvAy5QpEgbI/hqdefault.jpg" alt="Transition" class="w-full h-64 sm:h-72 object-cover">
                             <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Transcend ✨</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">All about our trip to Bir Bling</p></div>
                         </div>
                     </div>
@@ -125,7 +189,7 @@
                 <div class="collapsible-content">
                     <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1CS9XQeT3ygaiqZXeyiCQ3ppr7DYNmrNT">
-                            <img src="https://img.youtube.com/vi/1CS9XQeT3ygaiqZXeyiCQ3ppr7DYNmrNT/hqdefault.jpg" alt="Eleesao Project Thumbnail" class="w-full aspect-[9/16] object-cover">
+                            <img src="https://img.youtube.com/vi/1CS9XQeT3ygaiqZXeyiCQ3ppr7DYNmrNT/hqdefault.jpg" alt="Eleesao Project Thumbnail" class="w-full h-64 sm:h-72 object-cover">
                             <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Eleesao</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Glycerin: The ultimate skin care product</p></div>
                         </div>
                     </div>
@@ -141,11 +205,11 @@
                 <div class="collapsible-content">
                     <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nie5J_WIy9F4KD16eofrPCVI6fxqP7OA">
-                            <img src="https://img.youtube.com/vi/1nie5J_WIy9F4KD16eofrPCVI6fxqP7OA/hqdefault.jpg" alt="Gym Moments Project Thumbnail" class="w-full aspect-[9/16] object-cover">
+                            <img src="https://img.youtube.com/vi/1nie5J_WIy9F4KD16eofrPCVI6fxqP7OA/hqdefault.jpg" alt="Gym Moments Project Thumbnail" class="w-full h-64 sm:h-72 object-cover">
                             <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Strength & Grace</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Showcasing dedication and energy.</p></div>
                         </div>
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1zEBkde3ds3VTk_BB-euwX1x9IUZ0JCAe">
-                            <img src="https://img.youtube.com/vi/1zEBkde3ds3VTk_BB-euwX1x9IUZ0JCAe/hqdefault.jpg" alt="Ctrl-8 Project Thumbnail" class="w-full aspect-[9/16] object-cover">
+                            <img src="https://img.youtube.com/vi/1zEBkde3ds3VTk_BB-euwX1x9IUZ0JCAe/hqdefault.jpg" alt="Ctrl-8 Project Thumbnail" class="w-full h-64 sm:h-72 object-cover">
                             <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Ctrl-8 Gaming</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Vibrant lights and thrilling games.</p></div>
                         </div>
                     </div>
@@ -161,7 +225,7 @@
                 <div class="collapsible-content">
                     <div class="portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
                         <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1KpkJTYQ7fYDQ7WmtBR63nMvxzSOttYiw">
-                            <img src="https://img.youtube.com/vi/1KpkJTYQ7fYDQ7WmtBR63nMvxzSOttYiw/hqdefault.jpg" alt="Ethnic Elegance Project Thumbnail" class="w-full aspect-[9/16] object-cover">
+                            <img src="https://img.youtube.com/vi/1KpkJTYQ7fYDQ7WmtBR63nMvxzSOttYiw/hqdefault.jpg" alt="Ethnic Elegance Project Thumbnail" class="w-full h-64 sm:h-72 object-cover">
                             <div class="p-3 sm:p-4"><h3 class="text-sm sm:text-base font-bold text-white">Ethnic Elegance</h3><p class="text-xs text-gray-400 mt-1 hidden sm:block">Radiating grace and tradition.</p></div>
                         </div>
                     </div>
