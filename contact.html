@@ -132,7 +132,7 @@
 
                     <!-- Right Side: Contact Form -->
                     <div>
-                        <form id="contact-form">
+                        <form id="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfMs9hnJzQYzjY7m-mGjbDLa6iTsU5IU3VGx8QWcCckVqdZ-A/formResponse" method="POST" target="hidden_iframe">
                             <div class="space-y-4">
                                 <div>
                                     <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
@@ -162,6 +162,9 @@
     <div id="success-popup" class="success-popup fixed bottom-5 right-5 bg-green-500 text-white py-3 px-5 rounded-lg shadow-lg opacity-0 transform translate-y-2 hidden">
         Message sent successfully!
     </div>
+    
+    <!-- Hidden Iframe for Form Submission -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
 
     <!-- Footer -->
@@ -180,22 +183,17 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // --- AJAX Form Submission ---
+        // --- Iframe Form Submission ---
         const contactForm = document.getElementById('contact-form');
         const successPopup = document.getElementById('success-popup');
+        let formSubmitted = false;
 
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent the default form redirect
+        contactForm.addEventListener('submit', function() {
+            formSubmitted = true;
+        });
 
-            const formData = new FormData(contactForm);
-            const formAction = 'https://docs.google.com/forms/d/e/1FAIpQLSfMs9hnJzQYzjY7m-mGjbDLa6iTsU5IU3VGx8QWcCckVqdZ-A/formResponse';
-
-            fetch(formAction, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors' // IMPORTANT: This prevents CORS errors with Google Forms
-            })
-            .then(() => {
+        document.getElementById('hidden_iframe').addEventListener('load', function() {
+            if (formSubmitted) {
                 contactForm.reset(); // Clear the form fields
                 successPopup.classList.remove('hidden', 'opacity-0', 'translate-y-2'); // Show the popup
                 
@@ -206,11 +204,9 @@
                         successPopup.classList.add('hidden');
                     }, 500); // Wait for the fade-out transition to finish
                 }, 4000);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Oops! There was a problem submitting your form. Please try again.');
-            });
+
+                formSubmitted = false; // Reset the flag
+            }
         });
 
     </script>
