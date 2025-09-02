@@ -56,6 +56,10 @@
             animation: fadeIn 1s ease-out forwards;
             opacity: 0;
         }
+
+        .success-popup {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
         
         @keyframes fadeIn {
             from {
@@ -128,22 +132,18 @@
 
                     <!-- Right Side: Contact Form -->
                     <div>
-                        <!-- The ACTION URL is now corrected to your new form's submission link -->
-                        <form action="https://docs.google.com/forms/d/e/1FAIpQLSfMs9hnJzQYzjY7m-mGjbDLa6iTsU5IU3VGx8QWcCckVqdZ-A/formResponse" method="POST" target="_blank">
+                        <form id="contact-form">
                             <div class="space-y-4">
                                 <div>
                                     <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
-                                    <!-- The NAME attribute now matches your new form's "Name" field -->
                                     <input type="text" name="entry.2005620554" id="name" required class="form-input w-full px-4 py-2 rounded-md">
                                 </div>
                                 <div>
                                     <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Your Email</label>
-                                     <!-- The NAME attribute now matches your new form's "Email" field -->
                                     <input type="email" name="entry.1045781291" id="email" required class="form-input w-full px-4 py-2 rounded-md">
                                 </div>
                                 <div>
                                     <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
-                                    <!-- The NAME attribute now matches your new form's "Message" field -->
                                     <textarea name="entry.839337160" id="message" rows="5" required class="form-input w-full px-4 py-2 rounded-md"></textarea>
                                 </div>
                             </div>
@@ -157,6 +157,12 @@
             </section>
         </div>
     </main>
+    
+    <!-- Success Pop-up -->
+    <div id="success-popup" class="success-popup fixed bottom-5 right-5 bg-green-500 text-white py-3 px-5 rounded-lg shadow-lg opacity-0 transform translate-y-2 hidden">
+        Message sent successfully!
+    </div>
+
 
     <!-- Footer -->
     <footer class="bg-gray-950 text-gray-500 py-8 mt-16">
@@ -165,14 +171,50 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu Toggle -->
+    <!-- JavaScript for Menu Toggle and Form Submission -->
     <script>
+        // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
+
+        // --- AJAX Form Submission ---
+        const contactForm = document.getElementById('contact-form');
+        const successPopup = document.getElementById('success-popup');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the default form redirect
+
+            const formData = new FormData(contactForm);
+            const formAction = 'https://docs.google.com/forms/d/e/1FAIpQLSfMs9hnJzQYzjY7m-mGjbDLa6iTsU5IU3VGx8QWcCckVqdZ-A/formResponse';
+
+            fetch(formAction, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // IMPORTANT: This prevents CORS errors with Google Forms
+            })
+            .then(() => {
+                contactForm.reset(); // Clear the form fields
+                successPopup.classList.remove('hidden', 'opacity-0', 'translate-y-2'); // Show the popup
+                
+                // Hide the popup after 4 seconds
+                setTimeout(() => {
+                    successPopup.classList.add('opacity-0', 'translate-y-2');
+                    setTimeout(() => {
+                        successPopup.classList.add('hidden');
+                    }, 500); // Wait for the fade-out transition to finish
+                }, 4000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Oops! There was a problem submitting your form. Please try again.');
+            });
+        });
+
     </script>
 
 </body>
 </html>
+
