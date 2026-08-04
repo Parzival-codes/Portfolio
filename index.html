@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,17 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter for a clean, professional look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles for the new dark theme */
+        /* Custom styles for the dark theme */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #111827; /* Dark Gray/Navy background */
             color: #f3f4f6; /* Light gray text for readability */
         }
 
-        /* Style for the sticky header with a dark, blurred background */
+        /* Style for the sticky header with backdrop blur */
         .sticky-header {
             position: sticky;
             top: 0;
@@ -26,10 +26,10 @@
             background-color: rgba(17, 24, 39, 0.85); /* Semi-transparent dark bg */
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px); /* For Safari */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
         }
 
-        /* Hero section styling for the background video and overlay */
+        /* Hero section styling for background video overlay */
         .hero-section {
             position: relative;
             height: 90vh;
@@ -40,7 +40,6 @@
             color: white;
         }
 
-        /* This class now applies to the iframe for perfect background fit */
         .hero-video {
             position: absolute;
             top: 50%;
@@ -52,26 +51,66 @@
             object-fit: cover;
             transform: translate(-50%, -50%);
             z-index: -2;
-            filter: brightness(0.6); /* Darken the video slightly for text contrast */
+            filter: brightness(0.5); /* Darken video for high contrast text */
         }
 
-        /* A subtle gradient overlay to make text more readable */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+            background: linear-gradient(to top, #111827, transparent 70%);
             z-index: -1;
         }
-        
+
+        /* Card Hover Animations & Play Overlay */
+        .project-card {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px -10px rgba(6, 182, 212, 0.3);
+        }
+
+        /* Collapsible Section Styles */
+        .collapsible-arrow {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .collapsible-section.expanded .collapsible-arrow {
+            transform: rotate(90deg);
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out, padding 0.4s ease-in-out;
+            padding: 0 1.5rem;
+        }
+        .collapsible-section.expanded .collapsible-content {
+            max-height: 4000px; /* High max-height to fit video grids */
+            opacity: 1;
+            padding: 1rem;
+        }
+        @media (min-width: 640px) {
+            .collapsible-section.expanded .collapsible-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Video Modal Styles */
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         /* Animation for text fade-in */
         .fade-in-up {
-            animation: fadeInUp 1s ease-out forwards;
+            animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
         }
-        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -84,44 +123,45 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
 
-    <!-- Header -->
+    <!-- Header Navigation -->
     <header class="sticky-header">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo - Clickable, directs to home -->
-            <a href="index.html" class="text-3xl font-black tracking-tighter text-white">PH</a>
+            <!-- Logo - Smooth scrolls to top -->
+            <a href="#hero" class="text-3xl font-black tracking-tighter text-white hover:text-cyan-400 transition-colors">PH</a>
             
             <!-- Desktop Navigation Links -->
             <ul class="hidden md:flex items-center space-x-8">
-                <li><a href="portfolio.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Portfolio</a></li>
-                <li><a href="about.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">About</a></li>
-                <li><a href="services.html" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Services</a></li>
-                <li><a href="contact.html" class="bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600 transition-colors duration-300">Contact Us</a></li>
+                <li><a href="#portfolio" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-300">Portfolio</a></li>
+                <li><a href="#services" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-300">Services</a></li>
+                <li><a href="#about" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-300">About</a></li>
+                <li><a href="#contact" class="bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25">Contact Us</a></li>
             </ul>
 
-            <!-- Mobile Menu Button (Hamburger Icon) -->
-            <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none" aria-label="Toggle Navigation">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path>
+                </svg>
             </button>
         </nav>
         
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="portfolio.html" class="block py-2 text-gray-300 hover:text-cyan-400">Portfolio</a>
-            <a href="about.html" class="block py-2 text-gray-300 hover:text-cyan-400">About</a>
-            <a href="services.html" class="block py-2 text-gray-300 hover:text-cyan-400">Services</a>
-            <a href="contact.html" class="block mt-2 text-center bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600">Contact Us</a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 border-t border-gray-800 pt-2 space-y-2">
+            <a href="#portfolio" class="mobile-nav-link block py-2 text-gray-300 hover:text-cyan-400 font-medium">Portfolio</a>
+            <a href="#services" class="mobile-nav-link block py-2 text-gray-300 hover:text-cyan-400 font-medium">Services</a>
+            <a href="#about" class="mobile-nav-link block py-2 text-gray-300 hover:text-cyan-400 font-medium">About</a>
+            <a href="#contact" class="mobile-nav-link block text-center bg-cyan-500 text-white font-semibold px-5 py-2.5 rounded-full hover:bg-cyan-600 transition-colors">Contact Us</a>
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content Container -->
     <main>
         <!-- Hero Section -->
-        <section class="hero-section">
-            <!-- YouTube Background Video -->
+        <section id="hero" class="hero-section">
             <iframe 
-                class="hero-video"
+                class="hero-video pointer-events-none"
                 src="https://www.youtube.com/embed/EyGHw57mycM?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&playlist=EyGHw57mycM" 
                 frameborder="0" 
                 allow="autoplay; encrypted-media" 
@@ -130,73 +170,368 @@
             <div class="hero-overlay"></div>
 
             <div class="text-center z-10 px-4">
-                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white fade-in-up" style="animation-delay: 0.2s;">
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white fade-in-up" style="animation-delay: 0.2s;">
                     Hi, I’m <span class="text-cyan-400">Priyanshu Handuja</span>
                 </h1>
-                <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-gray-200 fade-in-up" style="animation-delay: 0.4s;">
+                <p class="mt-4 text-lg sm:text-xl max-w-2xl mx-auto text-gray-200 fade-in-up font-normal" style="animation-delay: 0.4s;">
                     A passionate video editor and content creator dedicated to crafting compelling visual stories.
                 </p>
-                <a href="portfolio.html" class="inline-block mt-8 bg-cyan-500 text-white font-bold text-lg px-8 py-3 rounded-full hover:bg-cyan-600 transition-transform duration-300 hover:scale-105 fade-in-up" style="animation-delay: 0.6s;">
+                <a href="#portfolio" class="inline-block mt-8 bg-cyan-500 text-white font-bold text-lg px-8 py-3.5 rounded-full hover:bg-cyan-600 transition-all duration-300 hover:scale-105 shadow-lg shadow-cyan-500/20 fade-in-up" style="animation-delay: 0.6s;">
                     View My Work
                 </a>
             </div>
         </section>
 
         <!-- Services Section Anchor -->
-        <section id="services" class="py-20 bg-gray-900">
+        <section id="services" class="py-20 bg-gray-900 scroll-mt-20">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What I Do</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto mb-12">From cinematic shorts to engaging social media content, I offer a range of video editing services.</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">What I Do</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-12">From cinematic shorts to engaging social media content, I offer a range of professional video editing services.</p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Service 1: Social Media -->
-                    <div class="p-8 bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:shadow-lg hover:border-cyan-500 transition-all duration-300">
-                        <div class="mb-4 text-cyan-400">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    <div class="p-8 bg-gray-800/80 border border-gray-700/60 rounded-xl shadow-sm hover:shadow-cyan-500/10 hover:border-cyan-500 transition-all duration-300 text-center">
+                        <div class="mb-5 text-cyan-400 inline-block p-3 bg-cyan-500/10 rounded-lg">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Social Media Videos</h3>
-                        <p class="text-gray-400">Engaging, fast-paced edits for platforms like Instagram Reels, TikTok, and YouTube Shorts.</p>
+                        <h3 class="text-xl font-bold text-white mb-3">Social Media Videos</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Engaging, fast-paced edits tailored for Instagram Reels, TikTok, and YouTube Shorts.</p>
                     </div>
 
                     <!-- Service 2: Corporate & Brand -->
-                    <div class="p-8 bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:shadow-lg hover:border-cyan-500 transition-all duration-300">
-                        <div class="mb-4 text-cyan-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <div class="p-8 bg-gray-800/80 border border-gray-700/60 rounded-xl shadow-sm hover:shadow-cyan-500/10 hover:border-cyan-500 transition-all duration-300 text-center">
+                        <div class="mb-5 text-cyan-400 inline-block p-3 bg-cyan-500/10 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Corporate & Brand</h3>
-                        <p class="text-gray-400">Professional videos for product launches, brand stories, testimonials, and internal communications.</p>
+                        <h3 class="text-xl font-bold text-white mb-3">Corporate & Brand</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Professional videos for product launches, brand storytelling, testimonials, and promos.</p>
                     </div>
 
                     <!-- Service 3: Cinematic & Creative -->
-                    <div class="p-8 bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:shadow-lg hover:border-cyan-500 transition-all duration-300">
-                        <div class="mb-4 text-cyan-400">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+                    <div class="p-8 bg-gray-800/80 border border-gray-700/60 rounded-xl shadow-sm hover:shadow-cyan-500/10 hover:border-cyan-500 transition-all duration-300 text-center">
+                        <div class="mb-5 text-cyan-400 inline-block p-3 bg-cyan-500/10 rounded-lg">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Cinematic & Creative</h3>
-                        <p class="text-gray-400">Artistic editing for short films, travel videos, music videos, and personal projects.</p>
+                        <h3 class="text-xl font-bold text-white mb-3">Cinematic & Creative</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Artistic storytelling and color grading for short films, travel reels, and creative projects.</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="container mx-auto px-4 sm:px-6 py-20 scroll-mt-20">
+            <!-- Portfolio Page Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">My Portfolio</h2>
+                <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">A curated selection of my finest edits and visual work. Click any video card to play instantly.</p>
+            </div>
+
+            <!-- Featured Projects Section -->
+            <div class="mb-16">
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-8 border-l-4 border-cyan-400 pl-4 flex items-center">
+                    Featured Projects
+                </h3>
+                <div class="portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+                    
+                    <div class="project-card bg-gray-800/90 rounded-xl overflow-hidden cursor-pointer group border border-gray-700/50 hover:border-cyan-400/50 relative" data-youtube-id="45VDr09jaAs">
+                        <div class="relative overflow-hidden aspect-[9/16]">
+                            <img src="https://img.youtube.com/vi/45VDr09jaAs/hqdefault.jpg" alt="Rapido Project Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-cyan-500 text-white rounded-full p-3 shadow-lg transform group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-3.5 bg-gray-800">
+                            <h4 class="text-sm font-bold text-white truncate">Rapido</h4>
+                        </div>
+                    </div>
+
+                     <div class="project-card bg-gray-800/90 rounded-xl overflow-hidden cursor-pointer group border border-gray-700/50 hover:border-cyan-400/50 relative" data-youtube-id="pXT7sSI68MA">
+                        <div class="relative overflow-hidden aspect-[9/16]">
+                            <img src="https://img.youtube.com/vi/pXT7sSI68MA/hqdefault.jpg" alt="Glycerin School" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-cyan-500 text-white rounded-full p-3 shadow-lg transform group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-3.5 bg-gray-800">
+                            <h4 class="text-sm font-bold text-white truncate">Glycerin School</h4>
+                        </div>
+                    </div>
+
+                    <div class="project-card bg-gray-800/90 rounded-xl overflow-hidden cursor-pointer group border border-gray-700/50 hover:border-cyan-400/50 relative" data-youtube-id="yMqAGWhytWY">
+                        <div class="relative overflow-hidden aspect-[9/16]">
+                            <img src="https://img.youtube.com/vi/yMqAGWhytWY/hqdefault.jpg" alt="Nainital Cinematic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-cyan-500 text-white rounded-full p-3 shadow-lg transform group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-3.5 bg-gray-800">
+                            <h4 class="text-sm font-bold text-white truncate">Nainital Cinematic</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Collapsible Sections -->
+            <div class="space-y-6">
+                <!-- Section 1: Himachal -->
+                <div class="collapsible-section bg-gray-900 border border-gray-800 rounded-xl overflow-hidden" id="himachal-edits">
+                    <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800/60 transition-colors">
+                        <h3 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+                            <span>Himachal</span>
+                        </h3>
+                        <span class="collapsible-arrow text-cyan-400 text-xl font-bold">&#9654;</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 pt-2">
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="9q3JnCx65eU">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/9q3JnCx65eU/hqdefault.jpg" alt="Chokling Art House" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Chokling Art House</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="zuXK9jOxOlg">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/zuXK9jOxOlg/hqdefault.jpg" alt="Garden Cafe" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Garden Cafe</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="sE6byRYoSx4">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/sE6byRYoSx4/hqdefault.jpg" alt="Adventure Time" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Adventure Time</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="l2wDETAYiik">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/l2wDETAYiik/hqdefault.jpg" alt="Himalayan Cafe" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Himalayan Cafe</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="xRlcu7a_Qdw">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/xRlcu7a_Qdw/hqdefault.jpg" alt="Mafia Cafe" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Mafia Cafe</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="nvAy5QpEgbI">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/nvAy5QpEgbI/hqdefault.jpg" alt="Transition" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Transcend ✨</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Collaborations -->
+                <div class="collapsible-section bg-gray-900 border border-gray-800 rounded-xl overflow-hidden" id="collaborations">
+                    <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800/60 transition-colors">
+                        <h3 class="text-xl sm:text-2xl font-bold text-white">Brand Collaborations</h3>
+                        <span class="collapsible-arrow text-cyan-400 text-xl font-bold">&#9654;</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 pt-2">
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="8gzxOuWhaYo">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/8gzxOuWhaYo/hqdefault.jpg" alt="Phillips Trimmer" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Phillips One Blade</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="ursO5kxxvFI">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/ursO5kxxvFI/hqdefault.jpg" alt="KwikPic App" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">KwikPic App</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="Je9ljmmxMuI">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/Je9ljmmxMuI/hqdefault.jpg" alt="Settl Livin" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Settl Livin</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="ZMx4dlY0P_A">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/ZMx4dlY0P_A/hqdefault.jpg" alt="Dubstep Headphones" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Dubstep Headphones</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="wxf1guAOfhE">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/wxf1guAOfhE/hqdefault.jpg" alt="Ctrl8" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Ctrl8 Gaming Parlour</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="5gbAuAqjeuE">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/5gbAuAqjeuE/hqdefault.jpg" alt="Gym Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Rishika's Gym Routine</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="puHahpxtewQ">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/puHahpxtewQ/hqdefault.jpg" alt="Study Time" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Study Time</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nTmcgVBmvI">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/1nTmcgVBmvI/hqdefault.jpg" alt="Pizza Fest" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Pizza Fest</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Cinematic -->
+                <div class="collapsible-section bg-gray-900 border border-gray-800 rounded-xl overflow-hidden" id="cinematic">
+                    <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800/60 transition-colors">
+                        <h3 class="text-xl sm:text-2xl font-bold text-white">Cinematic</h3>
+                        <span class="collapsible-arrow text-cyan-400 text-xl font-bold">&#9654;</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 pt-2">
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="yMqAGWhytWY">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/yMqAGWhytWY/hqdefault.jpg" alt="Nainital" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Nainital</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="KicU7mx8CJc">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/KicU7mx8CJc/hqdefault.jpg" alt="NSUT" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">NSUT Campus</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="KZLiH2tT9Ks">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/KZLiH2tT9Ks/hqdefault.jpg" alt="Red Fort" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Red Fort</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="T2JFEyuDe0k">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/T2JFEyuDe0k/hqdefault.jpg" alt="TBSM" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">TBSM on Loop</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="KrDCYqwcVwc">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/KrDCYqwcVwc/hqdefault.jpg" alt="Dalai Hills" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Teleport</h4></div>
+                            </div>
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="fowYP9pnfLA">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/fowYP9pnfLA/hqdefault.jpg" alt="Beauty" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Elegance in Ethnic</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Graphical Edits -->
+                <div class="collapsible-section bg-gray-900 border border-gray-800 rounded-xl overflow-hidden" id="graphical-edits">
+                    <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800/60 transition-colors">
+                        <h3 class="text-xl sm:text-2xl font-bold text-white">Graphical Edits</h3>
+                        <span class="collapsible-arrow text-cyan-400 text-xl font-bold">&#9654;</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 pt-2">
+                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="95V3BcLNQdY">
+                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/95V3BcLNQdY/hqdefault.jpg" alt="Luke Belmer" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Story of Luke Belmer</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-gray-900/60 border-t border-gray-800 scroll-mt-20">
+            <div class="container mx-auto px-6 max-w-4xl text-center">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6">About Me</h2>
+                <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                    I’m <span class="text-cyan-400 font-semibold">Priyanshu Handuja</span>, a video editor and visual storyteller focused on bringing stories to life through dynamic cuts, clean motion graphics, and engaging audio design.
+                </p>
+                <p class="text-gray-400 text-base leading-relaxed">
+                    Over the years, I've collaborated with creators, brands, and businesses to produce high-performing social content, cinematic reels, and impactful corporate videos. Every frame is edited with precision to capture attention and deliver results.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-gray-950 border-t border-gray-800 scroll-mt-20">
+            <div class="container mx-auto px-6 max-w-3xl text-center">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Let’s Work Together</h2>
+                <p class="text-gray-400 mb-8">Have a project in mind or want to elevate your visual content? Get in touch!</p>
+                
+                <a href="mailto:contact@priyanshu.com" class="inline-flex items-center gap-2 bg-cyan-500 text-white font-bold text-lg px-8 py-3.5 rounded-full hover:bg-cyan-600 transition-all shadow-lg shadow-cyan-500/20 hover:scale-105">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Send Message
+                </a>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-950 text-gray-500 py-8">
-        <div class="container mx-auto px-6 text-center">
+    <footer class="bg-black text-gray-500 py-8 border-t border-gray-900">
+        <div class="container mx-auto px-6 text-center text-sm">
             <p>&copy; 2025 Priyanshu Handuja. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu Toggle -->
+    <!-- Video Modal Overlay -->
+    <div id="video-modal" class="modal fixed inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 z-50 opacity-0 pointer-events-none transition-all duration-300">
+        <div id="modal-content" class="modal-content bg-black w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl relative transform scale-95 border border-gray-800">
+            <!-- Modal Close Button -->
+            <button id="close-modal" class="absolute top-3 right-3 text-white/80 hover:text-white text-3xl font-bold z-10 w-10 h-10 flex items-center justify-center bg-black/60 rounded-full backdrop-blur transition-all" aria-label="Close Video">
+                &times;
+            </button>
+            <div id="video-container" class="w-full aspect-video bg-black flex items-center justify-center">
+                <!-- Dynamic Iframe Insertion -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
     <script>
+        // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-    </script>
 
+        // Close mobile menu when a navigation item is clicked
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Video Modal Logic
+        const projectCards = document.querySelectorAll('.project-card');
+        const modal = document.getElementById('video-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModal = document.getElementById('close-modal');
+        const videoContainer = document.getElementById('video-container');
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const youtubeId = card.getAttribute('data-youtube-id');
+                if (youtubeId) {
+                    const embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+                    videoContainer.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modalContent.classList.remove('scale-95');
+                }
+            });
+        });
+
+        function hideModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.add('scale-95');
+            // Delay clearing iframe source to allow fade-out transition
+            setTimeout(() => {
+                videoContainer.innerHTML = '';
+            }, 300);
+        }
+
+        closeModal.addEventListener('click', hideModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+
+        // ESC Key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideModal();
+            }
+        });
+
+        // Collapsible Accordion Logic
+        const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+        collapsibleHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const section = header.closest('.collapsible-section');
+                section.classList.toggle('expanded');
+            });
+        });
+    </script>
 </body>
 </html>
-
