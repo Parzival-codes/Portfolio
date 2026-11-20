@@ -1,537 +1,478 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Priyanshu Handuja | Video Editor & Content Creator</title>
-    <!-- Tailwind CSS for modern styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter for a clean, professional look -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* Custom styles for the dark theme */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Dark Gray/Navy background */
-            color: #f3f4f6; /* Light gray text for readability */
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Priyanshu Handuja | Video Editor</title>
+<meta name="description" content="Video editor for short-form reels, brand videos, cinematic edits and motion graphics. Based in Delhi, working with clients worldwide.">
+<meta property="og:title" content="Priyanshu Handuja | Video Editor">
+<meta property="og:description" content="Short-form reels, brand videos, cinematic edits and motion graphics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@property --accent{syntax:'<color>';inherits:true;initial-value:#ff5a3c}
+:root{
+  --bg:#0f1012;--bg2:#16171a;--ink:#f1ede6;--mute:#9d9a92;--line:#2a2b2f;
+  --accent:#ff5a3c;--r:14px;
+  --display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+  --body:'Figtree','Helvetica Neue',Arial,sans-serif;
+  transition:--accent .9s ease;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{width:min(1240px,100% - 48px);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1;letter-spacing:-.025em}
+h2{font-size:clamp(34px,5vw,60px)}
+p{max-width:58ch}
+.mute{color:var(--mute)}
 
-        /* Style for the sticky header with backdrop blur */
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background-color: rgba(17, 24, 39, 0.85); /* Semi-transparent dark bg */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px); /* For Safari */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-        }
+/* progress + nav */
+#bar{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0);z-index:60}
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding:18px 0;transition:background .3s,padding .3s}
+.nav.solid{background:rgba(15,16,18,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{font:700 20px var(--display);letter-spacing:-.02em;text-decoration:none}
+.nav nav{display:flex;align-items:center;gap:28px;font-size:15px}
+.nav nav a{text-decoration:none;color:var(--mute);transition:color .2s}
+.nav nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:99px;text-decoration:none;font-weight:600;font-size:15px;border:1px solid var(--line);transition:background .2s,border-color .2s,color .2s}
+.btn:hover{border-color:var(--ink)}
+.btn.solid,.nav nav a.btn.solid{background:var(--accent);border-color:var(--accent);color:#0f1012}
+.btn.solid:hover{background:var(--ink);border-color:var(--ink)}
+.nav .btn{padding:9px 18px}
 
-        /* Hero section styling for background video overlay */
-        .hero-section {
-            position: relative;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            color: white;
-        }
+/* hero */
+#hero{min-height:100svh;display:grid;align-items:center;padding:120px 0 72px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+h1{font-size:clamp(46px,6.8vw,104px);letter-spacing:-.04em;line-height:.94}
+h1 .l{display:block;overflow:hidden;padding-bottom:.08em;white-space:nowrap}
+h1 .l>span{display:block;transform:translateY(105%);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards}
+h1 .l:nth-child(2)>span{animation-delay:.1s}
+h1 .l:nth-child(3)>span{animation-delay:.2s}
+@keyframes up{to{transform:none}}
+.hero-sub{margin:30px 0 34px;font-size:clamp(17px,1.6vw,21px);color:var(--mute);opacity:0;animation:fade .8s .55s forwards}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fade .8s .7s forwards}
+.hero-note{margin-top:30px;font-size:14px;color:var(--mute);opacity:0;animation:fade .8s .85s forwards}
+@keyframes fade{to{opacity:1}}
+.phones{position:relative;height:min(68vh,640px);display:flex;justify-content:center;align-items:center;opacity:0;animation:fade 1s .4s forwards}
+.phone{position:absolute;aspect-ratio:9/16;height:78%;border-radius:30px;overflow:hidden;background:#000;border:1px solid #34353a;box-shadow:0 30px 60px -30px rgba(0,0,0,.8);
+  transform:translate(calc(var(--mx,0)*var(--d)*1px),calc(var(--my,0)*var(--d)*1px)) rotate(var(--rot));transition:transform .5s ease-out}
+.phone img{width:100%;height:100%;object-fit:cover}
+.phone{cursor:pointer;padding:0;background:linear-gradient(160deg,var(--accent) -60%,#1a1b1f 75%)}
+.phone.a{--rot:-9deg;--d:-18;left:2%;top:12%;opacity:.9}
+.phone.c{--rot:0deg;--d:10;height:92%;z-index:2;border-color:var(--accent)}
+.phone.b{--rot:8deg;--d:22;right:2%;top:16%;opacity:.9}
 
-        .hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 177.77vh; /* 16:9 aspect ratio */
-            min-width: 100%;
-            min-height: 100%;
-            height: 56.25vw; /* 16:9 aspect ratio */
-            object-fit: cover;
-            transform: translate(-50%, -50%);
-            z-index: -2;
-            filter: brightness(0.5); /* Darken video for high contrast text */
-        }
+/* showreel */
+#reel{height:260vh;position:relative}
+.reel-stick{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--bg)}
+.reel-head{position:absolute;top:13vh;left:0;right:0;text-align:center;z-index:2;transition:opacity .1s}
+.reel-head h2{font-size:clamp(34px,6vw,84px)}
+.reel-head p{margin:14px auto 0;color:var(--mute)}
+.reel-frame{position:absolute;inset:0;background:#000;clip-path:inset(var(--iy,26%) var(--ix,30%) var(--iy,26%) var(--ix,30%) round var(--rr,28px))}
+.reel-frame video{width:100%;height:100%;object-fit:contain}
+.reel-ui{position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:clamp(20px,5vh,48px);display:flex;justify-content:space-between;align-items:center;gap:16px;z-index:3;opacity:var(--ui,0);pointer-events:none}
+.reel-ui>*{pointer-events:auto}
+.reel-ui .t{font:600 15px var(--body);background:rgba(15,16,18,.6);padding:8px 14px;border-radius:99px;backdrop-filter:blur(6px)}
+.sound{background:var(--accent);color:#0f1012;font-weight:600;padding:11px 20px;border-radius:99px}
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, #111827, transparent 70%);
-            z-index: -1;
-        }
+/* work intro */
+#work-intro{padding:96px 0 24px}
+.work-top{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.lane-links{display:flex;gap:10px;flex-wrap:wrap}
+.lane-links a{padding:8px 16px;border:1px solid var(--line);border-radius:99px;text-decoration:none;font-size:14px;color:var(--mute);transition:.2s}
+.lane-links a:hover{color:var(--ink);border-color:var(--ink)}
 
-        /* Card Hover Animations & Play Overlay */
-        .project-card {
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .project-card:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 24px -10px rgba(6, 182, 212, 0.3);
-        }
+/* lanes */
+.lane{padding:72px 0 36px}
+.lane-head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:28px}
+.lane-head h2{font-size:clamp(32px,4.4vw,56px);position:relative;display:inline-block;padding-bottom:14px}
+.lane-head h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:4px;border-radius:2px;background:var(--accent)}
+.lane-head p{margin-top:10px;color:var(--mute)}
+.lane-nav{display:flex;gap:8px}
+.lane-nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.2s}
+.lane-nav button:hover{border-color:var(--ink)}
+.lane-nav svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.rail{--gut:max(24px,calc((100vw - 1240px)/2));display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x proximity;padding:0 var(--gut) 20px;scroll-padding-inline:var(--gut);scrollbar-width:none;overscroll-behavior-x:contain}
+.rail::-webkit-scrollbar{display:none}
+.card{position:relative;flex:0 0 auto;scroll-snap-align:start;border-radius:var(--r);overflow:hidden;background:#000;text-align:left}
+.card.v{width:clamp(220px,22vw,290px);aspect-ratio:9/16}
+.card.h{width:clamp(300px,36vw,500px);aspect-ratio:16/9}
+.card.h.big{width:clamp(320px,50vw,720px)}
+.th{position:absolute;inset:0;background:linear-gradient(160deg,#2a2c33,#121316);background:linear-gradient(160deg,color-mix(in srgb,var(--lane,#ff5a3c) 40%,#23252b),#121316)}
+.th img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.card:hover .th img{transform:scale(1.05)}
+.pv{position:absolute;top:0;height:100%;left:50%;width:316%;transform:translateX(-50%);border:0;pointer-events:none;opacity:0;transition:opacity .4s}
+.card.h .pv{left:0;width:100%;transform:none}
+.pv.on{opacity:1}
+.card::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(transparent,rgba(0,0,0,.78));pointer-events:none}
+.cap{position:absolute;left:16px;right:16px;bottom:14px;z-index:2;pointer-events:none}
+.cap b{display:block;font:600 19px/1.15 var(--display);letter-spacing:-.01em}
+.cap i{display:block;margin-top:4px;font-style:normal;font-size:13.5px;color:#cfcbc2}
+.play{position:absolute;top:14px;right:14px;z-index:2;width:40px;height:40px;border-radius:50%;background:rgba(15,16,18,.65);backdrop-filter:blur(6px);display:grid;place-items:center;transition:background .25s}
+.play::before{content:"";border-left:11px solid var(--ink);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
+.card:hover .play{background:var(--accent)}
+.card:hover .play::before{border-left-color:#0f1012}
 
-        /* Collapsible Section Styles */
-        .collapsible-arrow {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .collapsible-section.expanded .collapsible-arrow {
-            transform: rotate(90deg);
-        }
-        .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out, padding 0.4s ease-in-out;
-            padding: 0 1.5rem;
-        }
-        .collapsible-section.expanded .collapsible-content {
-            max-height: 4000px; /* High max-height to fit video grids */
-            opacity: 1;
-            padding: 1rem;
-        }
-        @media (min-width: 640px) {
-            .collapsible-section.expanded .collapsible-content {
-                padding: 1.5rem;
-            }
-        }
+/* previous work */
+#previous{--lane:#ff5a3c;padding:112px 0 64px;background:var(--bg2);margin-top:60px}
+#previous h2{margin-bottom:48px}
+.job{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;padding:44px 0 52px;border-top:1px solid var(--line)}
+.job h3{font-size:clamp(30px,3.8vw,48px)}
+.job p{margin-top:16px;color:var(--mute)}
+.job-reels{grid-column:1/-1;display:flex;gap:16px;flex-wrap:wrap}
+.job-reels .card{width:clamp(170px,22vw,260px)}
+.metrics{display:flex;gap:56px;flex-wrap:wrap;align-items:flex-end}
+.metrics div{min-width:120px}
+.metrics b{display:block;font:700 clamp(40px,5vw,68px)/1 var(--display);letter-spacing:-.04em}
+.metrics span{display:block;margin-top:8px;font-size:15px;color:var(--mute)}
+.flow{margin-top:36px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;list-style:none;counter-reset:f}
+.flow li{counter-increment:f;border-top:2px solid var(--accent);padding-top:12px;font-size:14.5px;color:var(--mute)}
+.flow li::before{content:counter(f) ". ";color:var(--ink);font-weight:600}
+.flow li b{color:var(--ink);font-weight:600}
 
-        /* Video Modal Styles */
-        .modal {
-            transition: opacity 0.3s ease;
-        }
-        .modal-content {
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+/* about */
+#about{padding:112px 0;background:var(--bg2)}
+.about{display:grid;grid-template-columns:.7fr 1.3fr;gap:72px;align-items:center}
+.about img{width:100%;max-width:380px;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:var(--r)}
+.about h2{margin-bottom:24px}
+.about p{color:var(--mute);margin-bottom:16px}
+.about p.big{color:var(--ink);font-size:clamp(19px,2vw,24px);line-height:1.45}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.tools span{border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:14px}
 
-        /* Animation for text fade-in */
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+/* contact */
+#contact{padding:140px 0 100px;text-align:center}
+#contact h2{font-size:clamp(46px,9vw,140px);letter-spacing:-.045em;line-height:.92}
+#contact p{margin:26px auto 36px;color:var(--mute)}
+.links{margin-top:40px;display:flex;justify-content:center;gap:28px;flex-wrap:wrap;color:var(--mute);font-size:15px}
+.links a{text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.links a:hover{color:var(--ink);border-color:var(--ink)}
+footer{padding:0 0 40px;text-align:center;color:var(--mute);font-size:13px}
+
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:100;background:rgba(8,9,10,.94);display:none;place-items:center;padding:24px}
+#lb.open{display:grid}
+#lb .box{position:relative;height:min(86vh,100%);aspect-ratio:var(--ar,16/9);max-width:100%}
+#lb.v .box{aspect-ratio:9/16}
+#lb:not(.v) .box{height:auto;width:min(1100px,100%)}
+#lb iframe{width:100%;height:100%;border:0;border-radius:12px;background:#000}
+#lb .x{position:absolute;top:-46px;right:0;font-size:34px;line-height:1;color:#fff}
+
+@media(max-width:900px){
+  .nav nav a:not(.btn){display:none}
+  .hero-grid,.job,.about{grid-template-columns:1fr}
+  .phones{height:min(56vh,460px)}
+  #hero{padding-top:96px}
+  .metrics{gap:32px}
+  .flow{grid-template-columns:1fr 1fr}
+  .lane-head{grid-template-columns:1fr}
+  .lane-nav{display:none}
+  .about img{max-width:280px}
+  #reel{height:200vh}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  h1 .l>span{animation:none;transform:none}
+  .hero-sub,.hero-cta,.hero-note,.phones{animation:none;opacity:1}
+  .reel-frame{clip-path:none}
+  .reel-head{display:none}
+  .reel-ui{opacity:1}
+  #reel{height:auto}
+  .reel-stick{position:relative;height:70vh}
+}
+</style>
+<script>
+/* Thumbnails: try several YouTube image sources; if all fail the tile keeps its coloured background. */
+var THUMBS=[function(id){return 'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg'},function(id){return 'https://img.youtube.com/vi/'+id+'/hqdefault.jpg'},function(id){return 'https://i.ytimg.com/vi/'+id+'/mqdefault.jpg'},function(id){return 'https://i.ytimg.com/vi/'+id+'/0.jpg'}];
+function thumbErr(im){var i=+im.dataset.i+1;if(i<THUMBS.length){im.dataset.i=i;im.src=THUMBS[i](im.dataset.id)}else{im.remove()}}
+</script>
 </head>
-<body class="antialiased selection:bg-cyan-500 selection:text-white">
+<body>
+<div id="bar"></div>
 
-    <!-- Header Navigation -->
-    <header class="sticky-header">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo - Smooth scrolls to top -->
-            <a href="#hero" class="text-3xl font-black tracking-tighter text-white hover:text-cyan-400 transition-colors">PH</a>
-            
-            <!-- Desktop Navigation Links -->
-            <ul class="hidden md:flex items-center space-x-8">
-                <li><a href="#portfolio" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-300">Portfolio</a></li>
-                <li><a href="services.html" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-300">Services</a></li>
-                <li><a href="about.html" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-300">About</a></li>
-                <li><a href="#contact" class="bg-cyan-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-cyan-600 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25">Contact Us</a></li>
-            </ul>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#hero">Priyanshu Handuja</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#previous">Previous work</a>
+      <a href="#about">About</a>
+      <a class="btn solid" href="#contact">Hire me</a>
+    </nav>
+  </div>
+</header>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-gray-200 focus:outline-none" aria-label="Toggle Navigation">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path>
-                </svg>
-            </button>
-        </nav>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 border-t border-gray-800 pt-2 space-y-2">
-            <a href="#portfolio" class="mobile-nav-link block py-2 text-gray-300 hover:text-cyan-400 font-medium">Portfolio</a>
-            <a href="services.html" class="mobile-nav-link block py-2 text-gray-300 hover:text-cyan-400 font-medium">Services</a>
-            <a href="about.html" class="mobile-nav-link block py-2 text-gray-300 hover:text-cyan-400 font-medium">About</a>
-            <a href="#contact" class="mobile-nav-link block text-center bg-cyan-500 text-white font-semibold px-5 py-2.5 rounded-full hover:bg-cyan-600 transition-colors">Contact Us</a>
-        </div>
-    </header>
-
-    <!-- Main Content Container -->
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section">
-            <iframe 
-                class="hero-video pointer-events-none"
-                src="https://www.youtube.com/embed/EyGHw57mycM?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&playlist=EyGHw57mycM" 
-                frameborder="0" 
-                allow="autoplay; encrypted-media" 
-                allowfullscreen>
-            </iframe>
-            <div class="hero-overlay"></div>
-
-            <div class="text-center z-10 px-4">
-                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white fade-in-up" style="animation-delay: 0.2s;">
-                    Hi, I’m <span class="text-cyan-400">Priyanshu Handuja</span>
-                </h1>
-                <p class="mt-4 text-lg sm:text-xl max-w-2xl mx-auto text-gray-200 fade-in-up font-normal" style="animation-delay: 0.4s;">
-                    A passionate video editor and content creator dedicated to crafting compelling visual stories.
-                </p>
-                <a href="#portfolio" class="inline-block mt-8 bg-cyan-500 text-white font-bold text-lg px-8 py-3.5 rounded-full hover:bg-cyan-600 transition-all duration-300 hover:scale-105 shadow-lg shadow-cyan-500/20 fade-in-up" style="animation-delay: 0.6s;">
-                    View My Work
-                </a>
-            </div>
-        </section>
-
-        <!-- Services Section Anchor -->
-        <section id="services" class="py-20 bg-gray-900 scroll-mt-20">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">What I Do</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto mb-12">From cinematic shorts to engaging social media content, I offer a range of professional video editing services.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Service 1: Social Media -->
-                    <div class="p-8 bg-gray-800/80 border border-gray-700/60 rounded-xl shadow-sm hover:shadow-cyan-500/10 hover:border-cyan-500 transition-all duration-300 text-center">
-                        <div class="mb-5 text-cyan-400 inline-block p-3 bg-cyan-500/10 rounded-lg">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Social Media Videos</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Engaging, fast-paced edits tailored for Instagram Reels, TikTok, and YouTube Shorts.</p>
-                    </div>
-
-                    <!-- Service 2: Corporate & Brand -->
-                    <div class="p-8 bg-gray-800/80 border border-gray-700/60 rounded-xl shadow-sm hover:shadow-cyan-500/10 hover:border-cyan-500 transition-all duration-300 text-center">
-                        <div class="mb-5 text-cyan-400 inline-block p-3 bg-cyan-500/10 rounded-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Corporate & Brand</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Professional videos for product launches, brand storytelling, testimonials, and promos.</p>
-                    </div>
-
-                    <!-- Service 3: Cinematic & Creative -->
-                    <div class="p-8 bg-gray-800/80 border border-gray-700/60 rounded-xl shadow-sm hover:shadow-cyan-500/10 hover:border-cyan-500 transition-all duration-300 text-center">
-                        <div class="mb-5 text-cyan-400 inline-block p-3 bg-cyan-500/10 rounded-lg">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Cinematic & Creative</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Artistic storytelling and color grading for short films, travel reels, and creative projects.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="container mx-auto px-4 sm:px-6 py-20 scroll-mt-20">
-            <!-- Portfolio Page Header -->
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">My Portfolio</h2>
-                <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">A curated selection of my finest edits and visual work. Click any video card to play instantly.</p>
-            </div>
-
-            <!-- Featured Projects Section -->
-            <div class="mb-16">
-                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-8 border-l-4 border-cyan-400 pl-4 flex items-center">
-                    Featured Projects
-                </h3>
-                <div class="portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-                    
-                    <div class="project-card bg-gray-800/90 rounded-xl overflow-hidden cursor-pointer group border border-gray-700/50 hover:border-cyan-400/50 relative" data-youtube-id="45VDr09jaAs">
-                        <div class="relative overflow-hidden aspect-[9/16]">
-                            <img src="https://img.youtube.com/vi/45VDr09jaAs/hqdefault.jpg" alt="Rapido Project Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                <span class="bg-cyan-500 text-white rounded-full p-3 shadow-lg transform group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="p-3.5 bg-gray-800">
-                            <h4 class="text-sm font-bold text-white truncate">Rapido</h4>
-                        </div>
-                    </div>
-
-                     <div class="project-card bg-gray-800/90 rounded-xl overflow-hidden cursor-pointer group border border-gray-700/50 hover:border-cyan-400/50 relative" data-youtube-id="pXT7sSI68MA">
-                        <div class="relative overflow-hidden aspect-[9/16]">
-                            <img src="https://img.youtube.com/vi/pXT7sSI68MA/hqdefault.jpg" alt="Glycerin School" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                <span class="bg-cyan-500 text-white rounded-full p-3 shadow-lg transform group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="p-3.5 bg-gray-800">
-                            <h4 class="text-sm font-bold text-white truncate">Glycerin School</h4>
-                        </div>
-                    </div>
-
-                    <div class="project-card bg-gray-800/90 rounded-xl overflow-hidden cursor-pointer group border border-gray-700/50 hover:border-cyan-400/50 relative" data-youtube-id="yMqAGWhytWY">
-                        <div class="relative overflow-hidden aspect-[9/16]">
-                            <img src="https://img.youtube.com/vi/yMqAGWhytWY/hqdefault.jpg" alt="Nainital Cinematic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                <span class="bg-cyan-500 text-white rounded-full p-3 shadow-lg transform group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="p-3.5 bg-gray-800">
-                            <h4 class="text-sm font-bold text-white truncate">Nainital Cinematic</h4>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Collapsible Sections -->
-            <div class="space-y-6">
-                <!-- Section 1: Himachal -->
-                <div class="collapsible-section bg-gray-900 border border-gray-800 rounded-xl overflow-hidden" id="himachal-edits">
-                    <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800/60 transition-colors">
-                        <h3 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-                            <span>Himachal</span>
-                        </h3>
-                        <span class="collapsible-arrow text-cyan-400 text-xl font-bold">&#9654;</span>
-                    </div>
-                    <div class="collapsible-content">
-                        <div class="portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 pt-2">
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="9q3JnCx65eU">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/9q3JnCx65eU/hqdefault.jpg" alt="Chokling Art House" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Chokling Art House</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="zuXK9jOxOlg">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/zuXK9jOxOlg/hqdefault.jpg" alt="Garden Cafe" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Garden Cafe</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="sE6byRYoSx4">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/sE6byRYoSx4/hqdefault.jpg" alt="Adventure Time" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Adventure Time</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="l2wDETAYiik">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/l2wDETAYiik/hqdefault.jpg" alt="Himalayan Cafe" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Himalayan Cafe</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="xRlcu7a_Qdw">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/xRlcu7a_Qdw/hqdefault.jpg" alt="Mafia Cafe" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Mafia Cafe</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="nvAy5QpEgbI">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/nvAy5QpEgbI/hqdefault.jpg" alt="Transition" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Transcend ✨</h4></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 2: Collaborations -->
-                <div class="collapsible-section bg-gray-900 border border-gray-800 rounded-xl overflow-hidden" id="collaborations">
-                    <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800/60 transition-colors">
-                        <h3 class="text-xl sm:text-2xl font-bold text-white">Brand Collaborations</h3>
-                        <span class="collapsible-arrow text-cyan-400 text-xl font-bold">&#9654;</span>
-                    </div>
-                    <div class="collapsible-content">
-                        <div class="portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 pt-2">
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="8gzxOuWhaYo">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/8gzxOuWhaYo/hqdefault.jpg" alt="Phillips Trimmer" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Phillips One Blade</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="ursO5kxxvFI">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/ursO5kxxvFI/hqdefault.jpg" alt="KwikPic App" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">KwikPic App</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="Je9ljmmxMuI">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/Je9ljmmxMuI/hqdefault.jpg" alt="Settl Livin" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Settl Livin</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="ZMx4dlY0P_A">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/ZMx4dlY0P_A/hqdefault.jpg" alt="Dubstep Headphones" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Dubstep Headphones</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="wxf1guAOfhE">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/wxf1guAOfhE/hqdefault.jpg" alt="Ctrl8" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Ctrl8 Gaming Parlour</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="5gbAuAqjeuE">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/5gbAuAqjeuE/hqdefault.jpg" alt="Gym Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Rishika's Gym Routine</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="puHahpxtewQ">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/puHahpxtewQ/hqdefault.jpg" alt="Study Time" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Study Time</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="1nTmcgVBmvI">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/1nTmcgVBmvI/hqdefault.jpg" alt="Pizza Fest" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Pizza Fest</h4></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 3: Cinematic -->
-                <div class="collapsible-section bg-gray-900 border border-gray-800 rounded-xl overflow-hidden" id="cinematic">
-                    <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800/60 transition-colors">
-                        <h3 class="text-xl sm:text-2xl font-bold text-white">Cinematic</h3>
-                        <span class="collapsible-arrow text-cyan-400 text-xl font-bold">&#9654;</span>
-                    </div>
-                    <div class="collapsible-content">
-                        <div class="portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 pt-2">
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="yMqAGWhytWY">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/yMqAGWhytWY/hqdefault.jpg" alt="Nainital" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Nainital</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="KicU7mx8CJc">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/KicU7mx8CJc/hqdefault.jpg" alt="NSUT" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">NSUT Campus</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="KZLiH2tT9Ks">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/KZLiH2tT9Ks/hqdefault.jpg" alt="Red Fort" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Red Fort</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="T2JFEyuDe0k">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/T2JFEyuDe0k/hqdefault.jpg" alt="TBSM" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">TBSM on Loop</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="KrDCYqwcVwc">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/KrDCYqwcVwc/hqdefault.jpg" alt="Dalai Hills" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Teleport</h4></div>
-                            </div>
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="fowYP9pnfLA">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/fowYP9pnfLA/hqdefault.jpg" alt="Beauty" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Elegance in Ethnic</h4></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 4: Graphical Edits -->
-                <div class="collapsible-section bg-gray-900 border border-gray-800 rounded-xl overflow-hidden" id="graphical-edits">
-                    <div class="collapsible-header flex justify-between items-center p-5 cursor-pointer hover:bg-gray-800/60 transition-colors">
-                        <h3 class="text-xl sm:text-2xl font-bold text-white">Graphical Edits</h3>
-                        <span class="collapsible-arrow text-cyan-400 text-xl font-bold">&#9654;</span>
-                    </div>
-                    <div class="collapsible-content">
-                        <div class="portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 pt-2">
-                            <div class="project-card bg-gray-800 rounded-lg overflow-hidden cursor-pointer group" data-youtube-id="95V3BcLNQdY">
-                                <div class="aspect-[9/16] overflow-hidden"><img src="https://img.youtube.com/vi/95V3BcLNQdY/hqdefault.jpg" alt="Luke Belmer" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                                <div class="p-3"><h4 class="text-sm font-bold text-white truncate">Story of Luke Belmer</h4></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-20 bg-gray-900/60 border-t border-gray-800 scroll-mt-20">
-            <div class="container mx-auto px-6 max-w-4xl text-center">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6">About Me</h2>
-                <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                    I’m <span class="text-cyan-400 font-semibold">Priyanshu Handuja</span>, a video editor and visual storyteller focused on bringing stories to life through dynamic cuts, clean motion graphics, and engaging audio design.
-                </p>
-                <p class="text-gray-400 text-base leading-relaxed">
-                    Over the years, I've collaborated with creators, brands, and businesses to produce high-performing social content, cinematic reels, and impactful corporate videos. Every frame is edited with precision to capture attention and deliver results.
-                </p>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gray-950 border-t border-gray-800 scroll-mt-20">
-            <div class="container mx-auto px-6 max-w-3xl text-center">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Let’s Work Together</h2>
-                <p class="text-gray-400 mb-8">Have a project in mind or want to elevate your visual content? Get in touch!</p>
-                
-                <a href="contact.html" class="inline-flex items-center gap-2 bg-cyan-500 text-white font-bold text-lg px-8 py-3.5 rounded-full hover:bg-cyan-600 transition-all shadow-lg shadow-cyan-500/20 hover:scale-105">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    Send Message
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black text-gray-500 py-8 border-t border-gray-900">
-        <div class="container mx-auto px-6 text-center text-sm">
-            <p>&copy; 2025 Priyanshu Handuja. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Video Modal Overlay -->
-    <div id="video-modal" class="modal fixed inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 z-50 opacity-0 pointer-events-none transition-all duration-300">
-        <div id="modal-content" class="modal-content bg-black w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl relative transform scale-95 border border-gray-800">
-            <!-- Modal Close Button -->
-            <button id="close-modal" class="absolute top-3 right-3 text-white/80 hover:text-white text-3xl font-bold z-10 w-10 h-10 flex items-center justify-center bg-black/60 rounded-full backdrop-blur transition-all" aria-label="Close Video">
-                &times;
-            </button>
-            <div id="video-container" class="w-full aspect-video bg-black flex items-center justify-center">
-                <!-- Dynamic Iframe Insertion -->
-            </div>
-        </div>
+<main>
+<section id="hero" data-accent="#ff5a3c">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 aria-label="Videos people watch to the end."><span class="l"><span>Videos people</span></span><span class="l"><span>watch to</span></span><span class="l"><span>the end.</span></span></h1>
+      <p class="hero-sub">Short-form reels, brand videos, cinematic edits and motion graphics for creators, startups and brands.</p>
+      <div class="hero-cta">
+        <a class="btn solid" href="#reel">Watch the showreel</a>
+        <a class="btn" href="#contact">Hire me</a>
+      </div>
+      <p class="hero-note">Delhi. Open to full-time roles and freelance projects worldwide.</p>
     </div>
+    <div class="phones" id="phones">
+      <button class="phone a" type="button" data-id="Je9ljmmxMuI" data-r="v" aria-label="Play Settl Livin"><img alt="" decoding="async" data-id="Je9ljmmxMuI" data-i="0" onerror="thumbErr(this)" src="https://i.ytimg.com/vi/Je9ljmmxMuI/hqdefault.jpg"></button>
+      <button class="phone b" type="button" data-id="8gzxOuWhaYo" data-r="v" aria-label="Play Philips One Blade"><img alt="" decoding="async" data-id="8gzxOuWhaYo" data-i="0" onerror="thumbErr(this)" src="https://i.ytimg.com/vi/8gzxOuWhaYo/hqdefault.jpg"></button>
+      <button class="phone c" type="button" data-id="45VDr09jaAs" data-r="v" aria-label="Play Rapido"><img alt="" decoding="async" data-id="45VDr09jaAs" data-i="0" onerror="thumbErr(this)" src="https://i.ytimg.com/vi/45VDr09jaAs/hqdefault.jpg"></button>
+    </div>
+  </div>
+</section>
 
-    <!-- JavaScript Logic -->
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+<section id="reel" data-accent="#ff5a3c" aria-label="Showreel">
+  <div class="reel-stick">
+    <div class="reel-head" id="reelHead">
+      <h2>Showreel</h2>
+      <p>A quick look at the edits.</p>
+    </div>
+    <div class="reel-frame" id="reelFrame">
+      <!-- SHOWREEL: replace assets/showreel.mp4 with your compressed reel (720p or 1080p, under about 15 MB). -->
+      <video id="reelVideo" src="assets/showreel.mp4" poster="assets/showreel-poster.jpg" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="reel-ui" id="reelUi">
+      <span class="t">Showreel 2026</span>
+      <button class="sound" id="soundBtn" type="button">Play with sound</button>
+    </div>
+  </div>
+</section>
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+<section id="work-intro">
+  <div class="wrap work-top" id="work">
+    <div>
+      <h2>Selected work</h2>
+      <p class="mute" style="margin-top:14px">Hover a video to preview it, click to watch.</p>
+    </div>
+    <div class="lane-links" id="laneLinks"></div>
+  </div>
+</section>
 
-        // Close mobile menu when a navigation item is clicked
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+<div id="lanes"></div>
 
-        // Video Modal Logic
-        const projectCards = document.querySelectorAll('.project-card');
-        const modal = document.getElementById('video-modal');
-        const modalContent = document.getElementById('modal-content');
-        const closeModal = document.getElementById('close-modal');
-        const videoContainer = document.getElementById('video-container');
+<section id="previous" data-accent="#ff5a3c">
+  <div class="wrap">
+    <h2>Previous Work</h2>
+    <div id="prevList"></div>
+  </div>
+</section>
 
-        projectCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const youtubeId = card.getAttribute('data-youtube-id');
-                if (youtubeId) {
-                    const embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
-                    videoContainer.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-                    modal.classList.remove('opacity-0', 'pointer-events-none');
-                    modalContent.classList.remove('scale-95');
-                }
-            });
-        });
+<section id="about" data-accent="#a3c28b">
+  <div class="wrap about">
+    <img src="assets/portfolio-photo.jpg" alt="Priyanshu Handuja" loading="lazy">
+    <div>
+      <h2>About</h2>
+      <p class="big">I'm Priyanshu, a video editor and content strategist in Delhi. I plan the content as well as cut it, so I can suggest the hook and structure before the timeline is open.</p>
+      <p>I've edited for creators, cafés, startups and brands. At Volunteer Yatra I worked on reel concepts and scripts, and I've edited talking-head videos for Scooper. I'm comfortable with a fast weekly schedule.</p>
+      <div class="tools"><span>Premiere Pro</span><span>After Effects</span><span>Photoshop</span><span>CapCut</span></div>
+    </div>
+  </div>
+</section>
 
-        function hideModal() {
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modalContent.classList.add('scale-95');
-            // Delay clearing iframe source to allow fade-out transition
-            setTimeout(() => {
-                videoContainer.innerHTML = '';
-            }, 300);
-        }
+<section id="contact" data-accent="#ff5a3c">
+  <div class="wrap">
+    <h2>Send me your footage.</h2>
+    <p>Tell me what you're making and when you need it. I reply within a day.</p>
+    <a class="btn solid" href="mailto:priyanshuvideoz@gmail.com?subject=Hiring%20Priyanshu">Hire me</a>
+    <div class="links">
+      <a href="mailto:priyanshuvideoz@gmail.com">priyanshuvideoz@gmail.com</a>
+      <a href="https://instagram.com/priyanshu_handuja">Instagram</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer>© 2026 Priyanshu Handuja</footer>
 
-        closeModal.addEventListener('click', hideModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                hideModal();
-            }
-        });
+<div id="lb" role="dialog" aria-modal="true" aria-label="Video player">
+  <div class="box"><button class="x" aria-label="Close video" type="button">&times;</button><iframe allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="Video"></iframe></div>
+</div>
 
-        // ESC Key to close modal
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                hideModal();
-            }
-        });
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<script>
+/* ============ EDIT HERE ============
+   Videos: [YouTube ID, title, subtitle]. Add or remove lines freely.
+   Orientation (vertical or landscape) is detected automatically; "ratio" is only the starting guess. */
+const LANES = [
+ {key:'brand', name:'Brand and creator reels', accent:'#ff5a3c', ratio:'v',
+  blurb:'Short-form reels for brands, products and creators, edited for the first three seconds.',
+  items:[
+   ['45VDr09jaAs','Rapido','Brand reel'],
+   ['pXT7sSI68MA','Glycerin School','Brand reel'],
+   ['8gzxOuWhaYo','Philips One Blade','Product promo'],
+   ['ursO5kxxvFI','KwikPic App','App promo'],
+   ['Je9ljmmxMuI','Settl Livin','Brand reel'],
+   ['ZMx4dlY0P_A','Dubstep Headphones','Product reel'],
+   ['wxf1guAOfhE','Ctrl8 Gaming Parlour','Venue reel'],
+   ['1nTmcgVBmvI','Pizza Fest','Event reel'],
+   ['5gbAuAqjeuE',"Rishika's Gym Routine",'Creator reel'],
+   ['puHahpxtewQ','Study Time','Creator reel']]},
+ {key:'himachal', name:'Himachal, cafés and travel', accent:'#f5b83d', ratio:'v',
+  blurb:'Travel and café reels shot around Himachal, cut to feel like the place.',
+  items:[
+   ['9q3JnCx65eU','Chokling Art House','Himachal reel'],
+   ['zuXK9jOxOlg','Garden Cafe','Café reel'],
+   ['sE6byRYoSx4','Adventure Time','Travel reel'],
+   ['l2wDETAYiik','Himalayan Cafe','Café reel'],
+   ['xRlcu7a_Qdw','Mafia Cafe','Café reel'],
+   ['nvAy5QpEgbI','Transcend','Transition edit']]},
+ {key:'cinematic', name:'Cinematic', accent:'#3fd0e0', ratio:'v',
+  blurb:'Places and people, graded and paced like short films.',
+  items:[
+   ['yMqAGWhytWY','Nainital','Cinematic'],
+   ['KicU7mx8CJc','NSUT Campus','Cinematic'],
+   ['KZLiH2tT9Ks','Red Fort','Cinematic'],
+   ['T2JFEyuDe0k','TBSM on Loop','Cinematic loop'],
+   ['KrDCYqwcVwc','Teleport','Transition edit'],
+   ['fowYP9pnfLA','Elegance in Ethnic','Fashion reel']]},
+ {key:'motion', name:'Motion graphics', accent:'#b79cff', ratio:'h', big:true,
+  blurb:'Animated graphics and type that explain a story.',
+  items:[
+   ['95V3BcLNQdY','Story of Luke Belmer','Motion graphics']]}
+];
 
-        // Collapsible Accordion Logic
-        const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
-        collapsibleHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                const section = header.closest('.collapsible-section');
-                section.classList.toggle('expanded');
-            });
-        });
-    </script>
+/* Previous Work. A metric with an empty value is hidden, so fill in a number to show it.
+   reels: add [YouTube ID, title, subtitle] lines to show videos under that job. */
+const PREV = [
+ {name:'Volunteer Yatra',
+  blurb:'I came up with the reel ideas, wrote the production scripts and edited the Instagram content for a platform that connects volunteers with hosts across India. Simple formats, shipped on a steady schedule.',
+  metrics:[['','reels shipped'],['1.5 yrs','experience'],['','total views']],
+  flow:[['Idea.','Hooks pulled from what volunteers actually ask.'],['Script.','Shot list and on-screen text before filming.'],['Edit.','Fast cuts, captions, sound.'],['Review.','Views and retention shape the next batch.']],
+  reels:[['puHahpxtewQ','Study Time','Reel'],['1nTmcgVBmvI','Pizza Fest','Reel'],['5gbAuAqjeuE',"Rishika's Gym Routine",'Reel']]},
+ {name:'Scooper',
+  blurb:'Talking-head videos for an AI startup, edited in landscape and vertical with captions, keywords and simple motion graphics.',
+  metrics:[['7','reels shipped'],['6 months','experience']],
+  flow:[], reels:[['pXT7sSI68MA','Glycerin School','Reel'],['ursO5kxxvFI','KwikPic App','Reel'],['ZMx4dlY0P_A','Dubstep Headphones','Reel']]}
+];
+/* =================================== */
+
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const root=document.documentElement;
+
+/* ----- render lanes ----- */
+const card=(id,t,s,ratio,big)=>`<button class="card ${ratio}${big?' big':''}" type="button" data-id="${id}" data-r="${ratio}" aria-label="Play ${t}"><span class="th"><img decoding="async" alt="" data-id="${id}" data-i="0" src="${THUMBS[0](id)}" onerror="thumbErr(this)"></span><span class="cap"><b>${t}</b><i>${s}</i></span><span class="play" aria-hidden="true"></span></button>`;
+const arrow=d=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}"/></svg>`;
+$('#lanes').innerHTML=LANES.map(l=>`
+<section class="lane" id="${l.key}" data-accent="${l.accent}" style="--lane:${l.accent}">
+  <div class="wrap lane-head">
+    <div><h2>${l.name}</h2><p>${l.blurb}</p></div>
+    <div class="lane-nav"><button type="button" data-dir="-1" aria-label="Scroll ${l.name} left">${arrow('M15 5l-7 7 7 7')}</button><button type="button" data-dir="1" aria-label="Scroll ${l.name} right">${arrow('M9 5l7 7-7 7')}</button></div>
+  </div>
+  <div class="rail" tabindex="0" aria-label="${l.name} videos">${l.items.map((it,i)=>card(it[0],it[1],it[2],l.ratio,l.big&&i===0)).join('')}</div>
+</section>`).join('');
+$('#laneLinks').innerHTML=LANES.map(l=>`<a href="#${l.key}">${l.name}</a>`).join('');
+$('#prevList').innerHTML=PREV.map(j=>{
+  const m=j.metrics.filter(x=>x[0]).map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
+  const f=j.flow.length?`<ul class="flow">${j.flow.map(x=>`<li><b>${x[0]}</b> ${x[1]}</li>`).join('')}</ul>`:'';
+  const r=j.reels.length?`<div class="job-reels">${j.reels.map(it=>card(it[0],it[1],it[2],'v')).join('')}</div>`:'';
+  return `<article class="job"><div><h3>${j.name}</h3><p>${j.blurb}</p>${f}</div><div class="metrics">${m}</div>${r}</article>`;
+}).join('');
+$$('.lane-nav button').forEach(b=>b.onclick=()=>{const r=b.closest('.lane').querySelector('.rail');r.scrollBy({left:b.dataset.dir*r.clientWidth*.7,behavior:'smooth'})});
+
+/* ----- smooth scroll ----- */
+let lenis=null;
+function initLenis(){
+  if(reduce||!window.Lenis||lenis)return;
+  lenis=new Lenis({lerp:.1,smoothWheel:true});
+  const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf);
+}
+addEventListener('load',initLenis);
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]');if(!a||a.getAttribute('href')==='#')return;
+  const el=document.querySelector(a.getAttribute('href'));if(!el)return;
+  e.preventDefault();
+  lenis?lenis.scrollTo(el,{offset:a.getAttribute('href')==='#reel'?0:-40}):el.scrollIntoView({behavior:reduce?'auto':'smooth'});
+});
+
+/* ----- scroll-linked: progress bar + showreel expand ----- */
+const bar=$('#bar'),track=$('#reel'),frame=$('#reelFrame'),head=$('#reelHead'),ui=$('#reelUi');
+const nav=$('.nav');
+function onScroll(){
+  nav.classList.toggle('solid',scrollY>60);
+  const max=root.scrollHeight-innerHeight;
+  bar.style.transform=`scaleX(${max>0?scrollY/max:0})`;
+  if(reduce)return;
+  const r=track.getBoundingClientRect(),total=r.height-innerHeight;
+  const p=Math.min(1,Math.max(0,-r.top/(total*.7))),e=1-Math.pow(1-p,3);
+  frame.style.setProperty('--ix',(30*(1-e))+'%');
+  frame.style.setProperty('--iy',(26*(1-e))+'%');
+  frame.style.setProperty('--rr',(28*(1-e))+'px');
+  head.style.opacity=Math.max(0,1-e*2.2);
+  ui.style.setProperty('--ui',Math.max(0,(e-.75)*4));
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+
+/* ----- reel playback + sound ----- */
+const rv=$('#reelVideo'),sb=$('#soundBtn');
+new IntersectionObserver(([en])=>{en.isIntersecting?rv.play().catch(()=>{}):rv.pause()},{threshold:.1}).observe(track);
+sb.onclick=()=>{rv.muted=!rv.muted;sb.textContent=rv.muted?'Play with sound':'Mute';if(!rv.muted){rv.currentTime=0;rv.play().catch(()=>{})}};
+
+/* ----- accent follows the section (like a colour grade) ----- */
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting)root.style.setProperty('--accent',en.target.dataset.accent)})},{rootMargin:'-45% 0px -45% 0px'});
+$$('[data-accent]').forEach(s=>io.observe(s));
+
+/* ----- hero phone parallax ----- */
+if(fine&&!reduce){
+  const ph=$('#phones');
+  addEventListener('pointermove',e=>{ph.style.setProperty('--mx',e.clientX/innerWidth-.5);ph.style.setProperty('--my',e.clientY/innerHeight-.5)},{passive:true});
+}
+
+/* ----- hover preview (desktop, one at a time) ----- */
+let pvTimer=null,pvEl=null;
+function stopPv(){clearTimeout(pvTimer);if(pvEl){pvEl.remove();pvEl=null}}
+if(fine){
+  document.addEventListener('pointerover',e=>{
+    const c=e.target.closest('.card');if(!c||c.contains(e.relatedTarget))return;
+    stopPv();
+    pvTimer=setTimeout(()=>{
+      const id=c.dataset.id,f=document.createElement('iframe');
+      f.className='pv';f.setAttribute('aria-hidden','true');f.tabIndex=-1;f.allow='autoplay';
+      f.src=`https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1&modestbranding=1&rel=0&disablekb=1`;
+      f.onload=()=>f.classList.add('on');
+      c.querySelector('.th').appendChild(f);pvEl=f;
+    },450);
+  });
+  document.addEventListener('pointerout',e=>{const c=e.target.closest('.card');if(c&&!c.contains(e.relatedTarget))stopPv()});
+}
+
+/* ----- detect vertical or landscape from the thumbnail (falls back to the lane default) ----- */
+function detect(c){
+  const probe=new Image();probe.crossOrigin='anonymous';
+  probe.onload=()=>{try{
+    const cv=document.createElement('canvas');cv.width=probe.naturalWidth;cv.height=probe.naturalHeight;
+    const x=cv.getContext('2d');x.drawImage(probe,0,0);
+    const w=cv.width,h=cv.height;
+    const dark=sx=>{const d=x.getImageData(sx,Math.round(h*.25),Math.round(w*.1),Math.round(h*.5)).data;let m=0;for(let i=0;i<d.length;i+=4)m=Math.max(m,d[i],d[i+1],d[i+2]);return m<22};
+    const r=(dark(Math.round(w*.04))&&dark(Math.round(w*.86)))?'v':'h';
+    if(c.dataset.r!==r){c.classList.remove('v','h');c.classList.add(r);c.dataset.r=r}
+  }catch(e){}};
+  probe.src=`https://img.youtube.com/vi/${c.dataset.id}/hqdefault.jpg`;
+}
+$$('.card').forEach(detect);
+
+/* ----- lightbox ----- */
+const lb=$('#lb'),lf=lb.querySelector('iframe');let lastFocus=null;
+document.addEventListener('click',e=>{
+  const c=e.target.closest('.card,.phone');if(!c)return;
+  stopPv();lastFocus=c;
+  lb.classList.toggle('v',c.dataset.r==='v');
+  lf.src=`https://www.youtube.com/embed/${c.dataset.id}?autoplay=1&rel=0&playsinline=1`;
+  lb.classList.add('open');lenis&&lenis.stop();lb.querySelector('.x').focus();
+});
+function closeLb(){lb.classList.remove('open');lf.src='';lenis&&lenis.start();lastFocus&&lastFocus.focus()}
+lb.addEventListener('click',e=>{if(e.target===lb||e.target.closest('.x'))closeLb()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('open'))closeLb()});
+</script>
 </body>
 </html>
