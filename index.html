@@ -47,7 +47,7 @@ p{max-width:58ch}
 .btn:hover{border-color:var(--ink)}
 .btn.solid,.nav nav a.btn.solid{background:var(--accent);border-color:var(--accent);color:#0f1012}
 .btn.solid:hover{background:var(--ink);border-color:var(--ink)}
-.nav .btn{padding:9px 18px}
+.nav .btn{padding:9px 18px;line-height:1.5}
 
 /* hero */
 #hero{min-height:100svh;display:grid;align-items:center;padding:120px 0 72px;position:relative;overflow:hidden}
@@ -158,6 +158,15 @@ h1 .l:nth-child(3)>span{animation-delay:.2s}
 .links a:hover{color:var(--ink);border-color:var(--ink)}
 footer{padding:0 0 40px;text-align:center;color:var(--mute);font-size:13px}
 
+/* sticky category bar */
+#cats{position:fixed;left:0;right:0;top:var(--nav-h,66px);z-index:45;background:rgba(15,16,18,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s}
+#cats.show{transform:none;opacity:1;pointer-events:auto}
+#cats .wrap{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-block:6px}
+#cats .wrap::-webkit-scrollbar{display:none}
+#cats a{flex:0 0 auto;padding:6px 14px;border-radius:99px;font-size:14px;line-height:1.5;color:var(--mute);text-decoration:none;white-space:nowrap;transition:color .2s,background .2s}
+#cats a:hover{color:var(--ink)}
+#cats a.on{color:#0f1012;background:var(--accent)}
+
 /* lightbox */
 #lb{position:fixed;inset:0;z-index:100;background:rgba(8,9,10,.94);display:none;place-items:center;padding:24px}
 #lb.open{display:grid}
@@ -206,10 +215,12 @@ function thumbErr(im){var i=+im.dataset.i+1;if(i<THUMBS.length){im.dataset.i=i;i
       <a href="#work">Work</a>
       <a href="#previous">Previous work</a>
       <a href="#about">About</a>
-      <a class="btn solid" href="#contact">Hire me</a>
+      <a class="btn solid" href="#contact">Contact me</a>
     </nav>
   </div>
 </header>
+
+<nav id="cats" aria-label="Work categories"><div class="wrap" id="catsList"></div></nav>
 
 <main>
 <section id="hero" data-accent="#ff5a3c">
@@ -219,7 +230,7 @@ function thumbErr(im){var i=+im.dataset.i+1;if(i<THUMBS.length){im.dataset.i=i;i
       <p class="hero-sub">Short-form reels, brand videos, cinematic edits and motion graphics for creators, startups and brands.</p>
       <div class="hero-cta">
         <a class="btn solid" href="#reel">Watch the showreel</a>
-        <a class="btn" href="#contact">Hire me</a>
+        <a class="btn" href="#contact">Contact me</a>
       </div>
       <p class="hero-note">Delhi. Open to full-time roles and freelance projects worldwide.</p>
     </div>
@@ -283,7 +294,7 @@ function thumbErr(im){var i=+im.dataset.i+1;if(i<THUMBS.length){im.dataset.i=i;i
   <div class="wrap">
     <h2>Send me your footage.</h2>
     <p>Tell me what you're making and when you need it. I reply within a day.</p>
-    <a class="btn solid" href="mailto:priyanshuvideoz@gmail.com?subject=Hiring%20Priyanshu">Hire me</a>
+    <a class="btn solid" href="mailto:priyanshuvideoz@gmail.com?subject=Hello%20Priyanshu">Contact me</a>
     <div class="links">
       <a href="mailto:priyanshuvideoz@gmail.com">priyanshuvideoz@gmail.com</a>
       <a href="https://instagram.com/priyanshu_handuja">Instagram</a>
@@ -340,13 +351,13 @@ const LANES = [
    ['95V3BcLNQdY','Story of Luke Belmer','Motion graphics']]}
 ];
 
-/* Previous Work. A metric with an empty value is hidden, so fill in a number to show it.
+/* Previous Work. A metric with an empty value is hidden.
    reels: add [YouTube ID, title, subtitle] lines to show videos under that job. */
 const PREV = [
  {name:'Volunteer Yatra',
   blurb:'I came up with the reel ideas, wrote the production scripts and edited the Instagram content for a platform that connects volunteers with hosts across India. Simple formats, shipped on a steady schedule.',
-  metrics:[['','reels shipped'],['1.5 yrs','experience'],['','total views']],
-  flow:[['Idea.','Hooks pulled from what volunteers actually ask.'],['Script.','Shot list and on-screen text before filming.'],['Edit.','Fast cuts, captions, sound.'],['Review.','Views and retention shape the next batch.']],
+  metrics:[['200+','reels shipped'],['1.5 yrs','experience']],
+  flow:[],
   reels:[['puHahpxtewQ','Study Time','Reel'],['1nTmcgVBmvI','Pizza Fest','Reel'],['5gbAuAqjeuE',"Rishika's Gym Routine",'Reel']]},
  {name:'Scooper',
   blurb:'Talking-head videos for an AI startup, edited in landscape and vertical with captions, keywords and simple motion graphics.',
@@ -372,6 +383,7 @@ $('#lanes').innerHTML=LANES.map(l=>`
   <div class="rail" tabindex="0" aria-label="${l.name} videos">${l.items.map((it,i)=>card(it[0],it[1],it[2],l.ratio,l.big&&i===0)).join('')}</div>
 </section>`).join('');
 $('#laneLinks').innerHTML=LANES.map(l=>`<a href="#${l.key}">${l.name}</a>`).join('');
+$('#catsList').innerHTML=LANES.map(l=>`<a href="#${l.key}">${l.name}</a>`).join('');
 $('#prevList').innerHTML=PREV.map(j=>{
   const m=j.metrics.filter(x=>x[0]).map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
   const f=j.flow.length?`<ul class="flow">${j.flow.map(x=>`<li><b>${x[0]}</b> ${x[1]}</li>`).join('')}</ul>`:'';
@@ -392,14 +404,26 @@ document.addEventListener('click',e=>{
   const a=e.target.closest('a[href^="#"]');if(!a||a.getAttribute('href')==='#')return;
   const el=document.querySelector(a.getAttribute('href'));if(!el)return;
   e.preventDefault();
-  lenis?lenis.scrollTo(el,{offset:a.getAttribute('href')==='#reel'?0:-40}):el.scrollIntoView({behavior:reduce?'auto':'smooth'});
+  const off=a.getAttribute('href')==='#reel'?0:el.classList.contains('lane')?-60:-40;
+  lenis?lenis.scrollTo(el,{offset:off}):window.scrollTo({top:el.getBoundingClientRect().top+scrollY+off,behavior:reduce?'auto':'smooth'});
 });
 
 /* ----- scroll-linked: progress bar + showreel expand ----- */
 const bar=$('#bar'),track=$('#reel'),frame=$('#reelFrame'),head=$('#reelHead'),ui=$('#reelUi');
-const nav=$('.nav');
+const nav=$('.nav'),cats=$('#cats'),catWrap=$('#catsList'),catLinks=$$('#cats a'),laneEls=LANES.map(l=>document.getElementById(l.key));
+let lastCur=-1;
+function onCats(){
+  const first=laneEls[0].getBoundingClientRect(),last=laneEls[laneEls.length-1].getBoundingClientRect();
+  cats.classList.toggle('show',first.top<190&&last.bottom>230);
+  let cur=0;laneEls.forEach((el,i)=>{if(el.getBoundingClientRect().top<innerHeight*.4)cur=i});
+  if(cur!==lastCur){
+    lastCur=cur;catLinks.forEach((a,i)=>a.classList.toggle('on',i===cur));
+    const a=catLinks[cur];catWrap.scrollTo({left:a.offsetLeft-catWrap.clientWidth/2+a.offsetWidth/2,behavior:'smooth'});
+  }
+}
 function onScroll(){
   nav.classList.toggle('solid',scrollY>60);
+  onCats();
   const max=root.scrollHeight-innerHeight;
   bar.style.transform=`scaleX(${max>0?scrollY/max:0})`;
   if(reduce)return;
