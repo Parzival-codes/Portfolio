@@ -99,7 +99,9 @@ h1 .l:nth-child(3)>span{animation-delay:.2s}
 .lane-head h2{font-size:clamp(32px,4.4vw,56px);position:relative;display:inline-block;padding-bottom:14px}
 .lane-head h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:4px;border-radius:2px;background:var(--accent)}
 .lane-head p{margin-top:10px;color:var(--mute)}
-.rail-wrap{position:relative}
+.rail-wrap{position:relative;--gut:max(24px,calc((100vw - 1240px)/2))}
+.rail-wrap.fresh::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--gut);z-index:4;pointer-events:none;background:linear-gradient(90deg,var(--bg) 96%,transparent);opacity:1;transition:opacity .5s}
+.rail-wrap.fresh.go::before{opacity:0}
 .edge{position:absolute;top:50%;z-index:5;width:56px;height:56px;margin-top:-38px;border-radius:50%;background:rgba(15,16,18,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink);opacity:0;pointer-events:none;transform:scale(.85);transition:opacity .25s,transform .25s,background .2s,color .2s}
 .edge.l{left:18px}.edge.r{right:18px}
 .edge svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2.2}
@@ -406,6 +408,9 @@ $$('.rail-wrap').forEach(wrap=>{
     rail.prepend(...mk());rail.append(...mk());
     const measure=()=>{const kids=rail.children;setW=kids[n].offsetLeft-kids[0].offsetLeft;x0=kids[n].offsetLeft-gut()};
     const start=()=>{measure();if(setW>0)rail.scrollLeft=x0};
+    wrap.classList.add('fresh');
+    const reveal=()=>wrap.classList.add('go');
+    ['wheel','touchstart','pointerdown','keydown'].forEach(ev=>rail.addEventListener(ev,reveal,{passive:true,once:true}));
     start();addEventListener('load',start);addEventListener('resize',()=>{const off=rail.scrollLeft-x0;measure();rail.scrollLeft=x0+off});
     let idle=null;
     const wrapIt=()=>{if(!setW)return;const d=rail.scrollLeft-x0;if(d<-setW/2)rail.scrollLeft+=setW;else if(d>setW/2)rail.scrollLeft-=setW};
@@ -416,7 +421,7 @@ $$('.rail-wrap').forEach(wrap=>{
     },{passive:true});
   }
   const L=wrap.querySelector('.edge.l'),R=wrap.querySelector('.edge.r');
-  wrap.querySelectorAll('.edge').forEach(b=>b.onclick=()=>rail.scrollBy({left:b.dataset.dir*rail.clientWidth*.7,behavior:'smooth'}));
+  wrap.querySelectorAll('.edge').forEach(b=>b.onclick=()=>wrap.classList.add('go')||rail.scrollBy({left:b.dataset.dir*rail.clientWidth*.7,behavior:'smooth'}));
   if(fine){
     wrap.addEventListener('pointermove',e=>{
       const r=wrap.getBoundingClientRect(),x=e.clientX-r.left;
