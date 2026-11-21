@@ -7,6 +7,9 @@
 <meta name="description" content="Video editor for short-form reels, brand videos, cinematic edits and motion graphics. Based in Delhi, working with clients worldwide.">
 <meta property="og:title" content="Priyanshu Handuja | Video Editor">
 <meta property="og:description" content="Short-form reels, brand videos, cinematic edits and motion graphics.">
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="preconnect" href="https://www.google.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -82,7 +85,6 @@ h1 .l:nth-child(3)>span{animation-delay:.2s}
 .reel-ui{position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:clamp(20px,5vh,48px);display:flex;justify-content:space-between;align-items:center;gap:16px;z-index:3;opacity:var(--ui,0);pointer-events:none}
 .reel-ui>*{pointer-events:auto}
 .reel-ui .t{font:600 15px var(--body);background:rgba(15,16,18,.6);padding:8px 14px;border-radius:99px;backdrop-filter:blur(6px)}
-.sound{background:var(--accent);color:#0f1012;font-weight:600;padding:11px 20px;border-radius:99px}
 
 /* work intro */
 #work-intro{padding:96px 0 24px}
@@ -97,11 +99,13 @@ h1 .l:nth-child(3)>span{animation-delay:.2s}
 .lane-head h2{font-size:clamp(32px,4.4vw,56px);position:relative;display:inline-block;padding-bottom:14px}
 .lane-head h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:4px;border-radius:2px;background:var(--accent)}
 .lane-head p{margin-top:10px;color:var(--mute)}
-.lane-nav{display:flex;gap:8px}
-.lane-nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.2s}
-.lane-nav button:hover{border-color:var(--ink)}
-.lane-nav svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
-.rail{--gut:max(24px,calc((100vw - 1240px)/2));display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x proximity;padding:0 var(--gut) 20px;scroll-padding-inline:var(--gut);scrollbar-width:none;overscroll-behavior-x:contain}
+.rail-wrap{position:relative}
+.edge{position:absolute;top:50%;z-index:5;width:56px;height:56px;margin-top:-38px;border-radius:50%;background:rgba(15,16,18,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink);opacity:0;pointer-events:none;transform:scale(.85);transition:opacity .25s,transform .25s,background .2s,color .2s}
+.edge.l{left:18px}.edge.r{right:18px}
+.edge svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2.2}
+.edge.show{opacity:1;pointer-events:auto;transform:none}
+.edge:hover{background:var(--accent);color:#0f1012;border-color:transparent}
+.rail{--gut:max(24px,calc((100vw - 1240px)/2));display:flex;gap:18px;overflow-x:auto;padding:0 var(--gut) 20px;scroll-padding-inline:var(--gut);scrollbar-width:none;overscroll-behavior-x:contain}
 .rail::-webkit-scrollbar{display:none}
 .card{position:relative;flex:0 0 auto;scroll-snap-align:start;border-radius:var(--r);overflow:hidden;background:#000;text-align:left}
 .card.v{width:clamp(220px,22vw,290px);aspect-ratio:9/16}
@@ -173,7 +177,10 @@ footer{padding:0 0 40px;text-align:center;color:var(--mute);font-size:13px}
 #lb .box{position:relative;height:min(86vh,100%);aspect-ratio:var(--ar,16/9);max-width:100%}
 #lb.v .box{aspect-ratio:9/16}
 #lb:not(.v) .box{height:auto;width:min(1100px,100%)}
-#lb iframe{width:100%;height:100%;border:0;border-radius:12px;background:#000}
+#lb iframe{width:100%;height:100%;border:0;border-radius:12px;background:#000;position:relative;z-index:1}
+#lb .box::before{content:"";position:absolute;inset:0;border-radius:12px;background:#111 var(--lbimg) center/cover;filter:brightness(.55)}
+#lb .box::after{content:"";position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px;border:3px solid rgba(255,255,255,.25);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 #lb .x{position:absolute;top:-46px;right:0;font-size:34px;line-height:1;color:#fff}
 
 @media(max-width:900px){
@@ -184,7 +191,7 @@ footer{padding:0 0 40px;text-align:center;color:var(--mute);font-size:13px}
   .metrics{gap:32px}
   .flow{grid-template-columns:1fr 1fr}
   .lane-head{grid-template-columns:1fr}
-  .lane-nav{display:none}
+  .edge{display:none}
   .about img{max-width:280px}
   #reel{height:200vh}
 }
@@ -254,7 +261,6 @@ function thumbErr(im){var i=+im.dataset.i+1;if(i<THUMBS.length){im.dataset.i=i;i
     </div>
     <div class="reel-ui" id="reelUi">
       <span class="t">Showreel 2026</span>
-      <button class="sound" id="soundBtn" type="button">Play with sound</button>
     </div>
   </div>
 </section>
@@ -312,7 +318,7 @@ function thumbErr(im){var i=+im.dataset.i+1;if(i<THUMBS.length){im.dataset.i=i;i
 <script>
 /* ============ EDIT HERE ============
    Videos: [YouTube ID, title, subtitle]. Add or remove lines freely.
-   Orientation (vertical or landscape) is detected automatically; "ratio" is only the starting guess. */
+   ratio: v = vertical reel, h = landscape. */
 const LANES = [
  {key:'brand', name:'Brand and creator reels', accent:'#ff5a3c', ratio:'v',
   blurb:'Short-form reels for brands, products and creators, edited for the first three seconds.',
@@ -378,9 +384,9 @@ $('#lanes').innerHTML=LANES.map(l=>`
 <section class="lane" id="${l.key}" data-accent="${l.accent}" style="--lane:${l.accent}">
   <div class="wrap lane-head">
     <div><h2>${l.name}</h2><p>${l.blurb}</p></div>
-    <div class="lane-nav"><button type="button" data-dir="-1" aria-label="Scroll ${l.name} left">${arrow('M15 5l-7 7 7 7')}</button><button type="button" data-dir="1" aria-label="Scroll ${l.name} right">${arrow('M9 5l7 7-7 7')}</button></div>
   </div>
-  <div class="rail" tabindex="0" aria-label="${l.name} videos">${l.items.map((it,i)=>card(it[0],it[1],it[2],l.ratio,l.big&&i===0)).join('')}</div>
+  <div class="rail-wrap"><button class="edge l" type="button" data-dir="-1" aria-label="Scroll ${l.name} left">${arrow('M15 5l-7 7 7 7')}</button><button class="edge r" type="button" data-dir="1" aria-label="Scroll ${l.name} right">${arrow('M9 5l7 7-7 7')}</button>
+  <div class="rail" tabindex="0" aria-label="${l.name} videos">${l.items.map((it,i)=>card(it[0],it[1],it[2],l.ratio,l.big&&i===0)).join('')}</div></div>
 </section>`).join('');
 $('#laneLinks').innerHTML=LANES.map(l=>`<a href="#${l.key}">${l.name}</a>`).join('');
 $('#catsList').innerHTML=LANES.map(l=>`<a href="#${l.key}">${l.name}</a>`).join('');
@@ -390,7 +396,35 @@ $('#prevList').innerHTML=PREV.map(j=>{
   const r=j.reels.length?`<div class="job-reels">${j.reels.map(it=>card(it[0],it[1],it[2],'v')).join('')}</div>`:'';
   return `<article class="job"><div><h3>${j.name}</h3><p>${j.blurb}</p>${f}</div><div class="metrics">${m}</div>${r}</article>`;
 }).join('');
-$$('.lane-nav button').forEach(b=>b.onclick=()=>{const r=b.closest('.lane').querySelector('.rail');r.scrollBy({left:b.dataset.dir*r.clientWidth*.7,behavior:'smooth'})});
+/* ----- endless rails + edge arrows ----- */
+$$('.rail-wrap').forEach(wrap=>{
+  const rail=wrap.querySelector('.rail'),orig=[...rail.children],n=orig.length,loop=n>=4;
+  const gut=()=>parseFloat(getComputedStyle(rail).paddingLeft)||0;
+  let setW=0,x0=0;
+  if(loop){
+    const mk=()=>orig.map(c=>{const k=c.cloneNode(true);k.tabIndex=-1;k.setAttribute('aria-hidden','true');return k});
+    rail.prepend(...mk());rail.append(...mk());
+    const measure=()=>{const kids=rail.children;setW=kids[n].offsetLeft-kids[0].offsetLeft;x0=kids[n].offsetLeft-gut()};
+    const start=()=>{measure();if(setW>0)rail.scrollLeft=x0};
+    start();addEventListener('load',start);addEventListener('resize',()=>{const off=rail.scrollLeft-x0;measure();rail.scrollLeft=x0+off});
+    let idle=null;
+    const wrapIt=()=>{if(!setW)return;const d=rail.scrollLeft-x0;if(d<-setW/2)rail.scrollLeft+=setW;else if(d>setW/2)rail.scrollLeft-=setW};
+    rail.addEventListener('scroll',()=>{
+      const d=rail.scrollLeft-x0;
+      if(setW&&Math.abs(d)>setW*.9)wrapIt();
+      clearTimeout(idle);idle=setTimeout(wrapIt,90);
+    },{passive:true});
+  }
+  const L=wrap.querySelector('.edge.l'),R=wrap.querySelector('.edge.r');
+  wrap.querySelectorAll('.edge').forEach(b=>b.onclick=()=>rail.scrollBy({left:b.dataset.dir*rail.clientWidth*.7,behavior:'smooth'}));
+  if(fine){
+    wrap.addEventListener('pointermove',e=>{
+      const r=wrap.getBoundingClientRect(),x=e.clientX-r.left;
+      const can=rail.scrollWidth>rail.clientWidth+4;L.classList.toggle('show',can&&x<150);R.classList.toggle('show',can&&x>r.width-150);
+    });
+    wrap.addEventListener('pointerleave',()=>{L.classList.remove('show');R.classList.remove('show')});
+  }
+});
 
 /* ----- smooth scroll ----- */
 let lenis=null;
@@ -438,9 +472,8 @@ function onScroll(){
 addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
 
 /* ----- reel playback + sound ----- */
-const rv=$('#reelVideo'),sb=$('#soundBtn');
+const rv=$('#reelVideo');
 new IntersectionObserver(([en])=>{en.isIntersecting?rv.play().catch(()=>{}):rv.pause()},{threshold:.1}).observe(track);
-sb.onclick=()=>{rv.muted=!rv.muted;sb.textContent=rv.muted?'Play with sound':'Mute';if(!rv.muted){rv.currentTime=0;rv.play().catch(()=>{})}};
 
 /* ----- accent follows the section (like a colour grade) ----- */
 const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting)root.style.setProperty('--accent',en.target.dataset.accent)})},{rootMargin:'-45% 0px -45% 0px'});
@@ -465,25 +498,10 @@ if(fine){
       f.src=`https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1&modestbranding=1&rel=0&disablekb=1`;
       f.onload=()=>f.classList.add('on');
       c.querySelector('.th').appendChild(f);pvEl=f;
-    },450);
+    },300);
   });
   document.addEventListener('pointerout',e=>{const c=e.target.closest('.card');if(c&&!c.contains(e.relatedTarget))stopPv()});
 }
-
-/* ----- detect vertical or landscape from the thumbnail (falls back to the lane default) ----- */
-function detect(c){
-  const probe=new Image();probe.crossOrigin='anonymous';
-  probe.onload=()=>{try{
-    const cv=document.createElement('canvas');cv.width=probe.naturalWidth;cv.height=probe.naturalHeight;
-    const x=cv.getContext('2d');x.drawImage(probe,0,0);
-    const w=cv.width,h=cv.height;
-    const dark=sx=>{const d=x.getImageData(sx,Math.round(h*.25),Math.round(w*.1),Math.round(h*.5)).data;let m=0;for(let i=0;i<d.length;i+=4)m=Math.max(m,d[i],d[i+1],d[i+2]);return m<22};
-    const r=(dark(Math.round(w*.04))&&dark(Math.round(w*.86)))?'v':'h';
-    if(c.dataset.r!==r){c.classList.remove('v','h');c.classList.add(r);c.dataset.r=r}
-  }catch(e){}};
-  probe.src=`https://img.youtube.com/vi/${c.dataset.id}/hqdefault.jpg`;
-}
-$$('.card').forEach(detect);
 
 /* ----- lightbox ----- */
 const lb=$('#lb'),lf=lb.querySelector('iframe');let lastFocus=null;
@@ -491,7 +509,8 @@ document.addEventListener('click',e=>{
   const c=e.target.closest('.card,.phone');if(!c)return;
   stopPv();lastFocus=c;
   lb.classList.toggle('v',c.dataset.r==='v');
-  lf.src=`https://www.youtube.com/embed/${c.dataset.id}?autoplay=1&rel=0&playsinline=1`;
+  lb.querySelector('.box').style.setProperty('--lbimg',`url(${THUMBS[0](c.dataset.id)})`);
+  lf.src=`https://www.youtube.com/embed/${c.dataset.id}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
   lb.classList.add('open');lenis&&lenis.stop();lb.querySelector('.x').focus();
 });
 function closeLb(){lb.classList.remove('open');lf.src='';lenis&&lenis.start();lastFocus&&lastFocus.focus()}
