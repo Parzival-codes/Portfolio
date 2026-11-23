@@ -136,6 +136,8 @@ h1 .l:nth-child(3)>span{animation-delay:.2s}
 .job p{margin-top:16px;color:var(--mute)}
 .job-reels{grid-column:1/-1;display:flex;gap:16px;flex-wrap:wrap}
 .job-reels .card{width:clamp(170px,22vw,260px)}
+.job-reels .card.h{width:calc(50% - 8px)}
+@media(max-width:600px){.job-reels .card.h{width:100%}}
 .metrics{display:flex;gap:56px;flex-wrap:wrap;align-items:flex-end}
 .metrics div{min-width:120px}
 .metrics b{display:block;font:700 clamp(40px,5vw,68px)/1 var(--display);letter-spacing:-.04em}
@@ -370,7 +372,7 @@ const PREV = [
  {name:'Scooper',
   blurb:'Talking-head videos for an AI startup, edited in landscape and vertical with captions, keywords and simple motion graphics.',
   metrics:[['7','reels shipped'],['6 months','experience']],
-  flow:[], reels:[['G0b4f_bDCcI','Scooper edit 1','Talking head'],['uhCH2jEce88','Scooper edit 2','Talking head'],['DsXqsWrb82M','Scooper edit 3','Talking head'],['nri6rUkPlV4','Scooper edit 4','Talking head']]}
+  flow:[], reels:[['G0b4f_bDCcI','Scooper edit 1','Talking head','h'],['uhCH2jEce88','Scooper edit 2','Talking head','h'],['DsXqsWrb82M','Scooper edit 3','Talking head','h'],['nri6rUkPlV4','Scooper edit 4','Talking head','h']]}
 ];
 /* =================================== */
 
@@ -395,7 +397,7 @@ $('#catsList').innerHTML=LANES.map(l=>`<a href="#${l.key}">${l.name}</a>`).join(
 $('#prevList').innerHTML=PREV.map(j=>{
   const m=j.metrics.filter(x=>x[0]).map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
   const f=j.flow.length?`<ul class="flow">${j.flow.map(x=>`<li><b>${x[0]}</b> ${x[1]}</li>`).join('')}</ul>`:'';
-  const r=j.reels.length?`<div class="job-reels">${j.reels.map(it=>card(it[0],it[1],it[2],'v')).join('')}</div>`:'';
+  const r=j.reels.length?`<div class="job-reels">${j.reels.map(it=>card(it[0],it[1],it[2],it[3]||'v')).join('')}</div>`:'';
   return `<article class="job"><div><h3>${j.name}</h3><p>${j.blurb}</p>${f}</div><div class="metrics">${m}</div>${r}</article>`;
 }).join('');
 /* ----- endless rails + edge arrows ----- */
