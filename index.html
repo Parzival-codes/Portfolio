@@ -70,10 +70,6 @@ h1 .l:nth-child(3)>span{animation-delay:.2s}
   transform:translate(calc(var(--mx,0)*var(--d)*1px),calc(var(--my,0)*var(--d)*1px)) rotate(var(--rot));transition:transform .5s ease-out}
 .phone img{width:100%;height:100%;object-fit:cover}
 .phone{cursor:pointer;padding:0;background:linear-gradient(160deg,var(--accent) -60%,#1a1b1f 75%)}
-.igtile{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:12px;color:var(--ink);font:600 15px var(--body)}
-.igtile svg{width:44px;height:44px;stroke:currentColor;fill:none;stroke-width:1.6}
-.igtile i{width:46px;height:46px;border-radius:50%;background:var(--accent);display:grid;place-items:center}
-.igtile i::before{content:"";border-left:12px solid #0f1012;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
 .phone.a{--rot:-9deg;--d:-18;left:2%;top:12%;opacity:.9}
 .phone.c{--rot:0deg;--d:10;height:92%;z-index:2;border-color:var(--accent)}
 .phone.b{--rot:8deg;--d:22;right:2%;top:16%;opacity:.9}
@@ -254,7 +250,7 @@ function thumbErr(im){var i=+im.dataset.i+1;if(i<THUMBS.length){im.dataset.i=i;i
     </div>
     <div class="phones" id="phones">
       <button class="phone a" type="button" data-id="ezMVfW-7Orw" data-r="v" aria-label="Play reel"><img alt="" decoding="async" data-id="ezMVfW-7Orw" data-i="0" onerror="thumbErr(this)" src="https://i.ytimg.com/vi/ezMVfW-7Orw/hqdefault.jpg"></button>
-      <button class="phone b" type="button" data-ig="reel/DcSin76vutM" data-r="v" aria-label="Play Instagram reel"><span class="igtile"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg><b>Instagram reel</b><i></i></span></button>
+      <button class="phone b" type="button" data-id="bfMdxRK8hmg" data-r="v" aria-label="Play reel"><img alt="" decoding="async" data-id="bfMdxRK8hmg" data-i="0" onerror="thumbErr(this)" src="https://i.ytimg.com/vi/bfMdxRK8hmg/hqdefault.jpg"></button>
       <button class="phone c" type="button" data-id="0SjLJ5dCseU" data-r="v" aria-label="Play reel"><img alt="" decoding="async" data-id="0SjLJ5dCseU" data-i="0" onerror="thumbErr(this)" src="https://i.ytimg.com/vi/0SjLJ5dCseU/hqdefault.jpg"></button>
     </div>
   </div>
@@ -525,8 +521,8 @@ document.addEventListener('click',e=>{
   const c=e.target.closest('.card,.phone');if(!c)return;
   stopPv();lastFocus=c;
   lb.classList.toggle('v',c.dataset.r==='v');
-  lb.querySelector('.box').style.setProperty('--lbimg',c.dataset.id?`url(${THUMBS[0](c.dataset.id)})`:'none');
-  lf.src=c.dataset.ig?`https://www.instagram.com/${c.dataset.ig}/embed`:`https://www.youtube.com/embed/${c.dataset.id}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
+  lb.querySelector('.box').style.setProperty('--lbimg',`url(${THUMBS[0](c.dataset.id)})`);
+  lf.src=`https://www.youtube.com/embed/${c.dataset.id}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
   lb.classList.add('open');lenis&&lenis.stop();lb.querySelector('.x').focus();
 });
 function closeLb(){lb.classList.remove('open');lf.src='';lenis&&lenis.start();lastFocus&&lastFocus.focus()}
