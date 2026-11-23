@@ -134,6 +134,9 @@ h1 .l:nth-child(3)>span{animation-delay:.2s}
 .job{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;padding:44px 0 52px;border-top:1px solid var(--line)}
 .job h3{font-size:clamp(30px,3.8vw,48px)}
 .job p{margin-top:16px;color:var(--mute)}
+.job-ig{grid-column:1/-1;display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scrollbar-width:thin}
+.ig{flex:0 0 auto;width:min(340px,86vw);height:620px;border-radius:var(--r);overflow:hidden;background:#fff}
+.ig iframe{width:100%;height:100%;border:0}
 .job-reels{grid-column:1/-1;display:flex;gap:16px;flex-wrap:wrap}
 .job-reels .card{width:clamp(170px,22vw,260px)}
 .job-reels .card.h{width:calc(50% - 8px)}
@@ -368,6 +371,8 @@ const PREV = [
   blurb:'I came up with the reel ideas, wrote the production scripts and edited the Instagram content for a platform that connects volunteers with hosts across India. Simple formats, shipped on a steady schedule.',
   metrics:[['200+','reels shipped'],['1.5 yrs','experience']],
   flow:[],
+  /* Instagram posts: paste the link's code, e.g. https://www.instagram.com/reel/ABC123/ -> ['reel','ABC123'];  carousel/post: https://www.instagram.com/p/XYZ789/ -> ['p','XYZ789']. When filled, these replace the YouTube reels below. */
+  ig:[],
   reels:[['puHahpxtewQ','Study Time','Reel'],['1nTmcgVBmvI','Pizza Fest','Reel'],['5gbAuAqjeuE',"Rishika's Gym Routine",'Reel']]},
  {name:'Scooper',
   blurb:'Talking-head videos for an AI startup, edited in landscape and vertical with captions, keywords and simple motion graphics.',
@@ -397,7 +402,7 @@ $('#catsList').innerHTML=LANES.map(l=>`<a href="#${l.key}">${l.name}</a>`).join(
 $('#prevList').innerHTML=PREV.map(j=>{
   const m=j.metrics.filter(x=>x[0]).map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
   const f=j.flow.length?`<ul class="flow">${j.flow.map(x=>`<li><b>${x[0]}</b> ${x[1]}</li>`).join('')}</ul>`:'';
-  const r=j.reels.length?`<div class="job-reels">${j.reels.map(it=>card(it[0],it[1],it[2],it[3]||'v')).join('')}</div>`:'';
+  const r=(j.ig&&j.ig.length)?`<div class="job-ig">${j.ig.map(x=>`<div class="ig"><iframe loading="lazy" title="Instagram ${x[0]==='p'?'post':'reel'}" src="https://www.instagram.com/${x[0]}/${x[1]}/embed" scrolling="no" allowtransparency="true"></iframe></div>`).join('')}</div>`:j.reels.length?`<div class="job-reels">${j.reels.map(it=>card(it[0],it[1],it[2],it[3]||'v')).join('')}</div>`:'';
   return `<article class="job"><div><h3>${j.name}</h3><p>${j.blurb}</p>${f}</div><div class="metrics">${m}</div>${r}</article>`;
 }).join('');
 /* ----- endless rails + edge arrows ----- */
