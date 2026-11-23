@@ -134,9 +134,14 @@ h1 .l:nth-child(3)>span{animation-delay:.2s}
 .job{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;padding:44px 0 52px;border-top:1px solid var(--line)}
 .job h3{font-size:clamp(30px,3.8vw,48px)}
 .job p{margin-top:16px;color:var(--mute)}
-.job-ig{grid-column:1/-1;display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scrollbar-width:thin}
-.ig{flex:0 0 auto;width:min(340px,86vw);height:620px;border-radius:var(--r);overflow:hidden;background:#fff}
-.ig iframe{width:100%;height:100%;border:0}
+.job-ig{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(326px,1fr));gap:16px}
+.ig{width:100%;height:700px;border-radius:var(--r);overflow:hidden;background:#fff}
+.ig.more{display:none}
+.job-ig.open .ig.more{display:block}
+.ig iframe{width:100%;height:100%;border:0;display:block}
+.ig-more{grid-column:1/-1;justify-self:center;margin-top:8px;padding:12px 26px;border:1px solid var(--line);border-radius:99px;font-weight:600;transition:.2s}
+.ig-more:hover{border-color:var(--ink)}
+.job-ig.open .ig-more{display:none}
 .job-reels{grid-column:1/-1;display:flex;gap:16px;flex-wrap:wrap}
 .job-reels .card{width:clamp(170px,22vw,260px)}
 .job-reels .card.h{width:calc(50% - 8px)}
@@ -402,7 +407,7 @@ $('#catsList').innerHTML=LANES.map(l=>`<a href="#${l.key}">${l.name}</a>`).join(
 $('#prevList').innerHTML=PREV.map(j=>{
   const m=j.metrics.filter(x=>x[0]).map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
   const f=j.flow.length?`<ul class="flow">${j.flow.map(x=>`<li><b>${x[0]}</b> ${x[1]}</li>`).join('')}</ul>`:'';
-  const r=(j.ig&&j.ig.length)?`<div class="job-ig">${j.ig.map(x=>`<div class="ig"><iframe loading="lazy" title="Instagram ${x[0]==='p'?'post':'reel'}" src="https://www.instagram.com/${x[0]}/${x[1]}/embed" scrolling="no" allowtransparency="true"></iframe></div>`).join('')}</div>`:j.reels.length?`<div class="job-reels">${j.reels.map(it=>card(it[0],it[1],it[2],it[3]||'v')).join('')}</div>`:'';
+  const r=(j.ig&&j.ig.length)?`<div class="job-ig">${j.ig.map((x,i)=>`<div class="ig${i>=6?' more':''}"><iframe loading="lazy" title="Instagram ${x[0]==='p'?'post':'reel'}" src="https://www.instagram.com/${x[0]}/${x[1]}/embed" scrolling="no" allowtransparency="true"></iframe></div>`).join('')}${j.ig.length>6?`<button class="ig-more" type="button">Show all ${j.ig.length} reels</button>`:''}</div>`:j.reels.length?`<div class="job-reels">${j.reels.map(it=>card(it[0],it[1],it[2],it[3]||'v')).join('')}</div>`:'';
   return `<article class="job"><div><h3>${j.name}</h3><p>${j.blurb}</p>${f}</div><div class="metrics">${m}</div>${r}</article>`;
 }).join('');
 /* ----- endless rails + edge arrows ----- */
@@ -437,6 +442,11 @@ $$('.rail-wrap').forEach(wrap=>{
     wrap.addEventListener('pointerleave',()=>{L.classList.remove('show');R.classList.remove('show')});
   }
 });
+
+/* ----- Instagram embeds: height follows width, show-more ----- */
+function igSize(){$$('.ig').forEach(e=>{const w=e.clientWidth;if(w)e.style.height=Math.round(w*1.25+215)+'px'})}
+igSize();addEventListener('resize',igSize);
+$$('.ig-more').forEach(b=>b.onclick=()=>{b.closest('.job-ig').classList.add('open');igSize()});
 
 /* ----- smooth scroll ----- */
 let lenis=null;
